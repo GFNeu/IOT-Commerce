@@ -35,7 +35,7 @@ export const addProduct= createAsyncThunk("ADD_PRODUCT", (data)=>{
   })
 
 export const changeProduct= createAsyncThunk("CHANGE_PRODUCT", (data)=>{
-    /*En algun lugar de la data tiene que venir el id para encontrar la ruta*/ 
+    /*En algun lugar de la data tiene que venir el id para encontrar la ruta y la info para actualziar*/ 
     return axios.post("/api/products/productId", data).then((respuesta)=>respuesta.data)
   })
 
