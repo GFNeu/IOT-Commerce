@@ -12,7 +12,7 @@ export const login= createAsyncThunk("LOGIN_REQUEST", (data)=>{
 
 })
 
-export const logout= createAsyncThunk("DISCONNECT", ()=>{
+export const logout= createAsyncThunk("LOGOUT_REQUEST", ()=>{
   return axios.post(/*ver ruta*/"api/auth/logout").then((respuesta)=>respuesta.data)
 })
 

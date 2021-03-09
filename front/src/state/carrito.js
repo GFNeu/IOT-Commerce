@@ -9,21 +9,25 @@ export const addFirstProduct= createAsyncThunk("ADD_FIRST_PRODUCT", (data)=>{
 
 
 export const addProduct= createAsyncThunk("ADD_PRODUCT", (data)=>{
+  /*En algun lugar de la data tiene que venir el id para encontrar la ruta*/ 
     return axios.put(/*ver ruta*/"api/order/orderId", data).then((respuesta)=>respuesta.data)
   })
 
 
 export const addAmount= createAsyncThunk("ADD_AMOUNT", (data)=>{
+  /*En algun lugar de la data tiene que venir el id para encontrar la ruta*/ 
     return axios.put(/*ver ruta*/"api/order/orderId", data)
     .then((respuesta)=>respuesta.data)
 
 })
 
 export const deleteProduct= createAsyncThunk("DELETE_PRODUCT", (data)=>{
+  /*En algun lugar de la data tiene que venir el id para encontrar la ruta*/ 
   return axios.put(/*ver ruta*/"api/order/orderId", data).then((respuesta)=>respuesta.data)
 })
 
 export const emptyCarrito= createAsyncThunk("EMPTY_CARRITO", (data)=>{
+  /*En algun lugar de la data tiene que venir el id para encontrar la ruta*/ 
     return axios.delete("api/order/orderId").then((respuesta)=>respuesta.data)
   })
 

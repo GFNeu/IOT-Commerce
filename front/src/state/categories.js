@@ -15,10 +15,12 @@ export const createCategory= createAsyncThunk("CREATE_CATEGORY", (data)=>{
   })
 
 export const changeCategory= createAsyncThunk("CHANGE_CATEGORY", (data)=>{
+  /*En algun lugar de la data tiene que venir el id para encontrar la ruta*/ 
     return axios.put(/*ver ruta*/"api/categories/categoryId").then((respuesta)=>respuesta.data)
   })
 
 export const deleteCategory= createAsyncThunk("DELETE_CATEGORY", ()=>{
+  /*En algun lugar de la data tiene que venir el id para encontrar la ruta*/ 
     return axios.delete(/*ver ruta*/"api/categories/categoryId").then((respuesta)=>respuesta.data)
   })
 
