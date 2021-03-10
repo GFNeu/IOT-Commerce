@@ -2,6 +2,7 @@ import './App.css';
 import AppBar from './components/AppBar.jsx'
 import Home from './views/Home.jsx'
 import React from 'react';
+
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Login from './components/Login';
 import Register from './components/Register';
@@ -15,7 +16,7 @@ function App() {
     <div className="App">
         <AppBar />
  
-      <BrowserRouter>
+      
         <Switch>
 
         <Route path exact ='/'> <Home/> </Route>
@@ -25,7 +26,7 @@ function App() {
         
         
         </Switch>
-      </BrowserRouter>
+      
     </div>
   );
 }
