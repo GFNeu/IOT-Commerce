@@ -1,14 +1,14 @@
 import React, {useState} from 'react'
 import '../Login.css'
 
-
 const Register = () => {
     const [user, setUser] = useState({
         name: '',
+        lastname:'',
         email: '',
         password: '',
     });
-    const { name, email, password } = user;
+    const { name, lastname, email, password } = user;
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -23,15 +23,20 @@ const Register = () => {
                     <h1 className="mb-3">Register</h1>
 
                     <div className="form-group">
-                    <label htmlFor="email_field">Username</label>
-                    <input type="name" id="name_field" className="form-control"
-                           name='name' value={name}  />
+                        <label htmlFor="name_field"> Name </label>
+                        <input type="name" id="name_field" className="form-control"
+                            name='name' value={name}  />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="lastname_field"> Lastname </label>
+                        <input type="lastname" id="lastname_field" className="form-control"
+                            name='lastname' value={lastname}  />
                     </div>
 
                     <div className="form-group">
-                    <label htmlFor="email_field">Email</label>
-                    <input type="email" id="email_field" className="form-control"
-                            name='email'value={email} />
+                        <label htmlFor="email_field">Email</label>
+                        <input type="email" id="email_field" className="form-control"
+                                name='email'value={email} />
                     </div>
 
                         <div className="form-group">

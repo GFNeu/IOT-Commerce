@@ -13,12 +13,41 @@ import '../Navbar.css';
 
 function NavbarFunc() {
     return (
+      <nav className='navbar row'>
+        <div className='col-12 col-md-3'>
+          <div className='navbar-brand'><img src='./images/logo.png' /></div>
+        </div>
+
+			<div className='col-12 col-md-6 mt-2 mt-md-4'>
+				<div className='input-group'>
+					<input type='text' id='search_field' className='form-control'placeholder='Enter Product Name ...'/>
+					<div className='input-group-append'>
+						<button id='search_btn' className='btn'>
+							search
+						</button>
+					</div>
+				</div>
+			</div>
+
+			<div className='col-12 col-md-3 mt-4 mt-md-4 text-center'>
+				<button className='btn' id='login_btn'> Login </button>
+
+				<span id='cart' className='ml-3'>
+					Cart
+				</span>
+				<span className='ml-1' id='cart_count'>
+					2
+				</span>
+       
+			</div>
       <Navbar>
-        <NavItem icon={<BsPlusSquare />} />
-        <NavItem icon={<SiMessenger />}>
+       
+        <NavItem icon={<BsPlusSquare />}>
           <DropdownMenu></DropdownMenu>
         </NavItem>
       </Navbar>
+		</nav> 
+      
     );
 }
   
@@ -71,47 +100,27 @@ function DropdownMenu() {
     return (
       <div className="dropdown" style={{ height: menuHeight }} ref={dropdownRef}>
   
-        <CSSTransition
-          in={activeMenu === 'main'}
-          timeout={500}
-          classNames="menu-primary"
-          unmountOnExit
-          onEnter={calcHeight}>
+        <CSSTransition in={activeMenu === 'main'} timeout={500}
+          classNames="menu-primary" unmountOnExit onEnter={calcHeight}>
           <div className="menu">
-            <DropdownItem
-              leftIcon="🦧"
-              rightIcon={<FaBeer />}
-              goToMenu="animals">
+            <DropdownItem leftIcon="🦧" rightIcon={<FaBeer />} goToMenu="animals">
               My Profile
             </DropdownItem>
-            <DropdownItem
-              leftIcon={<BiCog />}
-              rightIcon={<FaBeer />}
-              goToMenu="settings">
+            <DropdownItem leftIcon={<BiCog />} rightIcon={<FaBeer />} goToMenu="settings">
               Settings
             </DropdownItem>
-            <DropdownItem
-              leftIcon="🦧"
-              rightIcon={<FaBeer />}
-              goToMenu="animals">
+            <DropdownItem leftIcon="🦧" rightIcon={<FaBeer />} goToMenu="animals">
               Categories
             </DropdownItem>
-            <DropdownItem
-              leftIcon="🦧"
-              rightIcon={<FaBeer />}
-              goToMenu="animals">
+            <DropdownItem leftIcon="🦧" rightIcon={<FaBeer />} goToMenu="animals">
               Admin
             </DropdownItem>
   
           </div>
         </CSSTransition>
   
-        <CSSTransition
-          in={activeMenu === 'settings'}
-          timeout={500}
-          classNames="menu-secondary"
-          unmountOnExit
-          onEnter={calcHeight}>
+        <CSSTransition in={activeMenu === 'settings'} timeout={500} classNames="menu-secondary"
+          unmountOnExit onEnter={calcHeight}>
           <div className="menu">
             <DropdownItem goToMenu="main" leftIcon={<AiOutlineArrowRight />}>
               Go Back
@@ -123,12 +132,8 @@ function DropdownMenu() {
           </div>
         </CSSTransition>
   
-        <CSSTransition
-          in={activeMenu === 'animals'}
-          timeout={500}
-          classNames="menu-secondary"
-          unmountOnExit
-          onEnter={calcHeight}>
+        <CSSTransition in={activeMenu === 'animals'} timeout={500} classNames="menu-secondary"
+          unmountOnExit onEnter={calcHeight}>
           <div className="menu">
             <DropdownItem goToMenu="main" leftIcon={<AiOutlineArrowRight />}>
               Categories
