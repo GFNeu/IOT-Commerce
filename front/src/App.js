@@ -7,8 +7,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Login from './components/Login';
 import Register from './components/Register';
 import Products from './components/Products';
-
-
+import ProductDetail from './components/ProductDetail';
 
 
 function App() {
@@ -23,6 +22,7 @@ function App() {
         <Route path='/login'><Login /></Route>
         <Route path='/register'><Register /></Route>
         <Route path='/products'><Products /></Route>
+        <Route path="/products/detail" component={ProductDetail}/>
         
         
         </Switch>
