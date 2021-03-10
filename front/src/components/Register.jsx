@@ -1,17 +1,23 @@
 import React, { useState } from 'react'
 import './Login.css'
+import {useDispatch} from "react-redux"
+import { useHistory } from "react-router-dom";
+import {register} from "../state/user"
 
 const Register = () => {
-    const [user, setUser] = useState({
-        name: '',
-        lastname:'',
-        email: '',
-        password: '',
-    });
-    const { name, lastname, email, password } = user;
+    let history = useHistory();
+    const dispatch = useDispatch()
+    const [newUser, setNewUser] = useState({});
+   
+
+    const handleChange = (e) => {
+        setNewUser({ ...newUser, [e.target.name]: e.target.value });
+      };
 
     const submitHandler = (e) => {
         e.preventDefault();
+        dispatch(register(newUser))
+        .then(history.push("/login")) 
 
     }
     return (
@@ -25,18 +31,18 @@ const Register = () => {
                     <div className="form-group">
                         <label htmlFor="name_field"> Name </label>
                         <input type="name" id="name_field" className="form-control"
-                            name='name' value={name}  />
+                            name='name' onChange={handleChange}  />
                     </div>
                     <div className="form-group">
                         <label htmlFor="lastname_field"> Lastname </label>
                         <input type="lastname" id="lastname_field" className="form-control"
-                            name='lastname' value={lastname}  />
+                            name='lastName' onChange={handleChange}  />
                     </div>
 
                     <div className="form-group">
                         <label htmlFor="email_field">Email</label>
                         <input type="email" id="email_field" className="form-control"
-                                name='email'value={email} />
+                                name='email' onChange={handleChange} />
                     </div>
 
                         <div className="form-group">
@@ -46,7 +52,7 @@ const Register = () => {
                                 id="password_field"
                                 className="form-control"
                                 name='password'
-                                value={password}
+                                onChange={handleChange}
                                 
                             />
                         </div>

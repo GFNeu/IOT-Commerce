@@ -22,7 +22,9 @@ router.post("/", (req, res, next) => {
              },
         "IOTKEY",
         (err, token) => {
-          res.json(token);
+          console.log("EL TOKEN", token)
+          console.log("USUARIO", usuario)
+          res.json({token:token, usuario:usuario});
         }
       );
     })
