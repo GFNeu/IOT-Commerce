@@ -1,7 +1,7 @@
 "use strict";
 
 const faker = require("faker");
-const { Users } = require("../../models/Users");
+/* const { Users } = require("../../models/Users"); */
 
 module.exports = {
   // se ejecuta cuando se hace la siempra

@@ -1,6 +1,6 @@
 "use strict";
 
-const { Categories } = require("../../models/Categories");
+/* const { Categories } = require("../../models/Categories"); */
 
 module.exports = {
   up: () => {
