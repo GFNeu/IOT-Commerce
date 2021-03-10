@@ -37,7 +37,7 @@ User.init(
       type: S.STRING,
       allowNull: false,
     },
-    fullName: {type: S.VIRTUAL, get(){return this.getDataValue("name"} + " " + this.getDataValue("lastName")},
+    fullName: {type: S.VIRTUAL, get(){return this.getDataValue("name") + " " + this.getDataValue("lastName")}},
     
     salt: {
       type: S.STRING,

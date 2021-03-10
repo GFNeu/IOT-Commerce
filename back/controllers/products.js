@@ -1,4 +1,4 @@
-const {Products, Review} = require("../models");
+const {Products, Reviews} = require("../models");
 
 
 const productsController = {

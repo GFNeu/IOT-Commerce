@@ -12,6 +12,7 @@ DELETE PRODUCT
 router.get("/", getAll)
 router.get("/:id", getOne)
 router.post("/:id/reviews", addReview)
+//ADMIN
 router.post("/", addOne)
 router.put("/:id", changeOne)
 router.delete("/:id", deleteOne)
