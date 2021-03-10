@@ -26,11 +26,12 @@ app.use((err, req, res, next) => {
   //res.sendStatus(404).send(err);
 })
 
-/* db.sync({ force: false }).then(() => {
+db.sync({ force: true }).then(() => {
+  /* force: false */
   http.createServer(app).listen(config.port, () => {
     console.log(`Server listening at port ${config.port}`);
   });
-}); */
+}); 
 
 http.createServer(app).listen(8080, () => {
     console.log(`Server listening at port 8080`);
