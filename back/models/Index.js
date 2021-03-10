@@ -3,7 +3,7 @@ const Orders = require("./Orders");
 const OrderStatus = require("./OrderStatus");
 const Products = require("./Products");
 const Reviews = require("./Reviews");
-const Users = require("./Users");
+const User = require("./Users");
 
 const db = require("../db/index");
 
@@ -14,13 +14,13 @@ const db = require("../db/index");
 
 // RECORDAR QUE LAS RELACIONES AGREGAN METODOS
 
-Users.hasMany(Orders);
+User.hasMany(Orders);
 
-Users.hasMany(Reviews);
+User.hasMany(Reviews);
 
 Reviews.hasOne(Products);
 
-Reviews.hasOne(Users);
+
 
 Orders.belongsToMany(Products, {through: "oders_products"});
 Products.belongsToMany(Orders,{through: "oders_products"});
@@ -28,4 +28,4 @@ Products.belongsToMany(Orders,{through: "oders_products"});
 Categories.belongsToMany(Products, {through: "products_categories"});
 Products.belongsToMany(Categories,{through: "products_categories"});
 
-module.exports = { db, Categories, Orders, OrderStatus, Products, Reviews, Users };
+module.exports = { db, Categories, Orders, OrderStatus, Products, Reviews, User };

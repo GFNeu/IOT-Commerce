@@ -8,7 +8,7 @@ import { SiMessenger } from "@react-icons/all-files/si/SiMessenger";
 import { BiCog } from "@react-icons/all-files/bi/BiCog";
 import { CSSTransition } from 'react-transition-group';
 import { Link } from 'react-router-dom';
-import '../Navbar.css';
+import './Navbar.css';
 
 
 function NavbarFunc() {
