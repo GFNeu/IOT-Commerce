@@ -20,7 +20,7 @@ User.hasMany(Reviews);
 
 Reviews.hasOne(Products);
 
-Reviews.hasOne(User);
+
 
 Orders.belongsToMany(Products, {through: "oders_products"});
 Products.belongsToMany(Orders,{through: "oders_products"});
