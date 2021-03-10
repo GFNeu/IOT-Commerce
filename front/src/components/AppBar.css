@@ -1,0 +1,63 @@
+.navbar {
+    background-color: #0046be;
+}
+
+#iot {
+    color: white;
+    font-weight: bolder;
+    font-size: 2rem;
+}
+
+#cats {
+    color: white;
+    font-weight: bolder;
+}
+
+.center {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    
+    flex-grow: 1;
+}
+
+.form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#max_width {
+    width: 100%;
+  max-width: 890px;
+}
+
+#search_input {
+    width: 100%;
+    max-width: 800px;
+}
+
+#ingresar {
+    color: white;
+    background-color: transparent;
+    font-weight: bolder;
+    border-color: transparent;
+}
+
+#carrito_btn {
+    color: white;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+#carrito_icon{
+    font-size: 1.3rem;
+    font-weight: bolder;
+}
+
+#search_btn{
+    background-color: white;
+    color: rgb(49, 49, 49);
+    border-color: rgb(219, 219, 219);
+}

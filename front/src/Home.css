@@ -1,0 +1,57 @@
+body {
+    font-family: 'Amazon Ember';
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    
+}
+
+
+
+/* Home page */
+#products_heading {
+    margin-top: 1.8rem;
+}
+  
+.card {
+    height: 100%;
+}
+  
+.card-title a {
+    color: #2e2e2e;
+}
+  
+.card-title a:hover {
+    color: #fa9c23;
+    text-decoration: none;
+}
+
+.card-body {
+    padding-left: 0;
+}
+  
+.card-text {
+    font-size: 1.4rem;
+}
+  
+#view_btn {
+    background-color: #fa9c23;
+    color: white;
+}
+  
+.card-img-top {
+    width: 200px;
+    height: 150px;
+}
+  
+.ratings {
+    font-size: 1.2rem;
+    color: #fdcc0d;
+}
+  
+#no_of_reviews {
+    font-size: 0.85rem;
+    color: grey;
+    margin-left: 0.5rem;
+}

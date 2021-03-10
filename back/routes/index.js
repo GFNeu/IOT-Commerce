@@ -11,6 +11,7 @@ router.use('/categories', categories)
 router.use('/checkout', checkout)
 router.use('/products', products)
 router.use('/users', users)
+ 
 
 
 module.exports = router

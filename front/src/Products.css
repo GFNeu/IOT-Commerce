@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@600&display=swap');
+
+*{
+    box-sizing: border-box;
+}
+
+.card {
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    
+    height: 100%;
+}
+  
+.card-text {
+    font-size: 1.2rem;
+    font-family: Roboto;
+}
+  
+#view_btn {
+    background-color: #fa9c23;
+    color: white;
+    border:none;
+    border-radius: 5px;
+    width: 100%;
+}
+  
+.card-img-top {
+    width: 200px;
+    height: 150px;
+}
+  
+.ratings {
+    font-size: 1.2rem;
+    color:black;
+}
+  
+#no_of_reviews {
+    font-size: 0.85rem;
+    color: grey;
+    margin-left: 0.5rem;
+}
+  
