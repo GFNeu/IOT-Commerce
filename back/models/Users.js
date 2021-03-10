@@ -3,17 +3,23 @@ const db = require("../db/index");
 
 const crypto = require("crypto");
 
-class User extends S.Model {}
+class User extends S.Model {
+  /* static buscaUsuario(params) {
+    User.findOne (where)
+
+    
+  } */
+}
 
 User.init(
   {
     name: {
       type: S.STRING,
-      allowNull: false,
+      /* allowNull: false, */
     },
-    apellido: {
+    lastName: {
       type: S.STRING,
-      allowNull: false,
+      /* allowNull: false, */
     },
     email: {
       type: S.STRING,
@@ -31,6 +37,8 @@ User.init(
       type: S.STRING,
       allowNull: false,
     },
+    fullName: {type: S.VIRTUAL, get(){return this.getDataValue("name"} + " " + this.getDataValue("lastName")},
+    
     salt: {
       type: S.STRING,
     },
