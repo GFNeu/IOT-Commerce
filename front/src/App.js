@@ -9,6 +9,7 @@ import Register from './components/Register';
 import Products from './components/Products';
 import ProductDetail from './components/ProductDetail';
 import Footer from './components/Footer.jsx'
+import Cart from './components/Cart.jsx'
 
 
 function App() {
@@ -22,8 +23,10 @@ function App() {
         <Route path exact ='/'> <Home/> </Route>
         <Route path ='/login'><Login /></Route>
         <Route path ='/register'><Register /></Route>
-        <Route path exact ='/products'><Products /></Route>
-        <Route path ="/products/detail" component={ProductDetail}/>
+        <Route path = '/products/:id' render={({match}) => <ProductDetail id={match.params.id} />}/>
+        <Route path ='/products'><Products /></Route>
+        <Route path ='/cart'><Cart /></Route>
+        {/* <Route path ="/products/detail" component={ProductDetail}/> */}
         
         </Switch>
 

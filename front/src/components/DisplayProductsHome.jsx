@@ -3,6 +3,7 @@ import ScrollMenu from 'react-horizontal-scrolling-menu';
 import './DisplayProductsHome.css'
 import {createUseStyles} from 'react-jss'
 import ProductCard from './ProductCardHome'
+import {useSelector} from 'react-redux'
 
 const useStyles = createUseStyles({
     root: {
@@ -30,8 +31,8 @@ const useStyles = createUseStyles({
 
   })
 
-  const Menu = (list, selected) => list.map(el => {
-                 return <ProductCard {...el} key={el.id}/>;
+  const Menu = (list) => list.map(el => {
+                 return <ProductCard obj={el} name={el.name} key={el.id}/>;
                 });
 
   
@@ -47,19 +48,21 @@ const ArrowLeft = Arrow({ text: '<', className: 'arrow-prev' });
 const ArrowRight = Arrow({ text: '>', className: 'arrow-next' });
 
 
-const DisplayProductsHome = ({productos}) => {
+const DisplayProductsHome = () => {
+    const productos = useSelector(state => state.product)
     const classes = useStyles()
-    const [menuItems, setMenuItems] = useState(Menu(productos)) //reemplazar list por productos
+    //const [menuItems, setMenuItems] = useState(productos) //reemplazar list por productos
   
     const onSelect = key => {
         //this.setState({ selected: key });
         console.log("hola")
       }
 
-      const menu = menuItems;
+      const menu = productos.map(item => (<ProductCard obj={item} key={item.id}/>));
 
     return (
         <div className={classes.root}>
+          
             <h4 className={classes.title}>Productos destacados</h4>
             <ScrollMenu
             data={menu}

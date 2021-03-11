@@ -20,7 +20,7 @@ const AppBar = () => {
           <Nav className="mr-auto" className="center">
             {/* <Nav.Link href="#home">Home</Nav.Link>
             <Nav.Link href="#link">Link</Nav.Link> */}
-            <NavDropdown variant="light" title="Cateogrías" id="basic-nav-dropdown" id="cats">
+            <NavDropdown variant="light" title="Categorías" id="basic-nav-dropdown" id="cats">
               <NavDropdown.Item href="#action/3.1">Categorías</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
                 Another action
@@ -38,7 +38,7 @@ const AppBar = () => {
               </InputGroup.Append>
           </InputGroup>
           </Nav>
-          <Button id="carrito_btn"><FiShoppingCart id="carrito_icon"/></Button>
+          <Link to="/cart" id="carrito_btn"><FiShoppingCart id="carrito_icon"/></Link>
           <Link to="/login"><Button id="ingresar">Ingresar</Button></Link>
           <Link to="/register"> <Button variant="warning">Registrarse</Button></Link>
         </Navbar.Collapse>

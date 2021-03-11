@@ -12,7 +12,7 @@ const useStyles = createUseStyles({
         maxWidth: "10rem",
         height: 230,
         marginRight: "8rem",
-        marginLeft: "-5rem",
+        //marginLeft: "-5rem",
 
     },
     link:{
@@ -65,13 +65,16 @@ const useStyles = createUseStyles({
   })
 
 
-const ProductCardHome = ({name, id, price, img, rating=0}) => {
+const ProductCardHome = ({obj}) => {
+    
+    const {name, photo, id, rating, price} = obj
     const classes = useStyles()
     return (
         <div className={classes.menuItem}>
+            
             <Link to={`/products/${id}`} className={classes.link}>
             <div className={classes.contImg}>
-                <img src={img} alt={name} title={name} className={classes.img}/>
+                <img src={photo} alt={name} title={name} className={classes.img}/>
             </div>
             <h5 className={classes.name}>{name}</h5>
             <Rating 
@@ -82,7 +85,7 @@ const ProductCardHome = ({name, id, price, img, rating=0}) => {
                 fullSymbol={<FaStar className={classes.iconFull}/>}
                 fractions={2}
             />
-            <p className={classes.price}>{price}</p>
+            <p className={classes.price}>{`$${price}`}</p>
             </Link>
         </div>
     )

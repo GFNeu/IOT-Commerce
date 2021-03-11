@@ -6,9 +6,6 @@ export const getCategories= createAction("GET_CATEGORIES")
 /*Es solo una accion porque creo que es mejor hacer el axios dentro de un useEffect en la home, y dispatchear
 la accion. Se puede transformar a un createasyncthunk*/
 
-
-
-
 //FUNCIONES SOLO PARA EL ADMIN
 export const createCategory= createAsyncThunk("CREATE_CATEGORY", (data)=>{
     return axios.post("/api/categories/", data).then((respuesta)=>respuesta.data)
