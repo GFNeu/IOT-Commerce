@@ -8,6 +8,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Products from './components/Products';
 import ProductDetail from './components/ProductDetail';
+import Footer from './components/Footer.jsx'
 
 
 function App() {
@@ -24,9 +25,9 @@ function App() {
         <Route path exact ='/products'><Products /></Route>
         <Route path ="/products/detail" component={ProductDetail}/>
         
-        
         </Switch>
-      
+
+        <Footer />
     </div>
   );
 }
