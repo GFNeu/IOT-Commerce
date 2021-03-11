@@ -18,9 +18,8 @@ User.hasMany(Orders);
 
 User.hasMany(Reviews);
 
-Reviews.hasOne(Products);
-
-
+Reviews.belongsTo(Products);
+Reviews.belongsTo(User)
 
 Orders.belongsToMany(Products, {through: "oders_products"});
 Products.belongsToMany(Orders,{through: "oders_products"});

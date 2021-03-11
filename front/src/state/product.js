@@ -16,7 +16,7 @@ export const getProducts= createAsyncThunk("GET_PRODUCTS", (data)=>{
 
 export const getOne= createAsyncThunk("GET_ONE_PRODUCT", (data)=>{
     /*En algun lugar de la data tiene que venir el id para encontrar la ruta*/ 
-    return axios.get("/api/products/productId").then((respuesta)=>respuesta.data)
+    return axios.get(`/api/products/${data}`).then((respuesta)=>respuesta.data)
   })
 
 export const getCategoryProducts= createAsyncThunk("GET_CATEGORY_PRODUCTS", (data)=>{

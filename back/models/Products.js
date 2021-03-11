@@ -6,11 +6,11 @@ class Products extends S.Model {}
 Products.init(
   {
     name: {
-      type: S.STRING,
+      type: S.TEXT,
       allowNull: false,
     },
     description: {
-      type: S.STRING,
+      type: S.TEXT,
       allowNull: false,
     },
     photo: {
@@ -18,7 +18,7 @@ Products.init(
       allowNull: false,
     },
     price: {
-      type: S.FLOAT(6, 2),
+      type: S.FLOAT,
       allowNull: false,
     },
     mark: {
