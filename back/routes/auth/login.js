@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const   User  = require("../../models");
+const {User} = require("../../models/Index")
 const jwt = require("jsonwebtoken");
 
 router.post("/", (req, res, next) => {
@@ -22,7 +22,9 @@ router.post("/", (req, res, next) => {
              },
         "IOTKEY",
         (err, token) => {
-          res.json(token);
+          console.log("EL TOKEN", token)
+          console.log("USUARIO", usuario)
+          res.json({token:token, usuario:usuario});
         }
       );
     })

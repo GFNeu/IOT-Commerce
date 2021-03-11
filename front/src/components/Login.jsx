@@ -1,17 +1,25 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
+import {useDispatch} from "react-redux"
+import {login} from "../state/user"
+import { useHistory } from "react-router-dom";
 
 import { Link } from 'react-router-dom';
-import '../Login.css';
+import './Login.css';
 
 const Login = () => {
-
+    let history = useHistory();
+    const dispatch = useDispatch()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const submitHandler = (e) => {
         e.preventDefault();
-        
+        dispatch(login({email:email, password:password}))
+        .then((data)=>{
+            console.log("LA DATA QUE LLEGA DEL BACK",data)
+            localStorage.setItem("token", data.payload.token)})
+        .then(history.push("/"))       
     }
     return (
     <>
