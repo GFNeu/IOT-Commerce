@@ -9,6 +9,7 @@ import Button from 'react-bootstrap/Button'
 import './AppBar.css'
 import { AiOutlineSearch } from "react-icons/ai"
 import { FiShoppingCart } from "react-icons/fi";
+import {Link} from "react-router-dom"
 
 const AppBar = () => {
     return (
@@ -38,8 +39,8 @@ const AppBar = () => {
           </InputGroup>
           </Nav>
           <Button id="carrito_btn"><FiShoppingCart id="carrito_icon"/></Button>
-          <Button id="ingresar">Ingresar</Button>
-          <Button variant="warning">Registrarse</Button>
+          <Link to="/login"><Button id="ingresar">Ingresar</Button></Link>
+          <Link to="/register"> <Button variant="warning">Registrarse</Button></Link>
         </Navbar.Collapse>
       </Navbar>
     );
