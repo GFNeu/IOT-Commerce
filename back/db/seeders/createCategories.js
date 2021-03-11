@@ -4,18 +4,22 @@ const {
 } = require("../../models/Index");
 
 Categories.bulkCreate([{
+      statusDescription: "Conectividad"
+    },
+    {
+      statusDescription: "Pantallas y displays"
+    },
+    {
+      statusDescription: "Motores, actuadores, servos y accesorios"
+    },
+    {
+      statusDescription: "Cusos"
+    },
+    {
       statusDescription: "Sensores"
-    },
-    {
-      statusDescription: "Categoria 2"
-    },
-    {
-      statusDescription: "Categoria 3"
-    },
-    {
-      statusDescription: "Categoria 4"
     }
   ])
+  
   .then(() => {
     console.log("categorias creadas")
   })

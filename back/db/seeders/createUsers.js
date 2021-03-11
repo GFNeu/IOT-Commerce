@@ -15,7 +15,8 @@ User.bulkCreate([   {
   })
 
 
-for(let i=0; i<10; i++){
+for(let i=0; i<55; i++){
+
 User.bulkCreate([  
 {
   name: faker.name.findName(), // ?

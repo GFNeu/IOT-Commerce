@@ -9,6 +9,10 @@ Categories.init(
       type: S.STRING,
       allowNull: false,
     },
+    photo: {
+      type: S.STRING,
+     // allowNull: false,
+    },
   },
   { sequelize: db, modelName: "categories" }
 );
