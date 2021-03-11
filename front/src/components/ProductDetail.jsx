@@ -1,7 +1,7 @@
 import React from 'react';
 import './ProductDetail.css';
 
-const ProductDetail = ( id ) => {
+const ProductDetail = ( ) => {
     
 
     return (
