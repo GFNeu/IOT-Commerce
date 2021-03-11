@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 //RUTAS
-app.use('/api',routes)
+
 
 // error middleware -> https://expressjs.com/es/guide/error-handling.html
 app.use((err, req, res, next) => {
@@ -27,7 +27,7 @@ app.use((err, req, res, next) => {
 })
 
 db.sync({ force: false }).then(() => {
-  /* force: false */
+  /* force: true */
   http.createServer(app).listen(8080, () => {
     console.log(`Server listening at port 8080`);
   });
