@@ -4,9 +4,7 @@ import Carrousel from '../components/Carrousel.jsx'
 import Container from 'react-bootstrap/Container'
 import DisplayCursos from '../components/DisplayCursosHome'
 import {createUseStyles} from 'react-jss'
-import curso1 from '../assets/curso1.jpg'
-import curso2 from '../assets/curso2.png'
-import curso3 from '../assets/curso3.png'
+import DisplayProducts from '../components/DisplayProductsHome'
 
 const useStyles = createUseStyles({
     root: {
@@ -14,9 +12,9 @@ const useStyles = createUseStyles({
     },
   })
 
-const cursos = [{id: 1, name: "Arduino 101", description: "Aprenda todo sobre Arduino", img: curso1},
-                {id: 2, name: "Smart-tostadora", description: "¿Cómo hacer una smart-tostadora?", img: curso2},
-                {id: 3, name: "RaspBerry", description: "RaspBerry Pi para principiantes", img: curso3}]
+const cursos = [{id: 1, name: "Arduino 101", description: "Aprenda todo sobre Arduino", img: "https://p4.wallpaperbetter.com/wallpaper/376/232/44/arduino-logo-black-hd-wallpaper-wallpaper-preview.jpg"},
+                {id: 2, name: "Smart-tostadora", description: "¿Cómo hacer una smart-tostadora?", img: "https://sketchingwithhardware.files.wordpress.com/2013/08/img_52251.jpg"},
+                {id: 3, name: "RaspBerry", description: "RaspBerry Pi para principiantes", img: "https://www.realdroid.es/wp-content/uploads/2016/10/LogoRaspi.jpg"}]
 
 
 
@@ -30,6 +28,7 @@ const Home = () => {
         <Container fluid className={classes.root}>
             <Carrousel />
             <DisplayCursos cursos={cursos}/>
+            <DisplayProducts />
         </Container>
     )
 }
