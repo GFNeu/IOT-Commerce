@@ -18,7 +18,7 @@ Products.init(
       allowNull: false,
     },
     price: {
-      type: S.FLOAT(6, 2),
+      type: S.FLOAT,
       allowNull: false,
     },
     mark: {

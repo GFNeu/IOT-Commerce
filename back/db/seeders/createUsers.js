@@ -1,62 +1,33 @@
 "use strict";
+const faker = require("faker"); 
+const {User} = require("../../models/Index");
 
-const faker = require("faker");
-/* const { Users } = require("../../models/Users"); */
+User.bulkCreate([   {
+  name: "santi",
+  lastName: "santu",
+  email: "santi@santi.com",
+  isAdmin: true,
+  password: "1234"
+}, 
+  ])
+  .then(() => {
+    console.log("usuario santi suntu creado ")
+  })
 
-module.exports = {
-  // se ejecuta cuando se hace la siempra
-  up: (queryInterface, Sequelize) => {
-    let usuarios = [
-      {
-        name: "santi",
-        lastName: "santu",
-        email: "santi@santi.com",
-        isAdmin: true,
-        password: "1234",
-      },
-      {
-        name: faker.name.findName(), // ?
-        lastName: faker.lastName,
-        email: faker.email,
-        isAdmin: false,
-        password: "1234",
-      },
-      {
-        name: faker.name,
-        lastName: faker.lastName,
-        email: faker.email,
-        isAdmin: false,
-        password: "1234",
-      },
-      {
-        name: faker.name,
-        lastName: faker.lastName,
-        email: faker.email,
-        isAdmin: false,
-        password: "1234",
-      },
-      {
-        name: faker.name,
-        lastName: faker.lastName,
-        email: faker.email,
-        isAdmin: false,
-        password: "1234",
-      },
-      {
-        name: faker.name,
-        lastName: faker.lastName,
-        email: faker.email,
-        isAdmin: false,
-        password: "1234",
-      },
-    ];
-    return queryInterface.bulkInsert("users", usuarios); //(nombre tabla, variable con contenido)
-  },
 
-  // se ejecuta cuando se deshace la siempra
-  // borra todo o con undo, lo último
-  down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete("users", null, {}); // BORRA TODOS LOS USUARIOS, cuando ejecutamos undo --nombreseed
-    // ampliar descripcion
-  },
-};
+for(let i=0; i<10; i++){
+User.bulkCreate([  
+{
+  name: faker.name.findName(), // ?
+  lastName: faker.name.lastName(),
+  email: faker.internet.email(),
+  isAdmin: false,
+  password: "1234",
+},
+
+  ])
+  .then(() => {
+    console.log("usuario creado ",i)
+  })
+}
+

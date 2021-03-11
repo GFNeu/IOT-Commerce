@@ -3,7 +3,7 @@ const http = require("http");
 const cors = require("cors");
 const morgan = require('morgan')
 const routes = require('./routes')
-//const db = require('./db')
+const db = require('./db')
 const app = express();
 
 
@@ -26,13 +26,10 @@ app.use((err, req, res, next) => {
   //res.sendStatus(404).send(err);
 })
 
-db.sync({ force: true }).then(() => {
+db.sync({ force: false }).then(() => {
   /* force: false */
   http.createServer(app).listen(8080, () => {
     console.log(`Server listening at port 8080`);
   });
 }); 
 
-/* http.createServer(app).listen(8080, () => {
-    console.log(`Server listening at port 8080`);
-  }); */

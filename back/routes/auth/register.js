@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { User } = require("../../models/Index");
+const {User} = require("../../models/Index")
 
 router.post("/", (req, res, next) => {
   const body = req.body;
