@@ -10,8 +10,10 @@ import './AppBar.css'
 import { AiOutlineSearch } from "react-icons/ai"
 import { FiShoppingCart } from "react-icons/fi";
 import {Link} from "react-router-dom"
+import {useSelector} from "react-redux"
 
 const AppBar = () => {
+  const user = useSelector(state=> state.user)
     return (
       <Navbar className="navbar" expand="lg">
         <Navbar.Brand href="#home" id="iot">IOT COMERCE</Navbar.Brand>
@@ -39,7 +41,13 @@ const AppBar = () => {
           </InputGroup>
           </Nav>
           <Button id="carrito_btn"><FiShoppingCart id="carrito_icon"/></Button>
-          <Link to="/login"><Button id="ingresar">Ingresar</Button></Link>
+
+          {user.id ? <Link to="/login"><Button id="ingresar">Cerrar sesion</Button></Link> : <Link to="/login"><Button id="ingresar">Ingresar</Button></Link>}
+          
+
+
+
+
           <Link to="/register"> <Button variant="warning">Registrarse</Button></Link>
         </Navbar.Collapse>
       </Navbar>
