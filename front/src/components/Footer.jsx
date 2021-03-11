@@ -16,7 +16,9 @@ const Footer = () => {
     const classes = useStyles()
     return (
      <div className={classes.root}>
-         Footer
+         <p className="text-center mt-1">
+           <strong>IOT COMERCE 2021</strong>
+         </p>
      </div>
     );
 }

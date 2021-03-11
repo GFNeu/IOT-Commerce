@@ -10,9 +10,23 @@ import Products from './components/Products';
 import ProductDetail from './components/ProductDetail';
 import Footer from './components/Footer.jsx'
 import Cart from './components/Cart.jsx'
+import axios from 'axios';
+import {useDispatch} from "react-redux"
+import {setUser} from "./state/user"
 
 
 function App() {
+  const dispatch= useDispatch()
+  React.useEffect(()=>{
+    const token= localStorage.getItem("token") ? localStorage.getItem("token"): undefined
+    if(token){
+      axios.defaults.headers.authorization = `${token}`;
+      axios.post("/api/auth/me").then(data => {
+      dispatch(setUser(data.data))})
+    }
+
+    
+  }, [])
   return (
     <div className="App">
         <AppBar />
