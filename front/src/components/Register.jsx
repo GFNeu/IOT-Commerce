@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import './Login.css'
 import {useDispatch} from "react-redux"
 import { useHistory } from "react-router-dom";
-import {register} from "../state/user"
+import {register} from "../state/user";
+import swal from 'sweetalert';
+
 
 const Register = () => {
     let history = useHistory();
@@ -19,7 +21,12 @@ const Register = () => {
         dispatch(register(newUser))
         .then(history.push("/login")) 
 
-    }
+    };
+    
+    const clickHanlder = ()=>{
+        swal("User Registrated!")
+    };
+
     return (
         <>
             
@@ -57,7 +64,8 @@ const Register = () => {
                             />
                         </div>
 
-                        <button id="register_button" type="submit" className="btn btn-block py-3" >
+                        <button id="register_button" type="submit" 
+                        className="btn btn-block py-3" onClick={clickHanlder}>
                             REGISTER
                         </button>
                     </form>
