@@ -11,13 +11,53 @@ const useStyles = createUseStyles({
         boxSizing: "border-box",
         display: "flex",
         justifyContent: "space-between",
-        marginTop: "1em",
-        alignItems: "center"
+        marginTop: "2rem",
+        marginBottom: "2rem",
+        alignItems: "stretch",
+        maxWidth: 1300,
+    },
+    link:{
+      width: "100%",
+      maxWidth: 400,
+      flexGrow: 1,
+      color: "black",
+      border: "1px solid #e6e6e6",
+      borderRadius: 2,
+      backgroundColor: "white",
+      '&:hover':{
+        textDecoration: "none",
+        color: "black",
+      }
+    },
+    imgCont: {
+      overflow: "hidden",
+      width: "100%",
+      maxHeight:200,
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      borderTopLeftRadius: 2,
+      borderTopRightRadius: 2
     },
     img: {
         width: "100%",
         height: "auto",
-        maxWidth: "350px"
+    },
+    cardContenido: {
+      
+      boxSizing: "border-box",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      padding: "3%"
+    },
+    title: {
+      textTransform: "uppercase",
+      fontWeight: "bolder"
+    },
+    description:{
+      width: "100%",
+      textAlign: "center"
     }
 
   })
@@ -29,16 +69,20 @@ const DisplayCursosHome = ({cursos}) => {
       <Container fluid className={classes.root}>
         {cursos &&
           cursos.map((curso) => (
-            <Card key={curso.id}>
-              <Card.Img variant="top" src={curso.img} className={classes.img}/>
-              <Card.Body>
-                <Card.Title>{curso.name}</Card.Title>
-                <Card.Text>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                </Card.Text>
-                <Button variant="link">Go somewhere</Button>
-              </Card.Body>
-            </Card>
+            <Link to={`/courses/${curso.id}`} className={classes.link} key={curso.id}>
+              
+                <div className={classes.imgCont}>
+                  <Card.Img variant="top" src={curso.img} className={classes.img}/>
+                </div>
+                <div className={classes.cardContenido}>
+                  <h3 className={classes.title}>{curso.name}</h3>
+                  <h5 className={classes.description}>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                  </h5>
+                  <Link to={`/courses/${curso.id}`}><Button variant="link">Más información</Button></Link>
+                </div>
+              
+            </Link>
           ))}
       </Container>
     );

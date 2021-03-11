@@ -19,10 +19,10 @@ function App() {
         <Switch>
 
         <Route path exact ='/'> <Home/> </Route>
-        <Route path='/login'><Login /></Route>
-        <Route path='/register'><Register /></Route>
-        <Route path='/products'><Products /></Route>
-        <Route path="/products/detail" component={ProductDetail}/>
+        <Route path ='/login'><Login /></Route>
+        <Route path ='/register'><Register /></Route>
+        <Route path exact ='/products'><Products /></Route>
+        <Route path ="/products/detail" component={ProductDetail}/>
         
         
         </Switch>
