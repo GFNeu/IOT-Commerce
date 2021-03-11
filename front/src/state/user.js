@@ -12,33 +12,15 @@ export const login= createAsyncThunk("LOGIN_REQUEST", (data)=>{
       .then((respuesta) =>  respuesta.data)
 })
 
+export const setUser= createAction("SET_USER")
+
 
 export const editUser= createAsyncThunk("EDIT_USER", (data)=>{
   /*conseguir id */
   return axios.put("/api/users/userId", data).then((respuesta)=>respuesta.data)
 })
 
-
-// export const logout= createAsyncThunk("LOGOUT_REQUEST", ()=>{
-//   return axios.post(/*ver ruta*/"api/auth/logout").then((respuesta)=>respuesta.data)
-// })
-
 export const logout = createAction("LOGOUT")
-
-
-
-// onClick de logout que va en el front(){
-//   const logOut = (e) => {
-//     e.preventDefault();
-//     localregisterStorage.clear();
-//     token = undefined;
-//   };
-//   token undefined
-//   local storage vacio
-//   dispatch una accion
-//   redirigimos a home
-// }
-
 
 //FUNCIONES SOLO PARA EL ADMIN
 export const getUsers= createAsyncThunk("GET_USERS", ( )=>{
@@ -53,9 +35,12 @@ export const changePermits= createAsyncThunk("CHANGE_PERMITS", (data)=>{
 
 
 
+
+
 const userReducer= createReducer([], {
     [login.fulfilled] : (state, action) =>  action.payload.usuario,
-    [logout.fulfilled]: (state, action) => [],
+    [logout]: (state, action) => [],
+    [setUser]: (state, action) => action.payload,
     [editUser.fulfilled] : (state, action) =>  action.payload,
     [register.fulfilled] : (state, action) =>  action.payload,
     [getUsers.fulfilled] : (state, action) =>  action.payload,

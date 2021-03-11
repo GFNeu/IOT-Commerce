@@ -18,7 +18,7 @@ const Login = () => {
         dispatch(login({email:email, password:password}))
         .then((data)=>{
             console.log("LA DATA QUE LLEGA DEL BACK",data)
-            localStorage.setItem("token", data.payload.token)})
+         if(data.payload) localStorage.setItem("token", data.payload.token)}) 
         .then(history.push("/"))       
     };
 

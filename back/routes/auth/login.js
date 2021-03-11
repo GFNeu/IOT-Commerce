@@ -4,7 +4,6 @@ const {User} = require("../../models/Index")
 const jwt = require("jsonwebtoken");
 
 router.post("/", (req, res, next) => {
-  console.log(req.body);
   const { email, password } = req.body;
   User.findOne({
     where: {
@@ -19,11 +18,12 @@ router.post("/", (req, res, next) => {
         {
           id: usuario.id,
           email: usuario.email,
+          name: usuario.name,
+          lastName: usuario.lastName
+          
              },
         "IOTKEY",
         (err, token) => {
-          console.log("EL TOKEN", token)
-          console.log("USUARIO", usuario)
           res.json({token:token, usuario:usuario});
         }
       );

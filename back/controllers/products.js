@@ -25,10 +25,12 @@ const productsController = {
       .catch(err=> next(err))
   },
 
-  addOne(req, res) { 
+  addOne(req, res, next) { 
+    console.log(req.body)
     Products.create(req.body)
+    
       .then(product => res.send(product))
-      .catch(err=> next(err))
+      .catch(err=> console.log(err))
   },
 
   changeOne(req, res) {

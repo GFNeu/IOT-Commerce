@@ -6,7 +6,7 @@ class Categories extends S.Model {}
 Categories.init(
   {
     statusDescription: {
-      type: S.STRING,
+      type: S.TEXT,
       allowNull: false,
     },
     photo: {
