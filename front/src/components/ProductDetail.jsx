@@ -29,6 +29,7 @@ const ProductDetail = ( {id} ) => {
                 <div className="rating">
                     <p id="product_id">{`Review: 5 ⭐⭐⭐⭐⭐`}</p>
                 </div>
+                
                 {/* <span id="no_of_reviews">(5 Reviews)</span> */}
 
                 <hr/>
@@ -42,8 +43,7 @@ const ProductDetail = ( {id} ) => {
                     <span className="btn btn-primary plus" onClick={()=> setCantidad(x => x+1)}>+</span>
                 </div>
                  <Link to="/cart"><button type="button" id="cart_btn" className="btn btn-primary d-inline ml-4">Add to Cart</button></Link>
-                 
-                 <Link to="/cart"><button type="button" id="cart_btn" className="btn btn-warning d-inline ml-4">Submit Review</button></Link>
+                 {/* <Link to="/cart"><button type="button" id="cart_btn" className="btn btn-warning d-inline ml-4">Submit Review</button></Link> */}
                 <hr/>
 
                 <p>Status: <span id="stock_status">{product[0].stock > 0? `En stock: ${product[0].stock}` : "Sin stock"}</span></p>

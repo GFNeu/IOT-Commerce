@@ -24,9 +24,9 @@ const Register = () => {
     ) {
       dispatch(register(newUser)).then((data) => {
         if (data.meta.requestStatus === "rejected") {
-          return swal("These user already exist");
+          return swal("El usuario ya existe");
         } else {
-          swal("User succesfully registred!");
+          swal("¡Usuario registrado exitosamente!");
           history.push("/login");
         }
       });
@@ -94,7 +94,7 @@ const Register = () => {
             <h1 className="mb-3">Register</h1>
 
             <div className="form-group">
-              <label htmlFor="name_field"> Name </label>
+              <label htmlFor="name_field"> Nombre </label>
               <input
                 type="name"
                 id="name_field"
@@ -110,11 +110,11 @@ const Register = () => {
                 onChange={handleChange}
                 onBlur={requeridoName}
               />
-              <div className="valid-feedback">It´s OK , continue.</div>
-              <div className="invalid-feedback">Enter a VALID name </div>
+              <div className="valid-feedback">Todo bien continúe</div>
+              <div className="invalid-feedback">Entre un nombre válido </div>
             </div>
             <div className="form-group">
-              <label htmlFor="lastname_field"> Lastname </label>
+              <label htmlFor="lastname_field"> Apellido </label>
               <input
                 type="lastname"
                 id="lastname_field"
@@ -130,8 +130,8 @@ const Register = () => {
                 onChange={handleChange}
                 onBlur={requeridoLastName}
               />
-              <div className="valid-feedback">It´s OK , continue.</div>
-              <div className="invalid-feedback">Enter a VALID lastName </div>
+              <div className="valid-feedback">Todo bien, continúe</div>
+              <div className="invalid-feedback">Entre un apellido válido </div>
             </div>
 
             <div className="form-group">
@@ -151,12 +151,12 @@ const Register = () => {
                 onChange={handleChange}
                 onBlur={requeridoEmail}
               />
-              <div className="valid-feedback">It´s OK , continue.</div>
-              <div className="invalid-feedback">Enter a valid email</div>
+              <div className="valid-feedback">Todo bien, continúe</div>
+              <div className="invalid-feedback">Ingrese un email válido</div>
             </div>
 
             <div className="form-group">
-              <label htmlFor="password_field">Password</label>
+              <label htmlFor="password_field">Contraseña</label>
               <input
                 type="password"
                 id="password_field"
@@ -172,8 +172,8 @@ const Register = () => {
                 onChange={handleChange}
                 onBlur={requeridoPassword}
               />
-              <div className="valid-feedback">It´s OK , continue.</div>
-              <div className="invalid-feedback">Enter a VALID password</div>
+              <div className="valid-feedback">Todo bien, continúe</div>
+              <div className="invalid-feedback">Ingrese una contraseña válida</div>
             </div>
 
             <button
