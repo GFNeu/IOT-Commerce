@@ -38,6 +38,7 @@ export const changePermits= createAsyncThunk("CHANGE_PERMITS", (data)=>{
 
 
 const userReducer= createReducer([], {
+ 
     [login.fulfilled] : (state, action) =>  action.payload.usuario,
     [logout]: (state, action) => [],
     [setUser]: (state, action) => action.payload,

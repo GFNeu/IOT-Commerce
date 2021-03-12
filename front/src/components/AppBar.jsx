@@ -48,14 +48,8 @@ const AppBar = () => {
               </InputGroup.Append>
           </InputGroup>
           </Nav>
-          <Button id="carrito_btn"><FiShoppingCart id="carrito_icon"/></Button>
-
+          <Link to="/cart" id="carrito_btn"><FiShoppingCart id="carrito_icon"/></Link>
           {user.id ? <Button id="ingresar" onClick={logOut}>Cerrar sesion</Button> : <Link to="/login"><Button id="ingresar">Ingresar</Button></Link>}
-          
-
-
-
-
           {user.id ? <span style={{color: "white"}}>{`Hola ${user.name}!`}</span>: <Link to="/register"> <Button variant="warning">Registrarse</Button></Link>}
         </Navbar.Collapse>
       </Navbar>
