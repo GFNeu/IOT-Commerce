@@ -1,6 +1,5 @@
 const S = require("sequelize");
 const db = require("../db/index");
-
 const crypto = require("crypto");
 
 class User extends S.Model {
@@ -11,8 +10,7 @@ class User extends S.Model {
   } */
 }
 
-User.init(
-  {
+User.init({
     name: {
       type: S.STRING,
       /* allowNull: false, */
@@ -43,7 +41,11 @@ User.init(
       type: S.STRING,
     },
   },
-  { sequelize: db, modelName: "user" }
+
+  {
+    sequelize: db,
+    modelName: "user"
+  }
 );
 
 User.addHook("beforeCreate", (user) => {
