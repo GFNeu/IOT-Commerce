@@ -3,6 +3,9 @@ const {
   Categories
 } = require("../../models/Index");
 
+console.log("")
+console.log("Comienza creación de categorias")
+
 Categories.bulkCreate([{
       statusDescription: "Conectividad"
     },
@@ -21,6 +24,7 @@ Categories.bulkCreate([{
   ])
   
   .then(() => {
-    console.log("categorias creadas")
+    console.log("");
+    console.log("categorias creadas = 7")
   })
 

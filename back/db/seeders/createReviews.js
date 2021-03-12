@@ -1,6 +1,8 @@
 //////////////// REVIEWS
 
 const { Reviews } = require("../../models/Index");
+console.log("")
+console.log("Comienza creacion de Reviews")
 
 for (let i = 0; i < 45; i++) {
   let numeroDesc = Math.floor(Math.random() * 3);
@@ -22,7 +24,10 @@ for (let i = 0; i < 45; i++) {
       userId: usuario,
       productId: idProduct
     },
-  ]).then(() => {
-    console.log(" reviews creadas ", i);
-  });
+  ])/* .then(() => {
+    console.log("");
+    console.log(" reviews creadas= ", i);
+  }) */;
 }  
+console.log("");
+console.log(" Fin reviews creadas ");

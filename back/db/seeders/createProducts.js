@@ -2,6 +2,8 @@
 const faker = require("faker");
 const { Products } = require("../../models/Index");
 
+console.log("")
+console.log("Comienza creación de productos")
 
 
 Products.bulkCreate(
@@ -446,7 +448,8 @@ Products.bulkCreate(
   ]
   
 ).then(() => {
-  console.log("Productos  creados ");
+  console.log("");
+  console.log("Todos los productos  creados ");
 }); 
 
 

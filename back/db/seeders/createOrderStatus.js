@@ -1,7 +1,8 @@
 // tatus Order Descrption
-
-
 const { OrderStatus } = require("../../models/Index");
+
+console.log("");
+console.log("Comienzo creación de Estado de ordenes");
 
 for (let i = 0; i < 7; i++) {
   const descripcion = [
@@ -20,8 +21,10 @@ for (let i = 0; i < 7; i++) {
        statusType: descReview,
 
     },
-  ]).then(() => {
+  ])/* .then(() => {
     console.log(" order status creadas ", i);
-  });
+  }) */;
 } 
 
+console.log("");
+console.log("Fin creación de Estado de ordenes");
