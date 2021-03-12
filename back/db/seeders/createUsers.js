@@ -19,7 +19,7 @@ for(let i=0; i<55; i++){
 
 User.bulkCreate([  
 {
-  name: faker.name.findName(), // ?
+  name: faker.name.findName(), 
   lastName: faker.name.lastName(),
   email: faker.internet.email(),
   isAdmin: false,

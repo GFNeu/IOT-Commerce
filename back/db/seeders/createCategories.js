@@ -13,7 +13,7 @@ Categories.bulkCreate([{
       statusDescription: "Motores, actuadores, servos y accesorios"
     },
     {
-      statusDescription: "Cusos"
+      statusDescription: "Cursos"
     },
     {
       statusDescription: "Sensores"
