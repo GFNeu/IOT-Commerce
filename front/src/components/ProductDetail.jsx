@@ -16,7 +16,7 @@ const ProductDetail = ( {id} ) => {
     <div className="container container-fluid">
         {console.log(product[0])}
         <div className="row f-flex justify-content-around">
-            <div className="col-12 col-lg-5 img-fluid" id="product_image">
+            <div className="col-12 col-lg-5 img-fluid mt-5" id="product_image">
                 <img src={product[0].photo} height="450" width="350"/>
             </div>
 
@@ -26,9 +26,10 @@ const ProductDetail = ( {id} ) => {
 
                 <hr/>
 
-                <div className="rating-outer">
-                    <div className="rating-inner"></div>
+                <div className="rating">
+                    <p id="product_id">{`Review: 5 ⭐⭐⭐⭐⭐`}</p>
                 </div>
+                
                 {/* <span id="no_of_reviews">(5 Reviews)</span> */}
 
                 <hr/>
@@ -42,7 +43,7 @@ const ProductDetail = ( {id} ) => {
                     <span className="btn btn-primary plus" onClick={()=> setCantidad(x => x+1)}>+</span>
                 </div>
                  <Link to="/cart"><button type="button" id="cart_btn" className="btn btn-primary d-inline ml-4">Add to Cart</button></Link>
-
+                 {/* <Link to="/cart"><button type="button" id="cart_btn" className="btn btn-warning d-inline ml-4">Submit Review</button></Link> */}
                 <hr/>
 
                 <p>Status: <span id="stock_status">{product[0].stock > 0? `En stock: ${product[0].stock}` : "Sin stock"}</span></p>
