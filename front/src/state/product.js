@@ -50,7 +50,7 @@ export const deleteProduct= createAsyncThunk("DELETE_PRODUCT", (data)=>{
 
 const productReducer= createReducer([], {
     [getProducts.fulfilled] : (state, action) =>  action.payload,
-    [getOne.fulfilled]: (state, action) => action.payload,
+    [getOne.fulfilled]: (state, action) => [action.payload],
     [getCategoryProducts.fulfilled] : (state, action) =>  action.payload, //Devuelve un arreglo con productos
     [addReview.fulfilled] : (state, action) =>  action.payload, //Que devuelva el producto
     [addProduct.fulfilled] : (state, action) =>  [...state, action.payload],
