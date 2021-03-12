@@ -14,15 +14,15 @@ const ProductDetail = ( {id} ) => {
 
     return (
     <div className="container container-fluid">
-        {console.log(product)}
+        {console.log(product[0])}
         <div className="row f-flex justify-content-around">
             <div className="col-12 col-lg-5 img-fluid" id="product_image">
-                <img src={product.photo} height="450" width="350"/>
+                <img src={product[0].photo} height="450" width="350"/>
             </div>
 
             <div className="col-12 col-lg-5 mt-5">
-                <h3>{product.name}</h3>
-                <p id="product_id">{`Producto: ${product.id}`}</p>
+                <h3>{product[0].name}</h3>
+                <p id="product_id">{`Producto: ${product[0].id}`}</p>
 
                 <hr/>
 
@@ -33,7 +33,7 @@ const ProductDetail = ( {id} ) => {
 
                 <hr/>
 
-                <p id="product_price">{`$${product.price}`}</p>
+                <p id="product_price">{`$${product[0].price}`}</p>
                 <div className="stockCounter d-inline">
                     <span className="btn btn-danger minus" onClick={()=> setCantidad(x => {if(x>0) return x-1})}>-</span>
 
@@ -45,12 +45,12 @@ const ProductDetail = ( {id} ) => {
 
                 <hr/>
 
-                <p>Status: <span id="stock_status">{product.stock > 0? `En stock: ${product.stock}` : "Sin stock"}</span></p>
+                <p>Status: <span id="stock_status">{product[0].stock > 0? `En stock: ${product[0].stock}` : "Sin stock"}</span></p>
 
                 <hr/>
 
                 <h4 className="mt-2">Descripción</h4>
-                <p>{product.description}</p>
+                <p>{product[0].description}</p>
                 
                 <hr/>
            
