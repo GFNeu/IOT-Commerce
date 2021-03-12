@@ -21,8 +21,9 @@ User.hasMany(Reviews);
 Reviews.belongsTo(Products);
 Reviews.belongsTo(User)
 
-Orders.belongsToMany(Products, {through: "oders_products"});
-Products.belongsToMany(Orders,{through: "oders_products"});
+Orders.belongsToMany(Products, {through: "orders_products"});
+Products.belongsToMany(Orders,{through: "orders_products"});
+Orders.belongsTo(User,{through: "orders_products"});
 
 Categories.belongsToMany(Products, {through: "products_categories"});
 Products.belongsToMany(Categories,{through: "products_categories"});

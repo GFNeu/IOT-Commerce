@@ -2,6 +2,10 @@
 const faker = require("faker"); 
 const {User} = require("../../models/Index");
 
+console.log("")
+console.log("Comienza creación de usuarios")
+
+
 User.bulkCreate([   {
   name: "santi",
   lastName: "santu",
@@ -19,7 +23,7 @@ for(let i=0; i<55; i++){
 
 User.bulkCreate([  
 {
-  name: faker.name.findName(), // ?
+  name: faker.name.findName(), 
   lastName: faker.name.lastName(),
   email: faker.internet.email(),
   isAdmin: false,
@@ -27,8 +31,10 @@ User.bulkCreate([
 },
 
   ])
-  .then(() => {
-    console.log("usuario creado ",i)
-  })
+ /*  .then(() => {
+        console.log("usuarios creados= ",i)
+  }) */
 }
 
+console.log("")
+console.log("Fin creación de usuarios")
