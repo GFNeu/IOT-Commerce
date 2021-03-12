@@ -1,8 +1,9 @@
-import './App.css';
+import React from 'react';
+import axios from 'axios';
 import AppBar from './components/AppBar.jsx'
 import Home from './views/Home.jsx'
-import React from 'react';
-
+import {useDispatch} from "react-redux"
+import {setUser} from "./state/user"
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Login from './components/Login';
 import Register from './components/Register';
@@ -10,9 +11,8 @@ import Products from './components/Products';
 import ProductDetail from './components/ProductDetail';
 import Footer from './components/Footer.jsx'
 import Cart from './components/Cart.jsx'
-import axios from 'axios';
-import {useDispatch} from "react-redux"
-import {setUser} from "./state/user"
+import './App.css';
+import NoDisponible from './components/NoDisponible.jsx'
 
 
 function App() {
@@ -31,7 +31,7 @@ function App() {
     <div className="App">
         <AppBar />
  
-      
+        <div className="main">
         <Switch>
 
         <Route path exact ='/'> <Home/> </Route>
@@ -40,10 +40,11 @@ function App() {
         <Route path = '/products/:id' render={({match}) => <ProductDetail id={match.params.id} />}/>
         <Route path ='/products'><Products /></Route>
         <Route path ='/cart'><Cart /></Route>
+        <Route path ='/courses/:id'><NoDisponible /></Route>
         {/* <Route path ="/products/detail" component={ProductDetail}/> */}
         
         </Switch>
-
+        </div>
         <Footer />
     </div>
   );

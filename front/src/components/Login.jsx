@@ -20,7 +20,7 @@ const Login = () => {
  
         if (data.meta.requestStatus === "rejected") {
           setPassword("");
-          return swal("User or password incorrect!");
+          return swal("Usuario o contraseña incorrectos");
         }
 
         if (data.payload) {
@@ -30,7 +30,7 @@ const Login = () => {
         }
       });
     } else {
-      swal("Put in value data!");
+      swal("¡Ingrese datos válidos!");
     }
   };
 
@@ -82,12 +82,12 @@ const Login = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 onBlur={requeridoEmail}
               />
-              <div className="invalid-feedback">Enter a VALID email</div>
-              <div className="valid-feedback">It´s OK , continue.</div>
+              <div className="invalid-feedback">Ingrese un email válido</div>
+              <div className="valid-feedback">Todo bien, continúe</div>
             </div>
 
             <div className="form-group">
-              <label htmlFor="password_field">Password</label>
+              <label htmlFor="password_field">Contraseña</label>
               <input
                 type="password"
                 id="password_field"
@@ -103,13 +103,13 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 onBlur={requeridoPassword}
               />
-              <div className="invalid-feedback">Enter a VALID password</div>
-              <div className="valid-feedback">It´s OK , continue.</div>
+              <div className="invalid-feedback">Entre una contraseña válida</div>
+              <div className="valid-feedback">Todo bien continúe</div>
             </div>
 
-            <Link to="/password/forgot" className="float-right mb-4">
-              Forgot Password?
-            </Link>
+            {/* <Link to="/password/forgot" className="float-right mb-4">
+              Olvidó su contraseña?
+            </Link> */}
 
             <button
               id="login_button"
@@ -120,7 +120,7 @@ const Login = () => {
             </button>
 
             <Link to="/register" className="float-right mt-3">
-              New User?
+              Nuevo usuario?
             </Link>
           </form>
         </div>

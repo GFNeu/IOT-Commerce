@@ -3,7 +3,7 @@ import axios from "axios"
 
 
 export const register= createAsyncThunk("REGISTER_REQUEST", (data)=>{
-    return axios.post("api/auth/register", data).then((respuesta)=>respuesta.data)
+    return axios.post("api/auth/register", data).then((respuesta)=>[])
   })
 
 export const login= createAsyncThunk("LOGIN_REQUEST", (data)=>{

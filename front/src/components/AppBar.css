@@ -43,6 +43,7 @@
     background-color: transparent;
     font-weight: bolder;
     border-color: transparent;
+    margin-right: 1em;
 }
 
 #carrito_btn {
@@ -54,6 +55,8 @@
 #carrito_icon{
     font-size: 1.3rem;
     font-weight: bolder;
+    margin-right: 1em;
+    margin-left: 1em;
 }
 
 #search_btn{
