@@ -14,6 +14,12 @@ const productsController = {
       .catch(err=> next(err))
     
   },
+  byCategory(req, res, next) {
+    Products.findAll({where:{categoriesId: req.params.id}, include: "products_categories"})
+    .then(products => res.send(products))
+    .catch(err => next(err))
+    
+  },
 
   addReview(req, res) { 
     Reviews.create({
