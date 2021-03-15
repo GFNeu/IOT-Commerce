@@ -43,7 +43,7 @@ const Products = () => {
                     <p className="card-text">{`Price: $ ${products[0].price}`}</p>
                     <Link to={`/product/${products[0].id}`}><button id="view_btn">View Product Detail</button></Link>
                     <hr/>
-                    <Link to={`/product/${products[0].id}`}><button id="view_btn">Buy</button></Link>
+                    <Link to={`/product/${products[0].id}`}><button id="view_btn">Add to Cart</button></Link>
                 </div>
             </div>
         </div>
