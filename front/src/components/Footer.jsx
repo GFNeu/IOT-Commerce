@@ -1,25 +1,14 @@
 import React from 'react'
-import {createUseStyles} from 'react-jss'
-const useStyles = createUseStyles({
-    root: {
-        height: "5rem",
-        backgroundColor: "#0046be",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        color: "white"
-    }
-
-  })
+import Container from 'react-bootstrap/Container'
 
 const Footer = () => {
-    const classes = useStyles()
+    
     return (
-     <div className={classes.root}>
-         <p className="text-center mt-1">
+     <Container className="bg-primary" fluid>
+         <p className="text-center mt-1 text-light" >
            <strong>IOT COMERCE 2021</strong>
          </p>
-     </div>
+     </Container>
     );
 }
 
