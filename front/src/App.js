@@ -53,24 +53,21 @@ function App() {
           />
           <Route path="/products"><Products /></Route>
           <Route path="/cart"><Cart /></Route>
+          <Route path="/order"><OrderDetail /></Route>
+
           <Route path="/courses/:id"><NoDisponible /></Route>
           {/* <Route path ="/products/detail" component={ProductDetail}/> */}
 
           <Route exact path="/adminPanel"><AdminPanel /></Route>
 
-          <Route exact path="/adminPanel/productos"><ProductosAdmin />   </Route>
+          <Route exact path="/adminPanel/productos"><ProductosAdmin /></Route>
 
-          <Route exact path="/adminPanel/usuarios"><UsuariosAdmin />
-          </Route>
+          <Route exact path="/adminPanel/usuarios"><UsuariosAdmin /></Route>
 
-          <Route exact path="/adminPanel/ordenes"><OrdenesAdmin />
-          </Route>
+          <Route exact path="/adminPanel/ordenes"><OrdenesAdmin /></Route>
 
-          <Route exact path="/adminPanel/usuarios/ordenesUsuario">
-            <OrdenesUsuario />
-          </Route>
+          <Route exact path="/adminPanel/usuarios/ordenesUsuario"><OrdenesUsuario /></Route>
 
-          <Route path="/order"><OrderDetail /></Route>
         </Switch>
       </div>
       <Footer />
@@ -79,3 +76,6 @@ function App() {
 }
 
 export default App;
+
+
+ 
