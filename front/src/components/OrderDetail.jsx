@@ -37,8 +37,7 @@ return (
                             </div>
 
                             <div className="col-5 ">
-                                <button type="button" id="cart_btn" className='btn btn-warning ml-4' data-toggle='modal' 
-                                >
+                                <button type="button" id="cart_btn" className='btn btn-warning ml-4' data-toggle='modal' >
                                 Add Review
                                 </button>
                                 {/* aca va el modal */}
