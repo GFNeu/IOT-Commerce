@@ -60,7 +60,7 @@ return (
                     <p>Est. total: <span class="order-summary-values">$1500</span></p>
 
                     <hr />
-                    <button id="buy_btn" class="btn btn-primary btn-block">Buy</button>
+                    <button id="buy_btn" class="btn btn-primary btn-block">Checkout</button>
             </div>
         </div> 
     </div>     

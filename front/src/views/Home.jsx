@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react'
-import {useSelector, useDispatch} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import {getProducts} from '../state/product'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Carrousel from '../components/Carrousel.jsx'
 import Container from 'react-bootstrap/Container'
-import DisplayCursos from '../components/DisplayCursosHome'
+import DisplayCursos from '../components/DisplayCursosHome/DisplayCursosHome'
 import {createUseStyles} from 'react-jss'
 import DisplayProducts from '../components/DisplayProductsHome'
 import Banner from '../components/Banner.jsx'
@@ -36,7 +36,6 @@ const cursos = [{id: 1, name: "Arduino 101", description: "Aprenda todo sobre Ar
 
 const Home = () => {
     const classes = useStyles()
-    const product = useSelector(state => state.product)
     const dispatch = useDispatch()
 
     useEffect(()=>{
