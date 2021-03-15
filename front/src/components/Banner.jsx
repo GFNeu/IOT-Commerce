@@ -10,34 +10,55 @@ import { RiCustomerService2Fill } from "react-icons/ri";
 
 const useStyles = createUseStyles({
    cont1: {
-        boxSizing: "boder-box",
-        flexGrow: 1,
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "flex-start",
         alignItems: "center",
-        margin: "2rem",
+        margin: ".5rem",
         backgroundColor: "white",
-        padding: "1.2rem",
-        borderRadius: "2px",
-        height: "100%",
-        maxHeight: 130
+        padding: "1em",
+        borderRadius: 4,
+        border: "1px solid #f0f0f0",
+        borderBottomColor: "#e0e0e0",
+        flexWrap: "wrap"
+        
    },
-   cont2:{
-
+   cont2: {
+       display: "flex", 
+       justifyCOntent: "center",
+       flexDirection: "column",
+       marginLeft: ".5em"
+   },
+   contIcon:{
+    display:"flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: 50,
+    height: 60,
+    marginRight: ".5em",
+    marginLeft: 15
+   },
+   contIcon2: {
+    display:"flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: 40,
+    height: 60,
+    marginRight: ".5em",
+    marginLeft: 15,
    },
    icon:{
-       display:"flex",
-       justifyContent: "center",
-       alignItems: "center",
-       color: "#0046be",
        fontSize: "4rem",
-       marginRight: "1.2rem"
+   },
+   icon2:{
+        fontSize: "3.4rem",
    },
    title:{
-        fontWeight: "bold"
+        fontWeight: "bold",
+        
    },
    description: {
-
+        color: "gray",
+        margin: 0
    }
 
   })
@@ -47,34 +68,28 @@ const useStyles = createUseStyles({
 const Banner = () => {
     const classes = useStyles()
     return (
-        <Container>
+        <Container fluid="lg">
             <Row noGutters>
-                <Col>
-                    <div className={classes.cont1}>
-                        <div className={classes.icon}><FaShippingFast /></div>
-                        <div>
+                <Col xs={12} md className={classes.cont1}>
+                        <div className={classes.contIcon}><FaShippingFast className={`${classes.icon} text-primary`}/></div>
+                        <div className={classes.cont2}>
                             <h4>Envíos en el día</h4>
-                            <p>Comprando antes de las 12:00hs</p>
+                            <p className={classes.description}>Comprando antes de las 12:00hs</p>
                         </div>
-                    </div>
                 </Col>
-                <Col>
-                    <div className={classes.cont1}>
-                        <div className={classes.icon}><FaDollarSign /></div>
-                        <div>
+                <Col xs={12} md className={classes.cont1}>
+                        <div className={classes.contIcon2}><FaDollarSign className={`${classes.icon2} text-primary`}/></div>
+                        <div className={classes.cont2}>
                             <h4>Precio más bajo</h4>
-                            <p>Tenemos los mejores precios del mercado</p>
+                            <p className={classes.description}>Tenemos los mejores precios</p>
                         </div>
-                    </div>
                 </Col>
-                <Col>
-                    <div className={classes.cont1}>
-                        <div className={classes.icon}><RiCustomerService2Fill /></div>
-                        <div>
+                <Col xs={12} md className={classes.cont1}>
+                        <div className={classes.contIcon}><RiCustomerService2Fill className={`${classes.icon} text-primary`}/></div>
+                        <div className={classes.cont2}>
                             <h4>0800-222-IOTC</h4>
-                            <p>Servicio post venta 24hs</p>
+                            <p className={classes.description}>Servicio post venta 24hs</p>
                         </div>
-                    </div>
                 </Col>
             </Row>
         </Container>

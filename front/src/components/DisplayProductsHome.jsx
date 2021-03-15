@@ -57,7 +57,7 @@ const DisplayProductsHome = () => {
         //this.setState({ selected: key });
         console.log("hola")
       }
-      console.log(productos)
+      
       const menu = productos.map(item => (<ProductCard obj={item} key={item.id}/>));
 
     return (

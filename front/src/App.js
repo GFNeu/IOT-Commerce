@@ -1,10 +1,10 @@
 import React from 'react';
 import axios from 'axios';
-import AppBar from './components/AppBar.jsx'
+import AppBar from './components/AppBar/AppBar.jsx'
 import Home from './views/Home.jsx'
 import {useDispatch} from "react-redux"
 import {setUser} from "./state/user"
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import Login from './components/Login';
 import Register from './components/Register';
 import Products from './components/Products';
@@ -17,33 +17,30 @@ import NoDisponible from './components/NoDisponible.jsx'
 
 function App() {
   const dispatch= useDispatch()
+  
   React.useEffect(()=>{
     const token= localStorage.getItem("token") ? localStorage.getItem("token"): undefined
     if(token){
       axios.defaults.headers.authorization = `${token}`;
       axios.post("/api/auth/me").then(data => {
       dispatch(setUser(data.data))})
-    }
-
-    
+    }    
   }, [])
-  return (
-    <div className="App">
-        <AppBar />
- 
-        <div className="main">
-        <Switch>
 
-        <Route path exact ='/'> <Home/> </Route>
-        <Route path ='/login'><Login /></Route>
-        <Route path ='/register'><Register /></Route>
-        <Route path = '/products/:id' render={({match}) => <ProductDetail id={match.params.id} />}/>
-        <Route path ='/products'><Products /></Route>
-        <Route path ='/cart'><Cart /></Route>
-        <Route path ='/courses/:id'><NoDisponible /></Route>
-        {/* <Route path ="/products/detail" component={ProductDetail}/> */}
-        
-        </Switch>
+  return (
+    <div className="App bg-light">
+        <AppBar />
+        <div className="main">
+          <Switch>
+            <Route path exact ='/'> <Home/> </Route>
+            <Route path ='/login'><Login /></Route>
+            <Route path ='/register'><Register /></Route>
+            <Route path = '/products/:id' render={({match}) => <ProductDetail id={match.params.id} />}/>
+            <Route path ='/products'><Products /></Route>
+            <Route path ='/cart'><Cart /></Route>
+            <Route path ='/courses/:id'><NoDisponible /></Route>
+            {/* <Route path ="/products/detail" component={ProductDetail}/> */}
+          </Switch>
         </div>
         <Footer />
     </div>

@@ -1,6 +1,3 @@
-.navbar {
-    background-color: #0046be;
-}
 
 #iot {
     color: white;
@@ -17,8 +14,7 @@
     margin: auto;
     display: flex;
     justify-content: center;
-    
-    flex-grow: 1;
+    flex-grow: 1; 
 }
 
 .form{
@@ -29,8 +25,8 @@
 
 
 #max_width {
-    width: 100%;
-  max-width: 890px;
+    width: 90%;
+  max-width: 800px;
 }
 
 #search_input {
@@ -64,3 +60,18 @@
     color: rgb(49, 49, 49);
     border-color: rgb(219, 219, 219);
 }
+
+.flex{
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+ }
+
+ .dropdownPerfil{
+     font-size: 1.3em;
+ }
+
+ .dropdownPerfil::after{
+    display: none; 
+ }
