@@ -1,8 +1,6 @@
-//////////////// REVIEWS
+////////////////  HAY QUE HACERLO   ESTA COPIADA LA ESTRUCTURA DE REVIEWS  
 
 const { Reviews } = require("../../models/Index");
-console.log("")
-console.log("Comienza creacion de Reviews")
 
 for (let i = 0; i < 45; i++) {
   let numeroDesc = Math.floor(Math.random() * 3);
@@ -19,15 +17,12 @@ for (let i = 0; i < 45; i++) {
   
   Reviews.bulkCreate([
     {
-      descripcion: descReview,
+      statusDescription: descReview,
       puntaje: puntProd,
       userId: usuario,
       productId: idProduct
     },
-  ])/* .then(() => {
-    console.log("");
-    console.log(" reviews creadas= ", i);
-  }) */;
-}  
-console.log("");
-console.log(" Fin reviews creadas ");
+  ]).then(() => {
+    console.log(" reviews creadas ", i);
+  });
+} 

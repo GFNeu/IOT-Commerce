@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
-    "seed": "node db/seeders/createProducts.js && node db/seeders/createCategories.js && node db/seeders/createReviews.js && node db/seeders/createUsers.js"
+    "seed": "node db/seeders/createProducts.js && node db/seeders/createUsers.js && node db/seeders/createCategories.js && node db/seeders/createReviews.js && node db/seeders/createOrderStatus.js"
   },
   "author": "",
   "license": "ISC",
