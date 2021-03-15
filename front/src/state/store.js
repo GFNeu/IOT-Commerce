@@ -5,6 +5,7 @@ import categoriesReducer from "./categories"
 import productReducer from "./product"
 import userReducer from "./user"
 import reviewsReducer from "./reviews"
+import allUserReducer from "./allusers"
 
 const store = configureStore({
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
@@ -13,6 +14,7 @@ const store = configureStore({
         categories: categoriesReducer,
         product: productReducer,
         user: userReducer,
+        allUser: allUserReducer,
         reviews : reviewsReducer
     },
 });

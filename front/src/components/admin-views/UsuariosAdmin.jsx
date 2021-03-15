@@ -6,7 +6,14 @@ import Button from "react-bootstrap/Button";
 import FormControl from "react-bootstrap/FormControl";
 import Card from "react-bootstrap/Card";
 import {Link} from "react-router-dom";
+import {useSelector} from "react-redux";
+
 const UsuariosAdmin = () => {
+
+  const users = useSelector(state => state.allUser)
+  console.log("usuarios todos ", users)
+
+
   return (
     <div>
       <div>
