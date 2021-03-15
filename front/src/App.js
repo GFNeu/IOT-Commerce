@@ -2,8 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import AppBar from './components/AppBar.jsx'
 import Home from './views/Home.jsx'
-import React from 'react';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import {useDispatch} from "react-redux"
 import Login from './components/Login';
 import Register from './components/Register';
 import Products from './components/Products';
@@ -12,6 +12,7 @@ import Footer from './components/Footer.jsx'
 import Cart from './components/Cart.jsx'
 import './App.css';
 import NoDisponible from './components/NoDisponible.jsx'
+import Category from "./components/Category"
 
 
 function App() {
@@ -40,6 +41,7 @@ function App() {
         <Route path ='/products'><Products /></Route>
         <Route path ='/cart'><Cart /></Route>
         <Route path ='/courses/:id'><NoDisponible /></Route>
+        <Route path = '/categories/:id' render={({match}) => <Category id={match.params.id} />}/>
         {/* <Route path ="/products/detail" component={ProductDetail}/> */}
         
         </Switch>

@@ -15,7 +15,7 @@ const productsController = {
     
   },
   byCategory(req, res, next) {
-    Products.findAll({where:{categoriesId: req.params.id}, include: "products_categories"})
+    Products.findAll({ include: "Categories", attributes:[req.params.id]})
     .then(products => res.send(products))
     .catch(err => next(err))
     

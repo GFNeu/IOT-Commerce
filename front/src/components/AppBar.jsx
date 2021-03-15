@@ -13,15 +13,26 @@ import {Link} from "react-router-dom"
 import {useSelector, useDispatch} from "react-redux"
 import {logout} from "../state/user"
 import logo from '../assets/logo2.png'
+import axios from 'axios'
+import {getCategories} from "../state/categories"
+
+
 
 const AppBar = () => {
+  React.useEffect(()=>{
+    axios.get("/api/categories").then(respuesta=> dispatch(getCategories(respuesta.data)))
+  }, [])
   const user = useSelector(state=> state.user)
+  const categories = useSelector(state => state.categories)
   const dispatch= useDispatch()
   const logOut = (e) => {
       e.preventDefault();
       localStorage.clear();
       dispatch(logout())
     };
+
+
+  
   
     return (
       <Navbar className="navbar" expand="lg">
@@ -39,22 +50,12 @@ const AppBar = () => {
               id="basic-nav-dropdown"
               id="cats"
             >
-              <NavDropdown.Item href="#action/3.1">Cursos</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.2">
-                Conectividad
+              {categories.length ? categories.map(category =>{
+                return <NavDropdown.Item><Link to={`/categories/${category.id}`}>
+                {category.statusDescription}</Link>
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">
-                Motores y accesorios
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.4">
-                Pantallas y displays
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.5">Sensores</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.6">
-                Todos los productos
-              </NavDropdown.Item>
+              }): "Cargando categorias"}
+              
             </NavDropdown>
             <InputGroup id="max_width" className="form">
               <FormControl

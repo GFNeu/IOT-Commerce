@@ -28,4 +28,7 @@ Orders.belongsTo(User,{through: "orders_products"});
 Categories.belongsToMany(Products, {through: "products_categories"});
 Products.belongsToMany(Categories,{through: "products_categories"});
 
+// Categories.hasMany(Products)
+// Products.belongsTo(Categories)
+
 module.exports = { db, Categories, Orders, OrderStatus, Products, Reviews, User };
