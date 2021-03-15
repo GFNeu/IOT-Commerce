@@ -11,9 +11,13 @@ import Products from './components/Products';
 import ProductDetail from './components/ProductDetail';
 import Footer from './components/Footer.jsx'
 import Cart from './components/Cart.jsx'
+import Reviews from './components/Reviews.jsx'
+import OrderDetail from './components/OrderDetail.jsx'
+
+import {useDispatch} from "react-redux"
+import {setUser} from "./state/user"
 import './App.css';
 import NoDisponible from './components/NoDisponible.jsx'
-
 
 function App() {
   const dispatch= useDispatch()
@@ -31,16 +35,22 @@ function App() {
     <div className="App bg-light">
         <AppBar />
         <div className="main">
-          <Switch>
-            <Route path exact ='/'> <Home/> </Route>
-            <Route path ='/login'><Login /></Route>
-            <Route path ='/register'><Register /></Route>
-            <Route path = '/products/:id' render={({match}) => <ProductDetail id={match.params.id} />}/>
-            <Route path ='/products'><Products /></Route>
-            <Route path ='/cart'><Cart /></Route>
-            <Route path ='/courses/:id'><NoDisponible /></Route>
-            {/* <Route path ="/products/detail" component={ProductDetail}/> */}
-          </Switch>
+        <Switch>
+
+        <Route path exact ='/'> <Home/> </Route>
+        <Route path ='/login'><Login /></Route>
+        <Route path ='/register'><Register /></Route>
+
+        <Route path = '/products/:id/reviews' render={({match})=> <Reviews id={match.params.id}/>}/>
+        <Route path = '/products/:id' render={({match}) => <ProductDetail id={match.params.id} />}/>
+       
+        <Route path ='/products'><Products /></Route>
+        <Route path ='/cart'><Cart /></Route>
+        <Route path ='/order'><OrderDetail /></Route>
+        <Route path ='/courses/:id'><NoDisponible /></Route>
+  
+        
+        </Switch>
         </div>
         <Footer />
     </div>
