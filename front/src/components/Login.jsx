@@ -118,6 +118,13 @@ const Login = () => {
             >
               LOGIN
             </button>
+            <button
+              id="login_button"
+              type="submit"
+              className="btn btn-block py-3"
+            >
+              LOGIN AS ADMIN
+            </button>
 
             <Link to="/register" className="float-right mt-3">
               Nuevo usuario?

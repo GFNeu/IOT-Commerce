@@ -1,14 +1,15 @@
 import React from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
+import Container from 'react-bootstrap/Container'
 import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button'
-import './AppBar.css'
+import s from './AppBar.module.css'
 import { AiOutlineSearch } from "react-icons/ai"
 import { FiShoppingCart } from "react-icons/fi";
+import { RiAccountCircleFill } from "react-icons/ri";
 import {Link} from "react-router-dom"
 import {useSelector, useDispatch} from "react-redux"
 import {logout} from "../state/user"
@@ -35,20 +36,21 @@ const AppBar = () => {
   
   
     return (
-      <Navbar className="navbar" expand="lg">
+      <Navbar expand="lg" bg="primary">
+        <Container fluid style={{maxWidth: 1500}}>
         <Link to="/">
-          <Navbar.Brand id="iot"><img src={logo} alt="IOT COMERCE"/></Navbar.Brand>
+          <Navbar.Brand id={s.iot}><img src={logo} alt="IOT COMERCE"/></Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto" className="center">
+          <Nav className="mr-auto" className={s.center}>
             {/* <Nav.Link href="#home">Home</Nav.Link>
             <Nav.Link href="#link">Link</Nav.Link> */}
             <NavDropdown
               variant="light"
-              title="Categorías"
+              title={"Categorías"}
               id="basic-nav-dropdown"
-              id="cats"
+              id={s.cats}
             >
               {categories.length ? categories.map(category =>{
                 return <NavDropdown.Item><Link to={`/categories/${category.id}`}>
@@ -57,39 +59,53 @@ const AppBar = () => {
               }): "Cargando categorias"}
               
             </NavDropdown>
-            <InputGroup id="max_width" className="form">
+            <InputGroup id={s.max_width} className={s.form}>
               <FormControl
                 type="text"
                 placeholder="NO DISPONIBLE. Estamos trabajando en ello!"
               />
               <InputGroup.Append>
-                <Button id="search_btn">
+                <Button variant="light" style={{maxHeight: 38}}>
                   <AiOutlineSearch />
                 </Button>
               </InputGroup.Append>
             </InputGroup>
           </Nav>
-          <Link to="/cart" id="carrito_btn">
-            <FiShoppingCart id="carrito_icon" />
+          <Link to="/cart" >
+            <FiShoppingCart className="text-white" id={s.carrito_icon}/>
           </Link>
           {user.id ? (
-            <Button id="ingresar" onClick={logOut}>
-              Cerrar sesion
-            </Button>
+            <div className={s.flex}>
+              <div className="text-white">{`¡Hola, ${user.name}!`}</div>
+              <NavDropdown
+              variant="light"
+              title={<RiAccountCircleFill/>}
+              id="basic-nav-dropdown"
+              id={s.cats}
+              alignRight
+              className={s.dropdownPerfil}
+              >
+                <NavDropdown.Item href="#action/3.1">Mis compras</NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item onClick={logOut}>
+                  Cerrar sesión
+                </NavDropdown.Item>
+            </NavDropdown>
+            </div>
+          
           ) : (
-            <Link to="/login">
-              <Button id="ingresar">Ingresar</Button>
-            </Link>
-          )}
-          {user.id ? (
-            <span style={{ color: "white" }}>{`Hola ${user.name}!`}</span>
-          ) : (
-            <Link to="/register">
-              {" "}
+            <div>
+              <Link to="/login">
+                <Button className="mr-1">Ingresar</Button>
+              </Link>
+              <Link to="/register">
               <Button variant="warning">Registrarse</Button>
-            </Link>
+              </Link>
+            </div>
           )}
+          
         </Navbar.Collapse>
+        </Container>
       </Navbar>
     );
 }
