@@ -14,7 +14,7 @@ OrderProducts.init(
       allowNull: true,
     },
   },
-  { sequelize: db, modelName: "OrderProducts" }
+  { sequelize: db, modelName: "orderproducts" }
 );
 
 module.exports = OrderProducts;
