@@ -1,12 +1,8 @@
 const router = require('express').Router()
 //const {User} = require("../models")
-<<<<<<< HEAD
-const {getAll, getOne, byCategory, addReview, addOne, changeOne, deleteOne}= require("../controllers/products")
-=======
 
 
-const {getAll, getOne, addReview, addOne, changeOne, deleteOne, getProductsByKeyword}= require("../controllers/products")
->>>>>>> 3fc1d57f6f82851e816b189f214a3e5cf155b18c
+const {getAll, getOne, addReview, byCategory, addOne, changeOne, deleteOne, getProductsByKeyword}= require("../controllers/products")
 const { getReviewsByProduct } = require('../controllers/reviews')
 
 

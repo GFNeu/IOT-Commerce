@@ -9,8 +9,7 @@ OrderProducts.init(
       type: S.INTEGER,
       allowNull: false,
     },
-  },
-  {
+    
     precio: {
       type: S.FLOAT,
       allowNull: false,

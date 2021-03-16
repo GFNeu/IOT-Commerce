@@ -7,10 +7,24 @@ import FormControl from "react-bootstrap/FormControl";
 import Table from "react-bootstrap/Table";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import Pagination from "react-bootstrap/Pagination";
+
 
 const OrdenesAdmin = () => {
   const users = useSelector((state) => state.allUser);
   /* console.log("usuarios todos ", users) */
+
+  let active = 1;
+  let items = [];
+  for (let number = 1; number <= 3; number++) {
+    items.push(
+      <Pagination.Item key={number} active={number === active}>
+        {number}
+      </Pagination.Item>,
+    );
+  }
+
+
 
   return (
     <div>
@@ -64,8 +78,10 @@ const OrdenesAdmin = () => {
             </InputGroup>
           </div>{" "}
         </div>
+       
         {/*  MUESTRO TITULO Y BUSQUEDA SECTOR DATOS*/}
         {/* COMIENZO MOSTRAR DATOS  className="col-sm-12 col-md-8"*/}
+       <div className="text-center p-2">
         <div>
           <div>
             <Table responsive>
@@ -84,20 +100,39 @@ const OrdenesAdmin = () => {
                 </thead>
 
                 {users.map((user) => (
+                  
                   <tbody>
-                    <tr>
-                      <td>{user.id}</td>
+                  {user.id<10? <tr>
+                    <Link to = "/"> <td style = {{backgroundColor:"red"}}>{user.id}</td> </Link>
+                      
                       <td>{user.fullName}</td>
-                      <td>{user.email}</td>
-                      <td >@mdo</td>  {/* style= "color: green;" */}
-                    </tr>
+                      <Link > <td>{user.email}</td> </Link>
+
+                   
+                    </tr>: <tr>
+                    <Link > <td style = {{backgroundColor:"green"}}>{user.id}</td> </Link>
+                      
+                      <td>{user.fullName}</td>
+                      <Link > <td>{user.email}</td> </Link>
+
+                   
+                    </tr>}
+                   
+                    
                   </tbody>
+                  
                 ))}
               </Table>
             </Table>
           </div>
         </div>
+
+        <div  >
+          <Pagination>{items}</Pagination>
+          <br />
+        </div>
       </div>
+    </div>
     </div>
   );
 };
