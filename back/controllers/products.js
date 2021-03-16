@@ -1,5 +1,6 @@
-const { Products, Reviews, Categories } = require("../models/Index");
-const { Op } = require("sequelize");
+const {Products, Reviews, Categories} = require("../models/Index");
+const ProductCategories = require("../models/ProductCategories");
+const { Op } =require ('sequelize');
 
 const productsController = {
   getAll(req, res, next) {

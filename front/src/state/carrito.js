@@ -23,12 +23,14 @@ export const addProduct= createAsyncThunk("ADD_PRODUCT", (data, thunkAPI)=>{
     console.log("addProduct DISPATCH")
   const { user } = thunkAPI.getState();
   const {id, cantidad, price, photo, name} = data
-  return {id, name, price, photo, cantidad}
-  //Si no está el usuario, trabajamos directamente con el estado y local storage
-  
-  return {id, cantidad}
-  //Si está el usuario, sincronizar y trabajar con el back
-    
+  if(user.id){
+    //trabajamos con axios
+    //si NO hay ítems en el carrito hacemos axios.post
+    //si SÍ hay ítems en el carrito hacemos axios.put
+  } else {
+    return {id, name, price, photo, cantidad}
+  }
+   
     
     //return axios.put(/*ver ruta*/"api/order/orderId", data).then((respuesta)=>respuesta.data)
   })
