@@ -1,4 +1,5 @@
-const {Products, Reviews} = require("../models/Index");
+const {Products, Reviews, Categories} = require("../models/Index");
+const ProductCategories = require("../models/ProductCategories");
 
 
 const productsController = {
@@ -15,10 +16,10 @@ const productsController = {
     
   },
   byCategory(req, res, next) {
-    Products.findAll({ include: "Categories", attributes:[req.params.id]})
-    .then(products => res.send(products))
-    .catch(err => next(err))
     
+    Categories.findOne({where: {id: req.params.id}, include: [{model: Products}]})
+    .then(category => res.send(category.dataValues.products))
+    .catch(err => next(err))
   },
 
   addReview(req, res) { 

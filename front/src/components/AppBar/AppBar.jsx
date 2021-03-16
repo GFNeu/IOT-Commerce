@@ -12,10 +12,10 @@ import { FiShoppingCart } from "react-icons/fi";
 import { RiAccountCircleFill } from "react-icons/ri";
 import {Link} from "react-router-dom"
 import {useSelector, useDispatch} from "react-redux"
-import {logout} from "../state/user"
-import logo from '../assets/logo2.png'
+import {logout} from "../../state/user"
+import logo from '../../assets/logo2.png'
 import axios from 'axios'
-import {getCategories} from "../state/categories"
+import {getCategories} from "../../state/categories"
 
 
 
@@ -57,6 +57,7 @@ const AppBar = () => {
                 {category.statusDescription}</Link>
               </NavDropdown.Item>
               }): "Cargando categorias"}
+              <NavDropdown.Item><Link to="/categories/6"> Todos los productos</Link> </NavDropdown.Item>
               
             </NavDropdown>
             <InputGroup id={s.max_width} className={s.form}>

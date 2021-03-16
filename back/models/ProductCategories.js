@@ -3,10 +3,16 @@ const db = require("../db/index");
 
 
 
-class ProductCategories extends Model {}
+class ProductCategories extends S.Model {}
 
 ProductCategories.init(
   {
+    id: {
+        type: S.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+        autoIncrement: true,
+      },
     product_id: {
       type: S.INTEGER,
       references: {
@@ -14,7 +20,7 @@ ProductCategories.init(
         key: 'id',
       },
     },
-    tag_id: {
+    category_id: {
       type: S.INTEGER,
       references: {
         model: 'categories',
@@ -23,7 +29,7 @@ ProductCategories.init(
     },
   },
   {
-    sequelize: db, modelName: "ProductCategories" 
+    sequelize: db, modelName: "productcategories" 
   }
 );
 

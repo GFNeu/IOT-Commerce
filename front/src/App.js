@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import AppBar from './components/AppBar.jsx'
+import AppBar from './components/AppBar/AppBar'
 import Home from './views/Home.jsx'
 import {useDispatch} from "react-redux"
 import Login from './components/Login';
@@ -70,7 +70,7 @@ function App() {
           </Route>
 
           <Route path="/order"><OrderDetail /></Route>
-          <Route path = '/categories/:id' render={({match}) => <Category id={match.params.id} />}/>
+          <Route path = '/categories/:id' render={({match}) => <Category id={match.params.id}/>}/>
         </Switch>
       </div>
       <Footer />
