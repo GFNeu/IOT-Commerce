@@ -22,20 +22,6 @@ export const editUser= createAsyncThunk("EDIT_USER", (data)=>{
 
 export const logout = createAction("LOGOUT")
 
-//FUNCIONES SOLO PARA EL ADMIN
-export const getUsers= createAsyncThunk("GET_USERS", ( )=>{
-    return axios.get("/api/users").then((respuesta)=>respuesta.data)
-  })
-
-export const changePermits= createAsyncThunk("CHANGE_PERMITS", (data)=>{
-  return axios.put("/api/users/userId/permits")
-  })
-
-
-
-
-
-
 
 const userReducer= createReducer([], {
  
@@ -43,9 +29,7 @@ const userReducer= createReducer([], {
     [logout]: (state, action) => [],
     [setUser]: (state, action) => action.payload,
     [editUser.fulfilled] : (state, action) =>  action.payload,
-    [register.fulfilled] : (state, action) =>  action.payload,
-    [getUsers.fulfilled] : (state, action) =>  action.payload,
-    [changePermits.fulfilled] : (state, action) =>  action.payload
+    [register.fulfilled] : (state, action) =>  action.payload,    
 })
 
   
