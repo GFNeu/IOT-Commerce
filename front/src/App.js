@@ -14,13 +14,25 @@ import NoDisponible from './components/NoDisponible.jsx'
 import Category from "./components/Category"
 import { setUser } from "./state/user";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Login from "./components/Login";
+import Register from "./components/Register";
+
+import ProductDetail from "./components/ProductDetail";
+import Footer from "./components/Footer.jsx";
+import Cart from "./components/Cart.jsx";
+
 import Reviews from "./components/Reviews.jsx";
 import OrderDetail from "./components/OrderDetail.jsx";
+import Search from "./components/Search.jsx";
+
+import NoDisponible from "./components/NoDisponible.jsx";
 import AdminPanel from "./components/admin-views/AdminPanel";
 import ProductosAdmin from "./components/admin-views/ProductosAdmin.jsx";
 import UsuariosAdmin from "./components/admin-views/UsuariosAdmin.jsx";
 import OrdenesAdmin from "./components/admin-views/OrdenesAdmin.jsx";
 import OrdenesUsuario from "./components/admin-views/OrdenesUsuario.jsx";
+import "./App.css";
+import {getUsers} from "./state/allusers"
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +47,15 @@ function App() {
         dispatch(setUser(data.data));
       });
     }
+
+  dispatch(getUsers())
+
+
+
+
+
+
+
   }, []);
 
   return (
@@ -45,30 +66,22 @@ function App() {
           <Route path exact="/"><Home /></Route>
           <Route path="/login"><Login /></Route>
           <Route path="/register"><Register /></Route>
-          <Route path="/products/:id/reviews" render={({ match }) => <Reviews id={match.params.id} />}
-          />
 
-          <Route path="/products/:id" render={({ match }) => <ProductDetail id={match.params.id} />}
-          />
-          <Route path="/products"><Products /></Route>
+          <Route path="/products/search"><Search/></Route>
+          
+          <Route path="/products/:id/reviews" render={({ match }) => <Reviews id={match.params.id} />}/>
+
+          <Route path="/products/:id" render={({ match }) => <ProductDetail id={match.params.id} />}/>
+          
           <Route path="/cart"><Cart /></Route>
           <Route path="/courses/:id"><NoDisponible /></Route>
           {/* <Route path ="/products/detail" component={ProductDetail}/> */}
 
           <Route exact path="/adminPanel"><AdminPanel /></Route>
-
-          <Route exact path="/adminPanel/productos"><ProductosAdmin />   </Route>
-
-          <Route exact path="/adminPanel/usuarios"><UsuariosAdmin />
-          </Route>
-
-          <Route exact path="/adminPanel/ordenes"><OrdenesAdmin />
-          </Route>
-
-          <Route exact path="/adminPanel/usuarios/ordenesUsuario">
-            <OrdenesUsuario />
-          </Route>
-
+          <Route exact path="/adminPanel/productos"><ProductosAdmin /></Route>
+          <Route exact path="/adminPanel/usuarios"><UsuariosAdmin /></Route>
+          <Route exact path="/adminPanel/ordenes"><OrdenesAdmin /></Route>
+          <Route exact path="/adminPanel/usuarios/ordenesUsuario"><OrdenesUsuario /></Route>
           <Route path="/order"><OrderDetail /></Route>
           <Route path = '/categories/:id' render={({match}) => <Category id={match.params.id}/>}/>
         </Switch>

@@ -40,6 +40,10 @@ export const deleteProduct= createAsyncThunk("DELETE_PRODUCT", (data)=>{
     /*En algun lugar de la data tiene que venir el id para encontrar la ruta*/ 
     return axios.delete("/api/products/productId").then((respuesta)=>respuesta.data)
   })
+export const getProductsByKeyword = createAsyncThunk("GET_PRODUCT_BY_KEYWORD", (data)=>{
+   console.log('data', data);
+    return axios.get(`/api/products/search?name=${data}`).then((respuesta)=>respuesta.data)
+  })
 
 
 
@@ -48,7 +52,8 @@ export const deleteProduct= createAsyncThunk("DELETE_PRODUCT", (data)=>{
 const productReducer= createReducer([], {
     [getProducts.fulfilled] : (state, action) =>  action.payload,
     [getOne.fulfilled]: (state, action) => [action.payload],
-    [getCategoryProducts] : (state, action) =>  action.payload, //Devuelve un arreglo con productos
+    [getProductsByKeyword.fulfilled]: (state, action) => action.payload,
+    [getCategoryProducts.fulfilled] : (state, action) =>  action.payload, //Devuelve un arreglo con productos
     [addReview.fulfilled] : (state, action) =>  action.payload, //Que devuelva el producto
     [addProduct.fulfilled] : (state, action) =>  [...state, action.payload],
     [changeProduct.fulfilled] : (state, action) =>  action.payload, //Que devuelva todos
