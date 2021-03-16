@@ -1,5 +1,11 @@
+<<<<<<< HEAD
+const {Products, Reviews, Categories} = require("../models/Index");
+const ProductCategories = require("../models/ProductCategories");
+
+=======
 const {Products, Reviews} = require("../models/Index");
 const { Op } =require ('sequelize');
+>>>>>>> 3fc1d57f6f82851e816b189f214a3e5cf155b18c
 
 const productsController = {
   getAll(req, res, next) {
@@ -13,6 +19,12 @@ const productsController = {
       .then(product => res.send(product))
       .catch(err=> next(err))
     
+  },
+  byCategory(req, res, next) {
+    
+    Categories.findOne({where: {id: req.params.id}, include: [{model: Products}]})
+    .then(category => res.send(category.dataValues.products))
+    .catch(err => next(err))
   },
 
   addReview(req, res, next) { 

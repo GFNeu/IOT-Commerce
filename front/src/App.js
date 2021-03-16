@@ -1,8 +1,17 @@
-import React from "react";
-import axios from "axios";
-import AppBar from "./components/AppBar/AppBar";
-import Home from "./views/Home.jsx";
-import { useDispatch } from "react-redux";
+import React from 'react';
+import axios from 'axios';
+import AppBar from './components/AppBar/AppBar'
+import Home from './views/Home.jsx'
+import {useDispatch} from "react-redux"
+import Login from './components/Login';
+import Register from './components/Register';
+import Products from './components/Products';
+import ProductDetail from './components/ProductDetail';
+import Footer from './components/Footer.jsx'
+import Cart from './components/Cart.jsx'
+import './App.css';
+import NoDisponible from './components/NoDisponible.jsx'
+import Category from "./components/Category"
 import { setUser } from "./state/user";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Login from "./components/Login";
@@ -74,6 +83,7 @@ function App() {
           <Route exact path="/adminPanel/ordenes"><OrdenesAdmin /></Route>
           <Route exact path="/adminPanel/usuarios/ordenesUsuario"><OrdenesUsuario /></Route>
           <Route path="/order"><OrderDetail /></Route>
+          <Route path = '/categories/:id' render={({match}) => <Category id={match.params.id}/>}/>
         </Switch>
       </div>
       <Footer />

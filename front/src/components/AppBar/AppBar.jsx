@@ -15,7 +15,8 @@ import {Link ,useHistory } from "react-router-dom"
 import {useSelector, useDispatch} from "react-redux"
 import {logout} from "../../state/user"
 import logo from '../../assets/logo2.png'
-
+import axios from 'axios'
+import {getCategories} from "../../state/categories"
 import { getProductsByKeyword } from '../../state/product';
 
 
@@ -23,8 +24,12 @@ import { getProductsByKeyword } from '../../state/product';
 const AppBar = ( ) => {
   const [keyword, setKeyword] = useState('');
   const history = useHistory();
+  React.useEffect(()=>{
+    axios.get("/api/categories").then(respuesta=> dispatch(getCategories(respuesta.data)))
+  }, [])
 
   const user = useSelector(state=> state.user)
+  const categories = useSelector(state => state.categories)
   const dispatch= useDispatch()
   const logOut = (e) => {
       e.preventDefault();
@@ -63,22 +68,13 @@ const AppBar = ( ) => {
               id="basic-nav-dropdown"
               id={s.cats}
             >
-              <NavDropdown.Item href="#action/3.1">Cursos</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.2">
-                Conectividad
+              {categories.length ? categories.map(category =>{
+                return <NavDropdown.Item><Link to={`/categories/${category.id}`}>
+                {category.statusDescription}</Link>
               </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">
-                Motores y accesorios
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.4">
-                Pantallas y displays
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.5">Sensores</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.6">
-                Todos los productos
-              </NavDropdown.Item>
+              }): "Cargando categorias"}
+              <NavDropdown.Item><Link to="/categories/6"> Todos los productos</Link> </NavDropdown.Item>
+              
             </NavDropdown>
             <Form onSubmit={searchHandler} className='w-100'>
             <InputGroup id={s.max_width} className={s.form} onChange={(e)=> setKeyword(e.target.value) }>

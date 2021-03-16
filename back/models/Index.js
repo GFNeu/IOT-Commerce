@@ -6,6 +6,7 @@ const Reviews = require("./Reviews");
 const User = require("./Users");
 const OrdersProducts= require("./OrderPoducts")
 const db = require("../db/index");
+const ProductCategories = require("./ProductCategories");
 
 
 // ACA, EN EL INDEX, IMPORTAMOS TODOS LOS MODELOS Y HACEMOS LAS RELACIONES
@@ -28,7 +29,17 @@ Products.belongsToMany(Orders,{through: "orders_products"});
 Orders.belongsTo(User,{through: "orders_products"});
 
 // PRODUCTS
-Categories.belongsToMany(Products, {through: "products_categories"});
-Products.belongsToMany(Categories,{through: "products_categories"});
+// Categories.belongsToMany(Products, {through: "products_categories"});
+// Products.belongsToMany(Categories,{through: "products_categories"});
+// Products belongToMany Tags (through ProductTag)
+Products.belongsToMany(Categories, {
+    through: ProductCategories,
+    foreignKey: 'product_id',
+  });
+  
+  Categories.belongsToMany(Products, {
+    through: ProductCategories,
+    foreignKey: 'category_id',
+  });
 
 module.exports = { db, Categories, Orders, OrderStatus, Products, Reviews, User };
