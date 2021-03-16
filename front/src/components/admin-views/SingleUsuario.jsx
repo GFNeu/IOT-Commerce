@@ -1,33 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
-import FormControl from "react-bootstrap/FormControl";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import axios from "axios";
-import { busquedaUsuario } from "../../state/allusers";
+import Jumbotron from "react-bootstrap/Jumbotron";
+import Container from "react-bootstrap/Container";
+import { useSelector } from "react-redux";
 
-const UsuariosAdmin = () => {
+const OrdenesUsuario = () => {
   const users = useSelector((state) => state.allUser);
-  const dispatch = useDispatch();
-  const [usuarioBuscado, setUsuarioBuscado] = useState("");
-
-  const handleChange = (e) => {
-    setUsuarioBuscado(e.target.value);
-  };
-
-  const handleClick = (e) => {
-    e.preventDefault();
-    axios
-      .get(`/api/users/${usuarioBuscado}`)
-      .then(({ data }) => dispatch(busquedaUsuario(data)))
-
-      .catch((err) => console.log(err));
-  };
-
   return (
     <div>
       <div>
@@ -63,36 +45,66 @@ const UsuariosAdmin = () => {
           <div className="h3 p-5">Administración de usuarios:</div>
         </div>
         <div className="row no-gutters">
-          <div className="col-sm-12 col-md-4">
-            <InputGroup className="mb-3 px-5 py-4" onChange={handleChange}>
-              <InputGroup.Prepend>
-                <Button variant="warning" onClick={handleClick}>
-                  Buscar usuario
-                </Button>
-              </InputGroup.Prepend>
-              <FormControl aria-describedby="basic-addon1" />
-            </InputGroup>
-          </div>
-
-          <div className="col-sm-12 col-md-8">
+          <div className="col-sm-12 col-md-12">
             {users.map((user) => (
               <div className="mb-5 p-4">
+                <Link to={`/adminPanel/usuarios/SingleUsuario/edit/${user.id}`}>
+                  {" "}
+                  <button> boton</button>{" "}
+                </Link>
+
                 <Card key={user.id}>
                   <Card.Header as="h5">
                     Usuario : {user.name} {user.lastName}
                   </Card.Header>
                   <Card.Body>
-                    <Card.Title> {user.email}</Card.Title>
-                    <Card.Text>
-                      Para visualizar todas las órdenes ingresa al usuario
-                    </Card.Text>
-                    <Link to={`/adminPanel/usuarios/SingleUsuario`}>
-                      <Button variant="warning">Ver usuario</Button>
-                    </Link>
+                    <Card.Title> Correo : {user.email}</Card.Title>
                   </Card.Body>
                 </Card>
               </div>
             ))}
+          </div>
+          <div className="col-sm-12 col-md-12 py-1 px-5">
+            <Jumbotron fluid>
+              <Container>
+                <h1>Order Id</h1>
+
+                <div className="row">
+                  <div className="col-sm-12 col-md-4 ">
+                    <p>
+                      Client Info
+                      <br />
+                      Name: pepe
+                      <br />
+                      Lastname: pepe
+                      <br />
+                      Total Amount: $ 1000
+                      <br />
+                    </p>
+                  </div>
+                  <div className="col-sm-12 col-md-4">
+                    <p>
+                      Payment Status
+                      <br />
+                      PAID
+                      <br />
+                      Order Status:
+                      <br />
+                      Delivered ()
+                      <br />
+                    </p>
+                  </div>
+
+                  <div className="col-sm-12 col-md-4">
+                    <p>
+                      Foto y nombre producto
+                      <br />
+                      Cantidades
+                    </p>
+                  </div>
+                </div>
+              </Container>
+            </Jumbotron>
           </div>
         </div>
       </div>
@@ -100,4 +112,4 @@ const UsuariosAdmin = () => {
   );
 };
 
-export default UsuariosAdmin;
+export default OrdenesUsuario;

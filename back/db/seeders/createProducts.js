@@ -6,6 +6,7 @@ console.log("")
 console.log("Comienza creación de productos")
 
 
+
 Products.bulkCreate(
   [
     //Conectividad
@@ -15,7 +16,8 @@ Products.bulkCreate(
    photo: "https://www.geekfactory.mx/wp-content/uploads/2020/01/USB-PLUG.jpg",
    price: 52,
    mark: "Samsung", 
-   stock: 150
+   stock: 150,
+
   },
   {
    name: "Cable dupont hembra hembra 10 centímetros",
@@ -23,7 +25,8 @@ Products.bulkCreate(
    photo: "https://www.geekfactory.mx/wp-content/uploads/2018/04/cable_dupont_hembra_hembra_10_centimetros.jpg",
    price: 63,
    mark: "Nokia", 
-   stock: 500
+   stock: 500,
+
   },
   {
    name: "Cable dupont hembra hembra 20 centímetros",
@@ -31,7 +34,8 @@ Products.bulkCreate(
    photo: "https://www.geekfactory.mx/wp-content/uploads/2013/06/cable-dupont-hembra-hembra.jpg",
    price: 72,
    mark: "Nokia", 
-   stock: 300
+   stock: 300,
+
   },
   {
    name: "Cable dupont macho hembra 10 centímetros",
@@ -39,7 +43,8 @@ Products.bulkCreate(
    photo: "https://www.geekfactory.mx/wp-content/uploads/2018/06/cable_dupont_macho_hembra_10_centimetros.jpg",
    price: 42,
    mark: "LG", 
-   stock: 38
+   stock: 38,
+
   },
   {
    name: "Cable dupont macho hembra 20 centímetros",
@@ -47,7 +52,8 @@ Products.bulkCreate(
    photo: "https://www.geekfactory.mx/wp-content/uploads/2014/08/cable-dupont-macho-hembra.jpg",
    price: 92,  
    mark: "Nokia",  
-   stock: 22
+   stock: 22,
+
   },
   {
    name: "Cable dupont macho macho 10 centímetros",
@@ -55,7 +61,8 @@ Products.bulkCreate(
    photo: "https://www.geekfactory.mx/wp-content/uploads/2018/06/cable_dupont_macho_macho_10_centimetros.jpg",
    price: 68, 
    mark: "Samsung", 
-   stock: 35
+   stock: 35,
+
   },
   {
    name: "Cable dupont macho macho 20 centímetros",
@@ -63,7 +70,8 @@ Products.bulkCreate(
    photo: "https://www.geekfactory.mx/wp-content/uploads/2013/06/cable-dupont-macho-macho.jpg",
    price: 25,  
    mark: "LG",  
-   stock: 78
+   stock: 78,
+
   },
   {
    name: "Cable micro HDMI 1.5 metros",
@@ -71,7 +79,8 @@ Products.bulkCreate(
    photo: "https://www.geekfactory.mx/wp-content/uploads/cable-micro-hdmi-1-5-metros.jpg",
    price: 58,
    mark: "LG",
-   stock: 61
+   stock: 61,
+
   },
   {
    name: "Cable micro USB con switch para Raspberry Pi",
@@ -79,7 +88,8 @@ Products.bulkCreate(
    photo: "https://www.geekfactory.mx/wp-content/uploads/2015/12/cable_micro_usb_con_switch_para_raspberry_pi.jpg",
    price: 78,
    mark: "Nokia", 
-   stock: 56
+   stock: 56,
+
   },
   {
    name: "Cable USB para arduino tipo A – B",
@@ -87,7 +97,8 @@ Products.bulkCreate(
    photo: "https://www.geekfactory.mx/wp-content/uploads/2017/03/CableUSBtipoA-B.png",
    price: 99,
    mark: "LG", 
-   stock: 15
+   stock: 15,
+
   },
   {
    name: "Cable USB para arduino tipo A – micro B",
@@ -95,7 +106,8 @@ Products.bulkCreate(
    photo: "https://www.geekfactory.mx/wp-content/uploads/2019/02/cableleonardo.jpg",
    price: 85,
    mark: "Samsung",
-   stock: 50
+   stock: 50,
+
   },
   {
    name: "Cable USB para arduino tipo A – mini B",
@@ -103,7 +115,8 @@ Products.bulkCreate(
    photo: "https://www.geekfactory.mx/wp-content/uploads/2018/10/Cable-USB-para-Arduino-NANO.jpg",
    price: 78,
    mark: "Nokia", 
-   stock: 38 
+   stock: 38,
+
   },
   {
    name: "Caja de alambres pre cortados para protoboard",
@@ -111,7 +124,8 @@ Products.bulkCreate(
    photo: "https://www.geekfactory.mx/wp-content/uploads/2016/11/caja-de-alambres-pre-cortados-para-protoboard.jpg",
    price: 100, 
    mark: "LG",
-   stock: 20
+   stock: 20,
+ 
   },
   {
    name: "Convertidor USB a serial RS232",
@@ -119,7 +133,8 @@ Products.bulkCreate(
    photo: "https://www.geekfactory.mx/wp-content/uploads/2017/11/high-quality-usb-to-rs232-serial-db9-pin.jpg",
    price: 10,
    mark: "Samsung",  
-   stock: 450
+   stock: 450,
+  
   },
   {
    name: "Juego de cables con caimanes 10 piezas",
@@ -127,7 +142,8 @@ Products.bulkCreate(
    photo: "https://www.geekfactory.mx/wp-content/uploads/2018/10/Caimanes.jpg",
    price: 36,
    mark: "LG",  
-   stock: 200
+   stock: 200,
+
   },
   
   
@@ -138,7 +154,8 @@ Products.bulkCreate(
     photo: "https://www.geekfactory.mx/wp-content/uploads/display-lcd-de-0-96-pulgadas-spi-st7735s.jpg",
     price: 39,
     mark: "Samsung",
-    stock: 33
+    stock: 33,
+
   },
   {
     name: "Pantalla Raspberry Pi táctil 7 pulgadas oficial",
@@ -146,7 +163,8 @@ Products.bulkCreate(
     photo: "https://www.geekfactory.mx/wp-content/uploads/pantalla-tactil-7-pulgagas-para-raspberry-pi-oficial.jpg",
     price: 89,
     mark: "Nokia",  
-    stock: 24
+    stock: 24,
+
   },
   {
     name: "Shield pantalla LCD táctil 3.2 pulgadas para mega Itead",
@@ -154,7 +172,8 @@ Products.bulkCreate(
     photo: "https://www.geekfactory.mx/wp-content/uploads/2016/01/shield_pantalla_lcd_tactil_3_2_pulgadas_para_mega_itead.jpg",
     price: 79,
     mark: "Samsung",
-    stock: 54
+    stock: 54,
+
   },
   {
     name: "Adaptador pantalla LCD 16×2 serial I2C PCF8574",
@@ -162,7 +181,8 @@ Products.bulkCreate(
     photo: "https://www.geekfactory.mx/wp-content/uploads/2015/06/adaptador_pantalla_lcd_16x2_serial_i2c_pcf8574.jpg",
     price: 68,
     mark: "LG", 
-    stock:  45
+    stock:  45,
+
   },
   {
     name: "Display LCD de 1.3 pulgadas SPI ST7789",
@@ -170,7 +190,8 @@ Products.bulkCreate(
     photo: "https://www.geekfactory.mx/wp-content/uploads/display-lcd-de-1-3-pulgadas-spi-st7789.jpg",
     price: 88,
     mark: "Nokia", 
-    stock: 39
+    stock: 39,
+
   },
   {
     name: "LCD Nextion 2.4 pulgadas NX3224T024",
@@ -178,7 +199,8 @@ Products.bulkCreate(
     photo: "https://www.geekfactory.mx/wp-content/uploads/2016/01/lcd_nextion_2_4_pulgadas.jpg",
     price: 62,
     mark: "Samsung",
-    stock:  5
+    stock:  5,
+
   },
   
   
@@ -189,7 +211,8 @@ Products.bulkCreate(
     photo: "https://www.geekfactory.mx/wp-content/uploads/2015/10/a4988-driver-para-motores-a-pasos.jpg",
     price: 56,
     mark: "LG", 
-    stock:  38
+    stock:  38,
+
   },
   {
     name: "Driver ULN2003APG para Motor a Pasos",
@@ -197,7 +220,8 @@ Products.bulkCreate(
     photo: "https://www.geekfactory.mx/wp-content/uploads/2016/04/ULN2003.png",
     price: 87,
     mark: "Samsung", 
-    stock:  182
+    stock:  182,
+
   },
   {
     name: "Encoder para micro motorreductor metálico Gravity DFRobot",
@@ -205,7 +229,8 @@ Products.bulkCreate(
     photo: "https://www.geekfactory.mx/wp-content/uploads/2016/08/encoder_para_motor_3.jpg",
     price: 34,
     mark: "Nokia",  
-    stock: 253
+    stock: 253,
+
   },
   {
     name: "MG90S Tower Pro micro servo motor metálico",
@@ -213,7 +238,8 @@ Products.bulkCreate(
     photo: "https://www.geekfactory.mx/wp-content/uploads/2015/10/mg90s-tower-pro-micro-servo-motor-metalico.jpg",
     price: 87,
     mark: "Nokia", 
-    stock: 123
+    stock: 123,
+
   },
   {
     name: "Micro motorreductor metálico 100 RPM",
@@ -221,7 +247,8 @@ Products.bulkCreate(
     photo: "https://www.geekfactory.mx/wp-content/uploads/2016/04/micro-motorreductor-metalico.jpg",
     price: 94,
     mark: "Samsung",
-    stock:  433
+    stock:  433,
+
   },
   {
     name: "Mini Bomba de Agua Sumergible 6V",
@@ -229,7 +256,8 @@ Products.bulkCreate(
     photo: "https://www.geekfactory.mx/wp-content/uploads/2017/07/Mini-Bomba-de-Agua.png",
     price: 32,
     mark: "Nokia", 
-    stock: 55
+    stock: 55,
+
   },
   {
     name: "Motor a pasos NEMA 17 17HS440",
@@ -237,7 +265,8 @@ Products.bulkCreate(
     photo: "https://www.geekfactory.mx/wp-content/uploads/2016/11/motor-a-pasos-nema-17-17hs4401.jpg",
     price: 66,
     mark: "Nokia", 
-    stock: 321
+    stock: 321,
+
   },
   {
     name: "Motor Nema 17 HS1538",
@@ -245,7 +274,8 @@ Products.bulkCreate(
     photo: "https://www.geekfactory.mx/wp-content/uploads/2018/08/N17.jpg",
     price: 58,
     mark: "Nokia",
-    stock:  265
+    stock:  265,
+
   },
   {
     name: "Servomotor Futaba S3003",
@@ -253,7 +283,8 @@ Products.bulkCreate(
     photo: "https://www.geekfactory.mx/wp-content/uploads/2016/06/motoreductor_futaba_s3003_1.jpg",
     price: 58,
     mark: "LG",  
-    stock:  235
+    stock:  235,
+
   },
   {
     name: "Set de Hélices para Dron",
@@ -261,7 +292,8 @@ Products.bulkCreate(
     photo: "https://www.geekfactory.mx/wp-content/uploads/2017/03/Helices_drone.png",
     price: 57,
     mark: "Samsung", 
-    stock: 103
+    stock: 103,
+
   },
   {
     name: "Shield MotoMama L298N puente H Itead",
@@ -269,7 +301,8 @@ Products.bulkCreate(
     photo: "https://www.geekfactory.mx/wp-content/uploads/2014/06/shield_motomama_l298n_puente_h_itead.jpg",
     price: 87,
     mark: "Nokia", 
-    stock: 302
+    stock: 302,
+
   },
   {
     name: "Válvula solenoide 1/2 pulgada electroválvula 12 volts",
@@ -277,7 +310,8 @@ Products.bulkCreate(
     photo: "https://www.geekfactory.mx/wp-content/uploads/valvula-solenoide-1-2-pulgada-electrovalvula-12-volts.jpg",
     price: 55,
     mark: "LG", 
-    stock: 56
+    stock: 56,
+
   },
   {
     name: "TB6600 Controlador de motor a pasos",
@@ -285,7 +319,8 @@ Products.bulkCreate(
     photo: "https://www.geekfactory.mx/wp-content/uploads/2016/07/TB6600_Controlador_de_Motor_a_Pasos_2.jpg",
     price: 66,
     mark: "Samsung",  
-    stock: 187
+    stock: 187,
+
   },
   {
     name: "Motoreductor Amarillo tipo L",
@@ -293,7 +328,8 @@ Products.bulkCreate(
     photo: "https://www.geekfactory.mx/wp-content/uploads/2017/07/1-eje-moto.jpg",
     price: 87,
     mark: "Nokia", 
-    stock:  224
+    stock:  224,
+
   },
   {
     name: "Motor Brushless (sin escobillas) A2212/6T 2200KV",
@@ -301,7 +337,8 @@ Products.bulkCreate(
     photo: "https://www.geekfactory.mx/wp-content/uploads/2017/04/Motor-Brushless-sin-escobillas2.png",
     price: 39,
     mark: "Nokia",  
-    stock:  58
+    stock:  58,
+
   },
   
   
@@ -312,7 +349,8 @@ Products.bulkCreate(
     photo: "https://www.geekfactory.mx/wp-content/uploads/2017/08/motor_a_pasos-1080x675.jpg",
     price: 99,
     mark: "Curso",
-    stock: 20
+    stock: 20,
+
   },
   {
     name: "Pantalla alfanumérica LCD 16X2 con Arduino",
@@ -320,7 +358,8 @@ Products.bulkCreate(
     photo: "https://www.geekfactory.mx/wp-content/uploads/2017/10/lcd_16x2_con_arduino_1-700x573.jpg",
     price: 99,
     mark: "Curso",
-    stock: 20
+    stock: 20,
+
   },
   {
     name: "DS18B20 con Arduino: tutorial de sensor de temperatura digital",
@@ -328,7 +367,8 @@ Products.bulkCreate(
     photo: "https://www.geekfactory.mx/wp-content/uploads/2019/06/conexion-arduino-con-ds18b20-1024x865.jpg",
     price: 99,
     mark: "Curso",
-    stock: 20
+    stock: 20,
+
   },
     
     //Sensores
@@ -338,7 +378,8 @@ Products.bulkCreate(
   photo: "https://www.geekfactory.mx/wp-content/uploads/2013/06/acs712_modulo_sensor_de_corriente_20_a.jpg",
   price: 85,
   mark: "Samsung",
-  stock: 322
+  stock: 322,
+
 },
 {
   name: "ADXL335 Acelerómetro analógico 3 ejes",
@@ -346,7 +387,8 @@ Products.bulkCreate(
   photo: "https://www.geekfactory.mx/wp-content/uploads/2017/12/adxl335_acelerometro_analogico_3_ejes.jpg",
   price: 82, 
   mark: "Samsung",
-  stock: 22
+  stock: 22,
+
 },
 {
   name: "CNY70 Sensor óptico de reflexión",
@@ -354,7 +396,8 @@ Products.bulkCreate(
   photo: "https://www.geekfactory.mx/wp-content/uploads/2016/02/cny70-sensor-optico-de-reflexion.jpg",
   price: 29, 
   mark: "LG",
-  stock:  458
+  stock:  458,
+
 },
 {
   name: "Cámara OV7670",
@@ -362,7 +405,8 @@ Products.bulkCreate(
   photo: "https://www.geekfactory.mx/wp-content/uploads/2015/12/camara-ov7670.jpg",
   price: 98,
   mark: "Samsung",
-  stock: 387
+  stock: 387,
+
 },
 {
   name: "FS400A caudalímetro sensor de flujo 1 pulgada",
@@ -370,7 +414,8 @@ Products.bulkCreate(
   photo: "https://www.geekfactory.mx/wp-content/uploads/2018/07/fs400a-caudalimetro-sensor-de-flujo-1-pulgada.jpg",
   price: 75,
   mark: "Samsung",
-  stock: 241
+  stock: 241,
+
 },
 {
   name: "BMP085 Sensor de Presión Atmosférica",
@@ -378,7 +423,8 @@ Products.bulkCreate(
   photo: "https://www.geekfactory.mx/wp-content/uploads/2013/06/BMP085.jpg",
   price: 96,
   mark: "Nokia",  
-  stock: 87
+  stock: 87,
+
 },
 {
   name: "GP2Y0A02YK0F Sensor de proximidad infrarrojo sharp",
@@ -386,7 +432,8 @@ Products.bulkCreate(
   photo: "https://www.geekfactory.mx/wp-content/uploads/2013/12/GP2Y0A02YK0F-sensor-de-proximidad-infrarrojo-sharp.jpg",
   price: 84,
   mark: "LG",
-  stock: 365
+  stock: 365,
+
 },
 {
   name: "DS18B20 Sensor de temperatura sumergible",
@@ -394,7 +441,8 @@ Products.bulkCreate(
   photo: "https://www.geekfactory.mx/wp-content/uploads/2013/06/ds18b20-sensor-de-temperatura-sumergible.jpg",
   price: 54, 
   mark: "Samsung",
-  stock: 56
+  stock: 56,
+
 },
 {
   name: "IMU 10 grados unidad de medición inercial",
@@ -402,7 +450,8 @@ Products.bulkCreate(
   photo: "https://www.geekfactory.mx/wp-content/uploads/2013/06/IMU-10-Grados-Unidad-de-Medici%C3%B3n-Inercial_5.jpg",
   price: 42,
   mark: "Samsung",  
-  stock: 254
+  stock: 254,
+
 },
 {
   name: "Electronic brick sensor de humedad de suelo Itead",
@@ -410,7 +459,8 @@ Products.bulkCreate(
   photo: "https://www.geekfactory.mx/wp-content/uploads/2019/03/ElectronicbricksensordehumedaddesueloItead.jpg",
   price: 86,
   mark: "Nokia",
-  stock: 128
+  stock: 128,
+
 },
 {
   name: "Micrófono electret",
@@ -418,7 +468,8 @@ Products.bulkCreate(
   photo: "https://www.geekfactory.mx/wp-content/uploads/2017/12/electret.jpg",
   price: 58,
   mark: "LG", 
-  stock: 253
+  stock: 253,
+
 },
 {
   name: "SCT-013 Sensor de corriente alterna no invasivo 100 A",
@@ -426,7 +477,8 @@ Products.bulkCreate(
   photo: "https://www.geekfactory.mx/wp-content/uploads/2016/09/Sensor-Corriente-Alterna.png",
   price: 89,
   mark: "Samsung",  
-  stock: 425
+  stock: 425,
+
 },
 {
   name: "MQ-3 Sensor de alcohol",
@@ -434,7 +486,8 @@ Products.bulkCreate(
   photo: "https://www.geekfactory.mx/wp-content/uploads/2015/12/sensor_alcohol_MQ3_3.jpg",
   price: 87,
   mark: "Nokia", 
-  stock: 365
+  stock: 365,
+
 },
 {
   name: "Sensor de Proximidad Inductivo NPN LJ12A3-4-Z/BX",
@@ -442,7 +495,8 @@ Products.bulkCreate(
   photo: "https://www.geekfactory.mx/wp-content/uploads/2016/04/Sensor_de_Proximidad_Inductivo_NPN-LJ12A3-4-ZBX_1.jpg",
   price: 44,
   mark: "Nokia", 
-  stock: 89
+  stock: 89,
+
 },
 
   ]

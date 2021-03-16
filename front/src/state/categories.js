@@ -1,10 +1,10 @@
-import {createAction, createReducer, createAsyncThunk} from "@reduxjs/toolkit"
+import {createReducer, createAction, createAsyncThunk} from "@reduxjs/toolkit"
 import axios from "axios"
 
 
 export const getCategories= createAction("GET_CATEGORIES")
-/*Es solo una accion porque creo que es mejor hacer el axios dentro de un useEffect en la home, y dispatchear
-la accion. Se puede transformar a un createasyncthunk*/
+
+export const  oneCategory= createAction("ONE_CATEGORY")
 
 //FUNCIONES SOLO PARA EL ADMIN
 export const createCategory= createAsyncThunk("CREATE_CATEGORY", (data)=>{
@@ -25,6 +25,7 @@ export const deleteCategory= createAsyncThunk("DELETE_CATEGORY", ()=>{
 
 const categoriesReducer= createReducer([], {
     [getCategories] : (state, action) =>  action.payload,
+    [oneCategory] : (state, action) =>  action.payload,
     [createCategory.fulfilled]: (state, action) => [...state, action.payload],
     [changeCategory.fulfilled] : (state, action) =>  action.payload, //deberiamos hacer que en la ruta devuelva todas las categorias
     [deleteCategory.fulfilled] : (state, action) =>  action.payload //deberiamos hacer que en la ruta devuelva todas las categorias

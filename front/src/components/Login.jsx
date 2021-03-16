@@ -15,6 +15,7 @@ const Login = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    console.log(typeof(email))
     if (emailValidate == "mostrar" && emailValidate == "mostrar") {
       dispatch(login({ email: email, password: password })).then((data) => {
  
@@ -33,6 +34,23 @@ const Login = () => {
       swal("¡Ingrese datos válidos!");
     }
   };
+  const loginAdmin= (e) =>{
+    e.preventDefault()
+    dispatch(login({ email: "guille@pato.com", password: "carlos" })).then((data) => {
+ 
+      if (data.meta.requestStatus === "rejected") {
+        setPassword("");
+        return swal("Usuario o contraseña incorrectos");
+      }
+
+      if (data.payload) {
+        localStorage.setItem("token", data.payload.token);
+        history.push("/");
+        swal("Logged in!");
+      }
+    });
+
+  }
 
   //   Validaciones
   const [emailValidate, setEmailValidate] = useState("inicial");
@@ -120,8 +138,9 @@ const Login = () => {
             </button>
             <button
               id="login_button"
-              type="submit"
+              type="submit"         
               className="btn btn-block py-3"
+              onClick={(e)=>loginAdmin(e)}
             >
               LOGIN AS ADMIN
             </button>

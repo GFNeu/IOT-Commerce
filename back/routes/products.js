@@ -1,10 +1,18 @@
-const router = require('express').Router()
+const router = require("express").Router();
 //const {User} = require("../models")
 
-
-const {getAll, getOne, addReview, addOne, changeOne, deleteOne}= require("../controllers/products")
-const { getReviewsByProduct } = require('../controllers/reviews')
-
+const {
+  getAll,
+  getOne,
+  addReview,
+  byCategory,
+  addOne,
+  changeOne,
+  deleteOne,
+  getProductsByKeyword,
+  findOneProduct,
+} = require("../controllers/products");
+const { getReviewsByProduct } = require("../controllers/reviews");
 
 /*RUTAS NECESARIAS
 GET ALL PRODUCTS
@@ -13,19 +21,18 @@ ADD PRODUCT
 CHANGE PRODUCT
 DELETE PRODUCT
 */
-
-
-router.get("/:id/reviews", getReviewsByProduct)
-router.get("/:id", getOne)
-router.post("/:id/reviews", addReview)
-router.get("/", getAll)
+//aca ya estoy parado sobre /products !
+router.get("/:name", findOneProduct);
+router.get("/:id/reviews", getReviewsByProduct);
+router.get("/search", getProductsByKeyword);
+router.get("/:id", getOne);
+router.get("/byCategory/:id", byCategory);
+router.post("/:id/reviews", addReview);
+router.get("/", getAll);
 
 //ADMIN
-router.post("/", addOne)
-router.put("/:id", changeOne)
-router.delete("/:id", deleteOne)
+router.post("/", addOne);
+router.put("/:id", changeOne);
+router.delete("/:id", deleteOne);
 
-
-
-
-module.exports = router
+module.exports = router;
