@@ -7,6 +7,7 @@ import userReducer from "./user"
 import reviewsReducer from "./reviews"
 import allUserReducer from "./allusers"
 
+
 const store = configureStore({
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
     reducer: {

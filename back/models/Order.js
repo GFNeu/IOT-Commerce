@@ -1,16 +1,16 @@
 const S = require("sequelize");
 const db = require("../db/index");
 
-class Orders extends S.Model {}
+class Order extends S.Model {}
 
-Orders.init(
+Order.init(
   {
     statusDescription: {
       type: S.STRING,
-      allowNull: false,
+      allowNull: true,
     },
   },
   { sequelize: db, modelName: "orders" }
 );
 
-module.exports = Orders;
+module.exports = Order;
