@@ -21,7 +21,7 @@ return (
 
 {reviews.length ?
     <>
-        <div className='row justify-content center mt-3 ml-5'>
+        <div className='row justify-content center mt-3 ml-5 text-center'>
             <h4><b>REVIEWS</b></h4>
         </div>
         
