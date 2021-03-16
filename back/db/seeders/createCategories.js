@@ -1,7 +1,5 @@
 "use strict";
-const {
-  Categories
-} = require("../../models/Index");
+const {Categories} = require("../../models/Index");
 
 console.log("")
 console.log("Comienza creación de categorias")
