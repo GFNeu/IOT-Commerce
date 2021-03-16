@@ -1,8 +1,7 @@
 const router = require('express').Router()
 //const {User} = require("../models")
 
-
-const {getAll, getOne, addReview, byCategory, addOne, changeOne, deleteOne, getProductsByKeyword}= require("../controllers/products")
+const {getAll, getOne, byCategory, addReview, addOne, changeOne, deleteOne, getProductsByKeyword}= require("../controllers/products")
 const { getReviewsByProduct } = require('../controllers/reviews')
 
 
