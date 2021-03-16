@@ -80,7 +80,7 @@ const AppBar = ( ) => {
                 Todos los productos
               </NavDropdown.Item>
             </NavDropdown>
-            <Form onSubmit={searchHandler}>
+            <Form onSubmit={searchHandler} className='w-100'>
             <InputGroup id={s.max_width} className={s.form} onChange={(e)=> setKeyword(e.target.value) }>
                 <FormControl type="text" placeholder="NO DISPONIBLE. Estamos trabajando en ello!" />
                 
