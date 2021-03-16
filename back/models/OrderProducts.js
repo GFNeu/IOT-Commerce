@@ -7,13 +7,11 @@ OrderProducts.init(
   {
     cantidad: {
       type: S.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
-  },
-  {
     precio: {
       type: S.FLOAT,
-      allowNull: false,
+      allowNull: true,
     },
   },
   { sequelize: db, modelName: "OrderProducts" }
