@@ -17,8 +17,8 @@ const DisplayCursosHome = ({cursos}) => {
         <Row noGutters>
         {cursos &&
           cursos.map((curso) => (
-            <Col xs={12} md className={classes.col}>
-              <Link to={`/courses/${curso.id}`} className={classes.link} key={curso.id}>
+            <Col xs={12} md className={classes.col} key={curso.id}>
+              <Link to={`/courses/${curso.id}`} className={classes.link}>
                   <div className={classes.imgCont}>
                     <Card.Img variant="top" src={curso.img} id={classes.photo} />
                     <Badge pill variant="warning" className={classes.badge}> Curso </Badge>

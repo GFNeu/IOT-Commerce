@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { getOne } from '../state/product'
+import { addProduct } from '../state/carrito'
 import { getReviewsByProduct } from '../state/reviews'
 import { Link } from 'react-router-dom'
 import './ProductDetail.css';
@@ -19,11 +20,14 @@ const ProductDetail = ( {id} ) => {
         dispatch(getOne(id))
     },[dispatch])
 
+    const handleSubmit = ()=>{
+        dispatch(addProduct({id, name: product[0].name, photo: product[0].photo, price: product[0].price, cantidad}))
+        setCantidad(0)
+    }
+
     return (
 
     <div className="container container-fluid">
-        {console.log(reviews)}
-        {console.log(rating)}
         { product.length ? 
          <div className="row f-flex justify-content-around">
             <div className="col-12 col-lg-5 img-fluid mt-5" id="product_image">
@@ -52,7 +56,7 @@ const ProductDetail = ( {id} ) => {
                  
                  <span className="btn btn-primary plus" onClick={()=> setCantidad(x => x+1)}>+</span>
              </div>
-              <Link to="/cart"><button type="button" id="cart_btn" className="btn btn-primary d-inline ml-4" >Add to Cart</button></Link>
+              <button type="button" id="cart_btn" className="btn btn-primary d-inline ml-4" onClick={()=>handleSubmit()}>Add to Cart</button>
               <Link to={`/products/${product[0].id}/reviews`}><button type="button" id="cart_btn" className="btn btn-warning d-inline ml-4" >Reviews</button></Link>
              <hr/>
 

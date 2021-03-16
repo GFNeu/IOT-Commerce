@@ -14,9 +14,11 @@ import {Link} from "react-router-dom"
 import {useSelector, useDispatch} from "react-redux"
 import {logout} from "../../state/user"
 import logo from '../../assets/logo2.png'
+import Badge from 'react-bootstrap/Badge'
 
 const AppBar = () => {
   const user = useSelector(state=> state.user)
+  const carrito = useSelector(state=> state.carrito)
   const dispatch= useDispatch()
   const logOut = (e) => {
       e.preventDefault();
@@ -71,6 +73,7 @@ const AppBar = () => {
             </InputGroup>
           </Nav>
           <Link to="/cart" >
+            {carrito.length > 0 && <Badge pill variant="warning">{carrito.length}</Badge>}
             <FiShoppingCart className="text-white" id={s.carrito_icon}/>
           </Link>
           {user.id ? (

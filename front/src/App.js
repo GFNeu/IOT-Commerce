@@ -2,9 +2,10 @@ import React from "react";
 import axios from "axios";
 import AppBar from "./components/AppBar/AppBar";
 import Home from "./views/Home.jsx";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./state/user";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { setCarrito } from './state/carrito'
+import { Switch, Route } from "react-router-dom";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Products from "./components/Products";
@@ -25,6 +26,7 @@ import "./App.css";
 
 function App() {
   const dispatch = useDispatch();
+  const carrito = useSelector(state=> state.carrito)
 
   React.useEffect(() => {
     const token = localStorage.getItem("token")
@@ -36,6 +38,9 @@ function App() {
         dispatch(setUser(data.data));
       });
     }
+
+    dispatch(setCarrito())
+        
   }, []);
 
   return (
