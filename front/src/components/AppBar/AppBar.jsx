@@ -18,6 +18,7 @@ import logo from '../../assets/logo2.png'
 import axios from 'axios'
 import {getCategories} from "../../state/categories"
 import { getProductsByKeyword } from '../../state/product';
+import Badge from 'react-bootstrap/Badge'
 
 
 
@@ -29,6 +30,7 @@ const AppBar = ( ) => {
   }, [])
 
   const user = useSelector(state=> state.user)
+  const carrito = useSelector(state=> state.carrito)
   const categories = useSelector(state => state.categories)
   const dispatch= useDispatch()
   const logOut = (e) => {
@@ -88,6 +90,7 @@ const AppBar = ( ) => {
           
           </Nav>
           <Link to="/cart" >
+            {carrito.length > 0 && <Badge pill variant="warning">{carrito.length}</Badge>}
             <FiShoppingCart className="text-white" id={s.carrito_icon}/>
           </Link>
           {user.id ? (

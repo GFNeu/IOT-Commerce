@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {editUser, changePermits, deleteUser, findUsers} = require("../controllers/users")
+const order = require('./order')
 
 // export function isAdmin(req, res, next){
 //     User.findByPk(req.params.id)
@@ -15,6 +16,7 @@ const {editUser, changePermits, deleteUser, findUsers} = require("../controllers
 
 router.put("/:id", editUser)
 router.put("/:id/permits", changePermits)
+router.use("/:id/orders", order)
 router.delete("/:id", deleteUser)
 router.get("/", findUsers)
 
