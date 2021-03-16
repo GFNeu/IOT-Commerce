@@ -23,6 +23,7 @@ import UsuariosAdmin from "./components/admin-views/UsuariosAdmin.jsx";
 import OrdenesAdmin from "./components/admin-views/OrdenesAdmin.jsx";
 import OrdenesUsuario from "./components/admin-views/OrdenesUsuario.jsx";
 import "./App.css";
+import {getUsers} from "./state/allusers"
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +38,15 @@ function App() {
         dispatch(setUser(data.data));
       });
     }
+
+  dispatch(getUsers())
+
+
+
+
+
+
+
   }, []);
 
   return (
