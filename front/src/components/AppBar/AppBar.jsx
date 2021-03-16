@@ -1,30 +1,52 @@
-import React from 'react'
+import React ,{ useState, useEffect }from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import Container from 'react-bootstrap/Container'
 import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl';
+import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import s from './AppBar.module.css'
 import { AiOutlineSearch } from "react-icons/ai"
 import { FiShoppingCart } from "react-icons/fi";
 import { RiAccountCircleFill } from "react-icons/ri";
-import {Link} from "react-router-dom"
+import {Link ,useHistory } from "react-router-dom"
 import {useSelector, useDispatch} from "react-redux"
 import {logout} from "../../state/user"
 import logo from '../../assets/logo2.png'
 
-const AppBar = () => {
+import { getProductsByKeyword } from '../../state/product';
+
+
+
+const AppBar = ( ) => {
+  const [keyword, setKeyword] = useState('');
+  const history = useHistory();
+
   const user = useSelector(state=> state.user)
   const dispatch= useDispatch()
   const logOut = (e) => {
       e.preventDefault();
       localStorage.clear();
       dispatch(logout())
-    };
+  };
+  const searchHandler = (e)=>{
+   
+    e.preventDefault();
+    if(keyword.trim()) {
+     
+      dispatch(getProductsByKeyword(keyword))
+      //.then(()=>window.location = `/products/search?name=${keyword}`)      
+       .then(()=>history.push ( `/products/search?name=${keyword}`))      
+     
+    }
+    else history.push('/')
+  };
+
   
-    return (
+  
+  return (
       <Navbar expand="lg" bg="primary">
         <Container fluid style={{maxWidth: 1500}}>
         <Link to="/">
@@ -58,17 +80,16 @@ const AppBar = () => {
                 Todos los productos
               </NavDropdown.Item>
             </NavDropdown>
-            <InputGroup id={s.max_width} className={s.form}>
-              <FormControl
-                type="text"
-                placeholder="NO DISPONIBLE. Estamos trabajando en ello!"
-              />
-              <InputGroup.Append>
-                <Button variant="light" style={{maxHeight: 38}}>
-                  <AiOutlineSearch />
-                </Button>
-              </InputGroup.Append>
+            <Form onSubmit={searchHandler} className='w-100'>
+            <InputGroup id={s.max_width} className={s.form} onChange={(e)=> setKeyword(e.target.value) }>
+                <FormControl type="text" placeholder="NO DISPONIBLE. Estamos trabajando en ello!" />
+                
+                <InputGroup.Append >
+                  <Button variant="light" style={{maxHeight: 38}}> <AiOutlineSearch /> </Button>
+                </InputGroup.Append>
             </InputGroup>
+            </Form>
+          
           </Nav>
           <Link to="/cart" >
             <FiShoppingCart className="text-white" id={s.carrito_icon}/>
