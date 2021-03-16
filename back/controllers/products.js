@@ -1,11 +1,6 @@
-<<<<<<< HEAD
 const {Products, Reviews, Categories} = require("../models/Index");
 const ProductCategories = require("../models/ProductCategories");
-
-=======
-const {Products, Reviews} = require("../models/Index");
 const { Op } =require ('sequelize');
->>>>>>> 3fc1d57f6f82851e816b189f214a3e5cf155b18c
 
 const productsController = {
   getAll(req, res, next) {
@@ -58,16 +53,27 @@ const productsController = {
      .catch(err=> next(err))
   },
   getProductsByKeyword(req,res,next){
-    const baseQuery = req.query.name;
-   
+    const baseQuery = req.query.name 
+    const splitQuery= req.query.name.split(" ")
+    
+
+
+    console.log("SPLITEADO", splitQuery)
     Products.findAll({
-      where :{
-        name:{[Op.iLike]: `%${baseQuery}%` }
+      where :{ [Op.or]: [
+        { name: {[Op.iLike]: `%${baseQuery}%`}},
+        {name: {[Op.and]: [
+          {[Op.iLike]: `%${splitQuery[0]}%`},
+          {[Op.iLike]: `%${splitQuery[1]}%`},
+        ]}},
+        { name: {[Op.in]: splitQuery}}
+      ] 
       }
-    }).then(productsByKeyword => res.send(productsByKeyword))
+    }).then(productsByKeyword => {
+      console.log("LO ENCONTRADO", productsByKeyword)
+      res.send(productsByKeyword)})
     .catch(err => next(err))
   }
 };
 
 module.exports = productsController;
-

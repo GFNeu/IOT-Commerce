@@ -15,18 +15,9 @@ import Category from "./components/Category"
 import { setUser } from "./state/user";
 import { setCarrito } from './state/carrito'
 import { Switch, Route } from "react-router-dom";
-import Login from "./components/Login";
-import Register from "./components/Register";
-
-import ProductDetail from "./components/ProductDetail";
-import Footer from "./components/Footer.jsx";
-import Cart from "./components/Cart.jsx";
-
 import Reviews from "./components/Reviews.jsx";
 import OrderDetail from "./components/OrderDetail.jsx";
 import Search from "./components/Search.jsx";
-
-import NoDisponible from "./components/NoDisponible.jsx";
 import AdminPanel from "./components/admin-views/AdminPanel";
 import ProductosAdmin from "./components/admin-views/ProductosAdmin.jsx";
 import UsuariosAdmin from "./components/admin-views/UsuariosAdmin.jsx";
