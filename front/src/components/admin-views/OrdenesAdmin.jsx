@@ -4,12 +4,21 @@ import Nav from "react-bootstrap/Nav";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
 import FormControl from "react-bootstrap/FormControl";
-import Card from "react-bootstrap/Card";
-import {Link} from "react-router-dom";
+import Table from "react-bootstrap/Table";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+
 const OrdenesAdmin = () => {
+  const users = useSelector((state) => state.allUser);
+  /* console.log("usuarios todos ", users) */
+
   return (
     <div>
+      {users.length && <h1>{users[3].email}</h1>}
+      {/*  el arreglo.length nos da tiempo para hacer el map */}
       <div>
+        {" "}
+        {/* COMIENZO  NAV BAR */}
         <Navbar collapseOnSelect expand="lg" className="bg-dark" variant="dark">
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
@@ -26,6 +35,7 @@ const OrdenesAdmin = () => {
               >
                 Productos
               </Nav.Link>
+
               <Nav.Link href="/adminPanel/ordenes" className="mx-5 text-light ">
                 Órdenes
               </Nav.Link>
@@ -36,8 +46,11 @@ const OrdenesAdmin = () => {
             Panel Administrador
           </Navbar.Brand>
         </Navbar>
-      </div>
+      </div>{" "}
+      {/* FIN  NAV BAR */}
       <div>
+        {" "}
+        {/*  MUESTRO TITULO Y BUSQUEDA SECTOR DATOS*/}
         <div className="row no-gutters">
           <div className="h3 p-5">Administración de ordenes:</div>
         </div>
@@ -49,37 +62,39 @@ const OrdenesAdmin = () => {
               </InputGroup.Prepend>
               <FormControl aria-describedby="basic-addon1" />
             </InputGroup>
-          </div>
+          </div>{" "}
+        </div>
+        {/*  MUESTRO TITULO Y BUSQUEDA SECTOR DATOS*/}
+        {/* COMIENZO MOSTRAR DATOS  className="col-sm-12 col-md-8"*/}
+        <div>
+          <div>
+            <Table responsive>
+              <Table striped bordered hover size="sm">
+                <thead>
+                  {/* TITULOS DE COLUMNAS */}
+                  <tr>
+                    <th>#Orden</th>
+                    <th>First, Lastname</th>
+                    <th>Username</th>
+                    <th>Order Status</th>
+                    <th>Paid status</th>
+                    <th>Paid date</th>
+                    <th>Delivered date</th>
+                  </tr>
+                </thead>
 
-          <div className="col-sm-12 col-md-8">
-            <div className=" mx-4 py-3">
-              <Card>
-                <Card.Header as="h5">Usuario : NOMBRE APELLIDO</Card.Header>
-                <Card.Body>
-                  <Card.Title>Correo : email@email.com</Card.Title>
-                  <Card.Text>
-                    Para visualizar todas las órdenes ingresa al usuario
-                  </Card.Text>
-                  <Link to="/adminPanel/usuarios/ordenesusuario">
-                    <Button variant="warning">Ver usuario</Button>
-                  </Link>
-                </Card.Body>
-              </Card>
-            </div>
-            <div className=" mx-4 py-3">
-              <Card>
-                <Card.Header as="h5">Usuario : NOMBRE APELLIDO</Card.Header>
-                <Card.Body>
-                  <Card.Title>Correo : email@email.com</Card.Title>
-                  <Card.Text>
-                    Para visualizar todas las órdenes ingresa al usuario
-                  </Card.Text>
-                  <Link to="/adminPanel/usuarios/ordenesusuario">
-                    <Button variant="warning">Ver usuario</Button>
-                  </Link>
-                </Card.Body>
-              </Card>
-            </div>
+                {users.map((user) => (
+                  <tbody>
+                    <tr>
+                      <td>{user.id}</td>
+                      <td>{user.fullName}</td>
+                      <td>{user.email}</td>
+                      <td >@mdo</td>  {/* style= "color: green;" */}
+                    </tr>
+                  </tbody>
+                ))}
+              </Table>
+            </Table>
           </div>
         </div>
       </div>
