@@ -18,7 +18,7 @@ return (
         <div className="col-12 col-lg-8">
           {cartItems.length &&
             cartItems.map((item) => (
-              <>
+              <div key={item.id}>
                 <hr />
 
                 <div className="cart-item" key={item.id}>
@@ -63,7 +63,7 @@ return (
                   </div>
                 </div>
                 <hr />
-              </>
+              </div>
             ))}
           <button
             className="btn btn-danger"
@@ -79,11 +79,11 @@ return (
             <hr />
             <p>
               Subtotal:{" "}
-              <span class="order-summary-values">{cartItems.length}</span>
+              <span className="order-summary-values">{cartItems.length}</span>
             </p>
             <p>
               Est. total:{" "}
-              <span class="order-summary-values">{`$${
+              <span className="order-summary-values">{`$${
                 cartItems.length &&
                 cartItems
                   .reduce((acc, item) => {
@@ -94,7 +94,7 @@ return (
             </p>
 
             <hr />
-            <button id="buy_btn" class="btn btn-primary btn-block">
+            <button id="buy_btn" className="btn btn-primary btn-block">
               Checkout
             </button>
           </div>

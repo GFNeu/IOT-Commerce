@@ -18,7 +18,7 @@ export const setCarrito = createAsyncThunk("SET_CARRITO",(data, thunkAPI)=>{
                
                const local = JSON.parse(localS)
                const carritoSend = local.map(product => {
-                 return {id: product.id, precio: product.price, cantidad: product.cantidad}
+                 return {id: Number(product.id), precio: product.price, cantidad: product.cantidad}
                 })
                return axios.post(`/api/users/orders/${user.id}`,{userID: user.id, carrito: carritoSend})
                     .then(() => local)
@@ -29,15 +29,16 @@ export const setCarrito = createAsyncThunk("SET_CARRITO",(data, thunkAPI)=>{
               if(!localS){ //Si no hay nada en local storage
                                         
                 return order[0].products.map(product => {
-                  return {id: product.id, photo: product.photo, name: product.name, price: product.price, cantidad: product.OrderProducts.cantidad}
+                  return {id: Number(product.id), photo: product.photo, name: product.name, price: product.price, cantidad: product.OrderProducts.cantidad}
                 })
               } else { //Si hay algo en local storage
                   
                   const back = order[0].products.map(product => {
-                    return {id: product.id, photo: product.photo, name: product.name, price: product.price, cantidad: product.OrderProducts.cantidad}
+                    return {id: Number(product.id), photo: product.photo, name: product.name, price: product.price, cantidad: product.OrderProducts.cantidad}
                   })
                   
                   const front = JSON.parse(localS)
+                  front.forEach(prod => prod.id = Number(prod.id))
                   
                   const masLargo = front.length > back.length? front : back
                   
@@ -56,7 +57,7 @@ export const setCarrito = createAsyncThunk("SET_CARRITO",(data, thunkAPI)=>{
 
                   
                   const masLargoParaElBack = masLargo.map(product => {
-                    return {id: product.id, precio: product.price, cantidad: product.cantidad, photo: product.photo, name: product.name}
+                    return {id: Number(product.id), precio: product.price, cantidad: product.cantidad, photo: product.photo, name: product.name}
                   })
                   return axios.put(`/api/users/orders/${user.id}`,{userID: user.id, carrito: masLargoParaElBack})
                               .then(()=> masLargo)
@@ -75,11 +76,30 @@ export const addProduct= createAsyncThunk("ADD_PRODUCT", (data, thunkAPI)=>{
   /*En algun lugar de la data tiene que venir el id para encontrar la ruta*/ 
     console.log("addProduct DISPATCH")
   const { user } = thunkAPI.getState();
+  const localS = localStorage.getItem('carrito')
   const {id, cantidad, price, photo, name} = data
+  
   if(user.id){
-    //trabajamos con axios
-    //si NO hay ítems en el carrito hacemos axios.post
-    //si SÍ hay ítems en el carrito hacemos axios.put
+        
+    if(!localS){
+      //si NO hay ítems en el carrito hacemos axios.post
+      return axios.post(`/api/users/orders/${user.id}`,{userID: user.id, carrito: [{id, cantidad, precio: price}]})
+                  .then(() => {return {id: Number(id), name, price, photo, cantidad}})
+    }else {
+      //si SÍ hay ítems en el carrito hacemos axios.put
+      //Normalización del local storage: 
+      const enviar = JSON.parse(localS).map(product => {
+        return {id: Number(product.id), cantidad: product.cantidad, precio: product.price}
+      })
+      //Ver si ya existe ese elemento en el carrito, si no existe, pushearlo, si existe, sumar cantidad
+      const elemento = enviar.filter(product => product.id == Number(id))
+      if(!elemento[0]) enviar.push({id: Number(id), cantidad, precio: price})
+      else elemento[0].cantidad += cantidad
+      
+      return axios.put(`/api/users/orders/${user.id}`,{userID: user.id, carrito: enviar}) 
+                  .then(() => {return {id: Number(id), name, price, photo, cantidad}})
+    }
+    
   } else {
     return {id, name, price, photo, cantidad}
   }
@@ -107,9 +127,12 @@ export const removeAmount= createAsyncThunk("REMOVE_AMOUNT", (data, thunkAPI)=>{
 })
 
 export const emptyCarrito= createAsyncThunk("EMPTY_CARRITO", (data, thunkAPI)=>{
-  /*En algun lugar de la data tiene que venir el id para encontrar la ruta*/ 
-      return [] 
-  //return axios.delete("api/order/orderId").then((respuesta)=>respuesta.data)
+      const { user } = thunkAPI.getState();
+      if(user.id) {
+        axios.delete(`/api/users/orders/${user.id}`)
+             .then(()=> [])
+      }
+      else return [] 
   })
 
 export const checkout= createAsyncThunk("CHECKOUT", (data)=>{

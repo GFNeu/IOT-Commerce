@@ -5,7 +5,7 @@ const {createOrder, getPendingOrder, updateOrder, checkout, removeOrder, getPast
 router.get('/:id/pending', getPendingOrder)
 
 //get todas las órdenes completas
-router.get('/', getPastOrders)
+router.get('/:id', getPastOrders)
 
 //CHECKOUT
 router.put('/checkout', checkout)
@@ -17,7 +17,7 @@ router.put('/:id', updateOrder)
 router.post('/:id', createOrder)
 
 //BORRAR ORDEN
-router.delete('/', removeOrder)
+router.delete('/:id', removeOrder)
 
 
 
