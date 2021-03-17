@@ -1,12 +1,6 @@
 const router = require("express").Router();
 //const {User} = require("../models")
-<<<<<<< HEAD
-const {getAll, getOne, byCategory, addReview, addOne, changeOne, deleteOne, getProductsByKeyword}= require("../controllers/products")
-const { getReviewsByProduct } = require('../controllers/reviews')
 
-=======
-
- 
 const {
   getAll,
   getOne,
@@ -17,9 +11,9 @@ const {
   deleteOne,
   getProductsByKeyword,
   findOneProduct,
+  editOne,
 } = require("../controllers/products");
 const { getReviewsByProduct } = require("../controllers/reviews");
->>>>>>> 563a80fccd60b55b13f683ffd1849ac627e66698
 
 /*RUTAS NECESARIAS
 GET ALL PRODUCTS
@@ -29,6 +23,7 @@ CHANGE PRODUCT
 DELETE PRODUCT
 */
 //aca ya estoy parado sobre /products !
+router.put("/:id", editOne);
 router.get("/:name", findOneProduct);
 router.get("/:id/reviews", getReviewsByProduct);
 router.get("/search", getProductsByKeyword);

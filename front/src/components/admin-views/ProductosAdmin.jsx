@@ -8,6 +8,10 @@ import Card from "react-bootstrap/Card";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { busquedaProducto } from "../../state/product";
+ 
+
+ 
+
 
 const ProductosAdmin = () => {
   const product = useSelector((state) => state.product);

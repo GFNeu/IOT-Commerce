@@ -109,6 +109,11 @@ function App() {
             path="/adminPanel/usuarios/SingleUsuario/edit/:id"
             render={({ match }) => <EditarUsuario id={match.params.id} />}
           />
+          <Route
+            exact
+            path="/adminPanel/productos/edit/:id"
+            render={({ match }) => <EditarProducto id={match.params.id} />}
+          />
 
           <Route path="/order">
             <OrderDetail />
