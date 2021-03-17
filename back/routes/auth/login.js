@@ -19,7 +19,8 @@ router.post("/", (req, res, next) => {
           id: usuario.id,
           email: usuario.email,
           name: usuario.name,
-          lastName: usuario.lastName
+          lastName: usuario.lastName,
+          isAdmin: usuario.isAdmin
           
              },
         "IOTKEY",
