@@ -18,12 +18,12 @@ const order = require("./order");
 //         }
 //     })
 // }
-router.get("/ ", findUsers);
 
+router.use("/orders", order);
+router.get("/ ", findUsers);
 router.get("/:name", findOneUser);
 router.put("/:id", editUser);
 router.put("/:id/permits", changePermits);
-router.use("/:id/orders", order);
 router.delete("/:id", deleteUser);
 
 

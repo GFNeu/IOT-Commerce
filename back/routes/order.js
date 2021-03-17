@@ -2,22 +2,22 @@ const router = require('express').Router()
 const {createOrder, getPendingOrder, updateOrder, checkout, removeOrder, getPastOrders} = require('../controllers/order')
 
 //get la orden que este pending
-router.get('/pending', getPendingOrder)
+router.get('/:id/pending', getPendingOrder)
 
 //get todas las órdenes completas
-router.get('/', getPastOrders)
+router.get('/:id', getPastOrders)
 
 //CHECKOUT
 router.put('/checkout', checkout)
 
 //MODIFICAR UNA ORDEN
-router.put('/', updateOrder)
+router.put('/:id', updateOrder)
 
 //CREATE ORDER
-router.post('/', createOrder)
+router.post('/:id', createOrder)
 
 //BORRAR ORDEN
-router.delete('/', removeOrder)
+router.delete('/:id', removeOrder)
 
 
 
