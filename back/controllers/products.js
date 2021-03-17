@@ -74,9 +74,6 @@ const productsController = {
   getProductsByKeyword(req,res,next){
     const baseQuery = req.query.name 
     const splitQuery= req.query.name.split(" ")
-    
-
-
     console.log("SPLITEADO", splitQuery)
     Products.findAll({
       where :{ [Op.or]: [
@@ -104,6 +101,6 @@ const productsController = {
       .then((user) => res.send(user))
       .catch((err) => next(err));
   },
- };
+};
 
 module.exports = productsController;

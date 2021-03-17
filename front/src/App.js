@@ -26,7 +26,9 @@ import SingleUsuario from "./components/admin-views/SingleUsuario.jsx";
 import "./App.css";
 import { getUsers } from "./state/allusers";
 import EditarUsuario from "./components/admin-views/EditarUsuario";
-
+import CategoriasAdmin from "./components/admin-views/CategoriasAdmin"
+import EditarCategoria from "./components/admin-views/EditarCategoria"
+import CrearCategoria from "./components/admin-views/CrearCategoria"
 function App() {
   const dispatch = useDispatch();
   const carrito = useSelector((state) => state.carrito);
@@ -99,6 +101,17 @@ function App() {
           </Route>
           <Route exact path="/adminPanel/ordenes">
             <OrdenesAdmin />
+          </Route>
+          <Route exact path="/adminPanel/categorias">
+            <CategoriasAdmin />
+          </Route>
+          <Route
+            exact
+            path="/adminPanel/categorias/editar/:id"
+            render={({ match }) => <EditarCategoria id={match.params.id} />}
+          />
+          <Route exact path="/adminPanel/categorias/crear">
+            <CrearCategoria />
           </Route>
           <Route exact path="/adminPanel/usuarios/SingleUsuario">
             <SingleUsuario />

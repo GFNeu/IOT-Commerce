@@ -110,22 +110,43 @@ export const addProduct= createAsyncThunk("ADD_PRODUCT", (data, thunkAPI)=>{
   })
 
 export const addAmount= createAsyncThunk("ADD_AMOUNT", (data, thunkAPI)=>{
-  /*En algun lugar de la data tiene que venir el id para encontrar la ruta*/ 
-  console.log("addAmount DISPATCH")
+    
   const { user } = thunkAPI.getState();
-  return {id: data}
-     //return axios.put(/*ver ruta*/"api/order/orderId", data)
-    //.then((respuesta)=>respuesta.data)
-
+  if (user.id){
+    const local = JSON.parse(localStorage.getItem('carrito'))
+    const item = local.find(prod => prod.id == data)
+    item.cantidad += 1
+    return axios.put(`/api/users/orders/${user.id}`,{userID: user.id, carrito: [{id: item.id, precio: item.price, cantidad: item.cantidad}]}) 
+                  .then(() => {return {id: data}})
+  }else{
+    return {id: data}
+  }
 })
 
 export const removeAmount= createAsyncThunk("REMOVE_AMOUNT", (data, thunkAPI)=>{
-  /*En algun lugar de la data tiene que venir el id para encontrar la ruta*/ 
-  console.log("addAmount DISPATCH")
+  
   const { user } = thunkAPI.getState();
-  return {id: data}
-  //return axios.put(/*ver ruta*/"api/order/orderId", data).then((respuesta)=>respuesta.data)
+  if (user.id){
+    const local = JSON.parse(localStorage.getItem('carrito'))
+    const item = local.find(prod => prod.id == data)
+    console.log("CANTIDAD ITEM",item.cantidad)
+    if(item.cantidad > 1){
+      console.log("entró a cantidad mayor a 1")
+      item.cantidad -= 1
+      console.log("CANTIDAD ITEM EN EL IF",item.cantidad)
+      return axios.put(`/api/users/orders/${user.id}`,{userID: user.id, carrito: [{id: item.id, precio: item.price, cantidad: item.cantidad}]}) 
+                  .then(() => {return {id: data}})
+    } else {
+      console.log("entró a cantidad igual a 1")
+      return axios.put(`/api/users/orders/${user.id}/removeAmount`,{userID: user.id, productId: data}) 
+                  .then(() => {return {id: data}})
+    }
+    
+  }else{
+    return {id: data}
+  }
 })
+
 
 export const emptyCarrito= createAsyncThunk("EMPTY_CARRITO", (data, thunkAPI)=>{
       const { user } = thunkAPI.getState();
@@ -159,7 +180,7 @@ const carritoReducer= createReducer([], {
                   localStorage.setItem("carrito",JSON.stringify(state))
     }, 
     [addAmount.fulfilled] : (state, action) =>  {
-          const item = state.filter(x => x.id === action.payload.id)
+          const item = state.filter(prod => prod.id === action.payload.id)
           const index = state.indexOf(item[0])
           state[index].cantidad += 1
 
@@ -168,7 +189,10 @@ const carritoReducer= createReducer([], {
     [removeAmount.fulfilled] : (state, action) =>  {
           const item = state.filter(x => x.id === action.payload.id)
           const index = state.indexOf(item[0])
-          if(state[index].cantidad > 1) state[index].cantidad -= 1
+          if(state[index].cantidad > 1) {
+              state[index].cantidad -= 1
+              localStorage.setItem("carrito",JSON.stringify(state))
+            }
           else {
             state.splice(index, 1)
             if(state.length === 0) localStorage.removeItem('carrito');

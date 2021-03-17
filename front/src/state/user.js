@@ -24,7 +24,7 @@ const userReducer= createReducer([], {
     [login.fulfilled] : (state, action) =>  action.payload.usuario,
     [logout]: (state, action) => [],
     [setUser]: (state, action) => action.payload,
-     [register.fulfilled] : (state, action) =>  action.payload,    
+    [register.fulfilled] : (state, action) =>  action.payload,    
 })
 
   

@@ -7,6 +7,7 @@ const checkJWT = (req, res, next) => {
   jwt.verify(token, "IOTKEY", (err, user) => {
     if (err) return res.sendStatus(403);
     req.user = user;
+    
     next();
   });
 };
