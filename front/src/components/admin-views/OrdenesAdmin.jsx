@@ -27,12 +27,10 @@ const OrdenesAdmin = () => {
 
 
   return (
-    <div>
-      {users.length && <h1>{users[3].email}</h1>}
-      {/*  el arreglo.length nos da tiempo para hacer el map */}
-      <div>
-        {" "}
-        {/* COMIENZO  NAV BAR */}
+    <div>     
+      
+      <div>       
+        
         <Navbar collapseOnSelect expand="lg" className="bg-dark" variant="dark">
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
@@ -60,11 +58,10 @@ const OrdenesAdmin = () => {
             Panel Administrador
           </Navbar.Brand>
         </Navbar>
-      </div>{" "}
-      {/* FIN  NAV BAR */}
-      <div>
-        {" "}
-        {/*  MUESTRO TITULO Y BUSQUEDA SECTOR DATOS*/}
+      </div> 
+      
+
+      <div>           
         <div className="row no-gutters">
           <div className="h3 p-5">Administración de ordenes:</div>
         </div>
@@ -76,18 +73,17 @@ const OrdenesAdmin = () => {
               </InputGroup.Prepend>
               <FormControl aria-describedby="basic-addon1" />
             </InputGroup>
-          </div>{" "}
+          </div>
         </div>
        
-        {/*  MUESTRO TITULO Y BUSQUEDA SECTOR DATOS*/}
-        {/* COMIENZO MOSTRAR DATOS  className="col-sm-12 col-md-8"*/}
+
        <div className="text-center p-2">
         <div>
           <div>
             <Table responsive>
               <Table striped bordered hover size="sm">
                 <thead>
-                  {/* TITULOS DE COLUMNAS */}
+                  
                   <tr>
                     <th>#Orden</th>
                     <th>First, Lastname</th>
@@ -98,8 +94,8 @@ const OrdenesAdmin = () => {
                     <th>Delivered date</th>
                   </tr>
                 </thead>
-
-                {users.map((user) => (
+      
+                {users.length>0 &&  users.map((user) => (
                   
                   <tbody>
                   {user.id<10? <tr>
@@ -113,9 +109,7 @@ const OrdenesAdmin = () => {
                     <Link > <td style = {{backgroundColor:"green"}}>{user.id}</td> </Link>
                       
                       <td>{user.fullName}</td>
-                      <Link > <td>{user.email}</td> </Link>
-
-                   
+                      <Link > <td>{user.email}</td> </Link>                   
                     </tr>}
                    
                     
