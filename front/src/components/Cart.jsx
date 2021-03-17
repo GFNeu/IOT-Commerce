@@ -1,11 +1,27 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux'
-import {addAmount, removeAmount, emptyCarrito} from '../state/carrito'
+import {addAmount, removeAmount, emptyCarrito, checkout} from '../state/carrito'
+import swal from "sweetalert";
 
 const Cart = () => {
+    let history = useHistory();
     const dispatch = useDispatch()
     const cartItems = useSelector(state=> state.carrito)
+    const user = useSelector(state => state.user)
+
+    const handleCheckout = () => {
+        if(user.id){
+          dispatch(checkout())
+              .then(()=>{
+                  swal('¡Gracias por su compra!')
+                  history.push('/order')
+              })
+        }else{
+          swal('Necesita logearse para poder comprar')
+          history.push('/login')
+        }
+    }
 
 return (
   <>
@@ -94,7 +110,7 @@ return (
             </p>
 
             <hr />
-            <button id="buy_btn" className="btn btn-primary btn-block">
+            <button id="buy_btn" className="btn btn-primary btn-block" onClick={handleCheckout}>
               Checkout
             </button>
           </div>
