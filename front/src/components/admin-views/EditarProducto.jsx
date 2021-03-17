@@ -10,22 +10,49 @@ import Col from "react-bootstrap/Col";
 const EditarProducto = ({ id }) => {
   const dispatch = useDispatch();
 
-  const [nombre, setNombre] = useState("");
-  const [correo, setCorreo] = useState("");
-  const [lastName, setLastName] = useState("");
+  // id name  price mark  photo photo  description
 
-  const handleChangeNombre = (e) => {
-    setNombre(e.target.value);
-  };
-  const handleChangeApellido = (e) => {
-    setLastName(e.target.value);
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [photo, setPhoto] = useState("");
+  const [price, setPrice] = useState("");
+  const [mark, setMark] = useState("");
+  const [model, setModel] = useState("");
+  const [stock, setStock] = useState("");
+
+ 
+
+  const handleChangeName = (e) => {
+    setName(e.target.value);
   };
 
-  const handleChangeCorreo = (e) => {
-    setCorreo(e.target.value);
+  const handleChangeDescription = (e) => {
+    setDescription(e.target.value);
+
+  const handleChangePhoto = (e) => {
+    setPhoto(e.target.value);
   };
 
-  const objeto = { email: correo, name: nombre, lastName: lastName };
+  const handleChangePrice = (e) => {
+    setPrice(e.target.value);
+  };
+
+  const handleChangeMark = (e) => {
+    setMark(e.target.value);
+  };
+
+  const handleChangeModel = (e) => {
+    setModel(e.target.value);
+  };
+
+
+  const handleChangeStock = (e) => {
+    setStock(e.target.value);
+  };
+ 
+   
+
+  const objeto = { name , description, photo, price, mark, model, stock};
   const history = useHistory();
 
   const submitHandler = (e) => {
@@ -48,24 +75,26 @@ const EditarProducto = ({ id }) => {
 
   // dispatch(user(objeto)).then((data) => data);
 
-  const [emailValidate, setEmailValidate] = useState("inicial");
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [photo, setPhoto] = useState("");
+  const [price, setPrice] = useState("");
+  const [mark, setMark] = useState("");
+  const [model, setModel] = useState("");
+  const [stock, setStock] = useState("");
+
   const [nameValidate, setNameValidate] = useState("inicial");
-  const [lastNameValidate, setLastNameValidate] = useState("inicial");
+  const [descriptionValidate, setDescriptionValidate] = useState("inicial");
+  const [photoValidate, setPhotoValidate] = useState("inicial");
 
-  const requeridoEmail = (e) => {
-    let expresion = /\w+@\w+\.[a-z]/;
-    //     \w (es texto)
-    //     \. (es punto)
-    if (objeto.email != "" && expresion.test(objeto.email)) {
-      setEmailValidate("mostrar");
-    } else {
-      // el input esta vacio
-      setEmailValidate("nomostrar");
-    }
-  };
+  const [priceValidate, setPriceValidate] = useState("inicial");
+  const [markValidate, setMarkValidate] = useState("inicial");
+  const [modelValidate, setValidate] = useState("inicial");
+  const [idValidate, setIdValidate] = useState("inicial");
 
-  const requeridoName = (e) => {
-    let expresion = /[A-Za-z]/;
+   
+  const requeridoId = (e) => {
+    let expresion = /[0-9]/;
 
     if (objeto.name != "" && expresion.test(objeto.name)) {
       setNameValidate("mostrar");
@@ -74,7 +103,7 @@ const EditarProducto = ({ id }) => {
       setNameValidate("nomostrar");
     }
   };
-  const requeridoLastName = (e) => {
+  const requeridoName = (e) => {
     let expresion = /[A-Za-z]/;
 
     if (objeto.lastName != "" && expresion.test(objeto.lastName)) {
@@ -187,15 +216,4 @@ export default EditarProducto;
 //     id="disabled-custom-switch"
 //   />
 // </Form>
-
-// nombre
-//       <input onChange={handleChangeNombre} />
-//       <br />
-//       apellidop
-//       <input onChange={handleChangeApellido} />
-//       <br />
-//       correo
-//       <input onChange={handleChangeEmail} />
-//       <button type="submit" onClick={handleSubmit}>
-//         enviar
-//       </button>
+ 
