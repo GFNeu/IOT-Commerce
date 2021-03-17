@@ -60,6 +60,41 @@ const ordersController = {
         .catch(next)
     },
 
+    removeAmount(req,res,next){
+        console.log(req.body.carrito)
+        Order.findAll({
+            where: {
+                [Op.and]: [
+                    {orderStatusId: 4},
+                    {userId: req.body.userID}
+                ]
+            },
+        })
+        .then(order => {
+            console.log("ORDER",order)
+            console.log("Producto id en el body ", req.body.productId)
+            return Products.findByPk(req.body.productId)
+                    .then((product)=>{
+                        return order[0].removeProduct(product)
+                    })
+                    .then(()=>{
+                        return order[0].getProducts()
+                    })
+                    .then(products=>{
+                        if(products.length === 0){
+                            return order[0].destroy()
+                        }else{
+                            return "ok"
+                        }
+                    })
+            
+        })
+        .then((algo)=>{
+            res.send("se borró la orden")
+        })
+        .catch(next)
+    },
+
     getPendingOrder(req,res,next){
         console.log("QUERY",req.query)
         console.log("PARAMS",req.params)

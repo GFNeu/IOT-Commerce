@@ -26,5 +26,4 @@ router.put("/:id/permits", changePermits);
 router.put("/:id", editUser);
 router.delete("/:id", deleteUser);
 
-
 module.exports = router;
