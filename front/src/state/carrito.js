@@ -11,6 +11,7 @@ export const setCarrito = createAsyncThunk("SET_CARRITO",(data, thunkAPI)=>{
     return axios.get(`/api/users/orders/${user.id}/pending`)
          .then(res => res.data)
          .then(order=>{
+          console.log(order)   
            //Si no hay una orden en el back
            if(!order.length){
             
@@ -27,7 +28,7 @@ export const setCarrito = createAsyncThunk("SET_CARRITO",(data, thunkAPI)=>{
            } else { //Si hay elementos en la orden del back
              
               if(!localS){ //Si no hay nada en local storage
-                                        
+                 console.log(order)                       
                 return order[0].products.map(product => {
                   return {id: Number(product.id), photo: product.photo, name: product.name, price: product.price, cantidad: product.OrderProducts.cantidad}
                 })
@@ -83,7 +84,7 @@ export const addProduct= createAsyncThunk("ADD_PRODUCT", (data, thunkAPI)=>{
         
     if(!localS){
       //si NO hay ítems en el carrito hacemos axios.post
-      return axios.post(`/api/users/orders/${user.id}`,{userID: user.id, carrito: [{id, cantidad, precio: price}]})
+      return axios.post(`/api/users/orders/${user.id}`,{userID: user.id, carrito: [{id: Number(id), cantidad, precio: price}]})
                   .then(() => {return {id: Number(id), name, price, photo, cantidad}})
     }else {
       //si SÍ hay ítems en el carrito hacemos axios.put
@@ -109,22 +110,43 @@ export const addProduct= createAsyncThunk("ADD_PRODUCT", (data, thunkAPI)=>{
   })
 
 export const addAmount= createAsyncThunk("ADD_AMOUNT", (data, thunkAPI)=>{
-  /*En algun lugar de la data tiene que venir el id para encontrar la ruta*/ 
-  console.log("addAmount DISPATCH")
+    
   const { user } = thunkAPI.getState();
-  return {id: data}
-     //return axios.put(/*ver ruta*/"api/order/orderId", data)
-    //.then((respuesta)=>respuesta.data)
-
+  if (user.id){
+    const local = JSON.parse(localStorage.getItem('carrito'))
+    const item = local.find(prod => prod.id == data)
+    item.cantidad += 1
+    return axios.put(`/api/users/orders/${user.id}`,{userID: user.id, carrito: [{id: item.id, precio: item.price, cantidad: item.cantidad}]}) 
+                  .then(() => {return {id: data}})
+  }else{
+    return {id: data}
+  }
 })
 
 export const removeAmount= createAsyncThunk("REMOVE_AMOUNT", (data, thunkAPI)=>{
-  /*En algun lugar de la data tiene que venir el id para encontrar la ruta*/ 
-  console.log("addAmount DISPATCH")
+  
   const { user } = thunkAPI.getState();
-  return {id: data}
-  //return axios.put(/*ver ruta*/"api/order/orderId", data).then((respuesta)=>respuesta.data)
+  if (user.id){
+    const local = JSON.parse(localStorage.getItem('carrito'))
+    const item = local.find(prod => prod.id == data)
+    console.log("CANTIDAD ITEM",item.cantidad)
+    if(item.cantidad > 1){
+      console.log("entró a cantidad mayor a 1")
+      item.cantidad -= 1
+      console.log("CANTIDAD ITEM EN EL IF",item.cantidad)
+      return axios.put(`/api/users/orders/${user.id}`,{userID: user.id, carrito: [{id: item.id, precio: item.price, cantidad: item.cantidad}]}) 
+                  .then(() => {return {id: data}})
+    } else {
+      console.log("entró a cantidad igual a 1")
+      return axios.put(`/api/users/orders/${user.id}/removeAmount`,{userID: user.id, productId: data}) 
+                  .then(() => {return {id: data}})
+    }
+    
+  }else{
+    return {id: data}
+  }
 })
+
 
 export const emptyCarrito= createAsyncThunk("EMPTY_CARRITO", (data, thunkAPI)=>{
       const { user } = thunkAPI.getState();
@@ -135,12 +157,10 @@ export const emptyCarrito= createAsyncThunk("EMPTY_CARRITO", (data, thunkAPI)=>{
       else return [] 
   })
 
-export const checkout= createAsyncThunk("CHECKOUT", (data)=>{
-    /* axios para el checkout? Problema encontrado: Usamos orden como carrito, 
-    pero despues del checkout tenemos que vaciarlo y 
-    si hacemos un delete despues no podemos acceder para ver historial de ordenes
-    
-    Hacer modelo de orden?*/
+export const checkout= createAsyncThunk("CHECKOUT", (data, thunkAPI)=>{
+      const { user } = thunkAPI.getState();
+      return axios.put(`/api/users/orders/${user.id}/checkout`, {userID: user.id})
+           .then(()=>[])
   })
 
 
@@ -160,7 +180,7 @@ const carritoReducer= createReducer([], {
                   localStorage.setItem("carrito",JSON.stringify(state))
     }, 
     [addAmount.fulfilled] : (state, action) =>  {
-          const item = state.filter(x => x.id === action.payload.id)
+          const item = state.filter(prod => prod.id === action.payload.id)
           const index = state.indexOf(item[0])
           state[index].cantidad += 1
 
@@ -169,7 +189,10 @@ const carritoReducer= createReducer([], {
     [removeAmount.fulfilled] : (state, action) =>  {
           const item = state.filter(x => x.id === action.payload.id)
           const index = state.indexOf(item[0])
-          if(state[index].cantidad > 1) state[index].cantidad -= 1
+          if(state[index].cantidad > 1) {
+              state[index].cantidad -= 1
+              localStorage.setItem("carrito",JSON.stringify(state))
+            }
           else {
             state.splice(index, 1)
             if(state.length === 0) localStorage.removeItem('carrito');
@@ -179,7 +202,10 @@ const carritoReducer= createReducer([], {
         localStorage.removeItem('carrito');
         return []
     },
-    [checkout.fulfilled] : (state, action) =>  [] // Modificar el estado sin hacer un delete podria solucionar el problema de las ordenes
+    [checkout.fulfilled] : (state, action) => {
+        localStorage.removeItem('carrito');
+        return []
+    }// Modificar el estado sin hacer un delete podria solucionar el problema de las ordenes
 })
 
   
