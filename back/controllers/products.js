@@ -74,8 +74,6 @@ const productsController = {
   getProductsByKeyword(req,res,next){
     const baseQuery = req.query.name 
     const splitQuery= req.query.name.split(" ")
-    
-
 
     console.log("SPLITEADO", splitQuery)
     Products.findAll({

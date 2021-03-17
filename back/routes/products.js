@@ -23,10 +23,10 @@ CHANGE PRODUCT
 DELETE PRODUCT
 */
 //aca ya estoy parado sobre /products !
-router.put("/:id", editOne);
-router.get("/:name", findOneProduct);
-router.get("/:id/reviews", getReviewsByProduct);
 router.get("/search", getProductsByKeyword);
+router.put("/:id", editOne);
+router.get("/admin/:name", findOneProduct);
+router.get("/:id/reviews", getReviewsByProduct);
 router.get("/:id", getOne);
 router.get("/byCategory/:id", byCategory);
 router.post("/:id/reviews", addReview);
