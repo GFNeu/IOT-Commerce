@@ -1,6 +1,6 @@
-const {Products, Reviews, Categories} = require("../models/Index");
+const { Products, Reviews, Categories } = require("../models/Index");
 const ProductCategories = require("../models/ProductCategories");
-const { Op } =require ('sequelize');
+const { Op } = require("sequelize");
 
 const productsController = {
   getAll(req, res, next) {
@@ -63,6 +63,17 @@ const productsController = {
       )
       .catch((err) => next(err));
   },
+<<<<<<< HEAD
+=======
+  editOne(req, res, next) {
+    User.findByPk(req.params.id)
+      .then((product) => product.update(req.body))
+      .then((product) => res.send(product))
+      .catch((err) => next(err));
+  },
+
+ 
+>>>>>>> 6d0332bf74831bbdec9813c384edcc33153c9c9f
   getProductsByKeyword(req,res,next){
     const baseQuery = req.query.name 
     const splitQuery= req.query.name.split(" ")
@@ -82,18 +93,25 @@ const productsController = {
       res.send(productsByKeyword)})
     .catch(err => next(err))
   },
+<<<<<<< HEAD
   
+=======
+   
+>>>>>>> 6d0332bf74831bbdec9813c384edcc33153c9c9f
   findOneProduct(req, res, next) {
     const query = req.params.name;
-    console.log(query);
     Products.findAll({
       where: {
         name: { [Op.iLike]: `%${query}%` },
       },
     })
-      .then((productsByKeyword) => res.send(productsByKeyword))
+      .then((user) => res.send(user))
       .catch((err) => next(err));
   },
+<<<<<<< HEAD
 };
+=======
+ };
+>>>>>>> 6d0332bf74831bbdec9813c384edcc33153c9c9f
 
 module.exports = productsController;

@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 
-const EditarUsuario = ({ id }) => {
+const EditarProducto = ({ id }) => {
   const dispatch = useDispatch();
 
   const [nombre, setNombre] = useState("");
@@ -172,7 +172,7 @@ const EditarUsuario = ({ id }) => {
   );
 };
 
-export default EditarUsuario;
+export default EditarProducto;
 
 // <Form>
 //   <Form.Check
