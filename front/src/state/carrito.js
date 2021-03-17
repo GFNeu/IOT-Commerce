@@ -2,19 +2,72 @@ import {createReducer, createAsyncThunk} from "@reduxjs/toolkit"
 import axios from "axios"
 
 
-
-export const addFirstProduct= createAsyncThunk("ADD_FIRST_PRODUCT", (data, thunkAPI)=>{
-    
-    return axios.post(/*ver ruta*/"api/order/", data).then((respuesta)=>respuesta.data)
-  })
-
 export const setCarrito = createAsyncThunk("SET_CARRITO",(data, thunkAPI)=>{
-  console.log("SET CARRITO!!")
-  const localS = localStorage.getItem('carrito')
-  console.log(localS)
   
-  if(localS){
-     return JSON.parse(localS)
+  const { user } = thunkAPI.getState();
+  const localS = localStorage.getItem('carrito')
+  
+  if(user.id){
+    return axios.get(`/api/users/orders/${user.id}/pending`)
+         .then(res => res.data)
+         .then(order=>{
+           //Si no hay una orden en el back
+           if(!order.length){
+            
+             if(localS){
+               
+               const local = JSON.parse(localS)
+               const carritoSend = local.map(product => {
+                 return {id: product.id, precio: product.price, cantidad: product.cantidad}
+                })
+               return axios.post(`/api/users/orders/${user.id}`,{userID: user.id, carrito: carritoSend})
+                    .then(() => local)
+                    
+             }
+           } else { //Si hay elementos en la orden del back
+             
+              if(!localS){ //Si no hay nada en local storage
+                                        
+                return order[0].products.map(product => {
+                  return {id: product.id, photo: product.photo, name: product.name, price: product.price, cantidad: product.OrderProducts.cantidad}
+                })
+              } else { //Si hay algo en local storage
+                  
+                  const back = order[0].products.map(product => {
+                    return {id: product.id, photo: product.photo, name: product.name, price: product.price, cantidad: product.OrderProducts.cantidad}
+                  })
+                  
+                  const front = JSON.parse(localS)
+                  
+                  const masLargo = front.length > back.length? front : back
+                  
+                  const masCorto = front.length > back.length? back : front
+                  
+
+                  masCorto.forEach(product => {
+                      const prod = masLargo.filter(p => p.id == product.id)
+                      
+                      if(prod[0]){
+                        prod[0].cantidad += product.cantidad
+                      } else {
+                        masLargo.push(product)
+                      }
+                  })
+
+                  
+                  const masLargoParaElBack = masLargo.map(product => {
+                    return {id: product.id, precio: product.price, cantidad: product.cantidad, photo: product.photo, name: product.name}
+                  })
+                  return axios.put(`/api/users/orders/${user.id}`,{userID: user.id, carrito: masLargoParaElBack})
+                              .then(()=> masLargo)
+
+              }
+           }
+         })
+  } else {
+    if(localS){
+      return JSON.parse(localS)
+    }
   }
 })
 
@@ -70,8 +123,10 @@ export const checkout= createAsyncThunk("CHECKOUT", (data)=>{
 
 
 const carritoReducer= createReducer([], {
-    [addFirstProduct.fulfilled] : (state, action) =>  action.payload,
-    [setCarrito.fulfilled] : (state, action) =>  action.payload,
+    [setCarrito.fulfilled] : (state, action) =>  {
+      if(action.payload !== undefined) localStorage.setItem("carrito",JSON.stringify(action.payload))
+      return action.payload
+    },
     [addProduct.fulfilled]: (state, action) => {
                   const item = state.filter(x => x.id === action.payload.id)
                   const index = state.indexOf(item[0])

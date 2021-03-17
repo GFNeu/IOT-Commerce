@@ -10,7 +10,7 @@ const Cart = () => {
 return (
   <>
     <h2 className="mt-3">
-      Your Cart: <b> {cartItems.lenght ? cartItems.lenght : "No"} items</b>
+      Your Cart: <b> {cartItems.length ? cartItems.length : "No"} items</b>
     </h2>
 
     {cartItems.length > 0 && (

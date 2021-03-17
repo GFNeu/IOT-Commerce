@@ -13,10 +13,9 @@ const order = require('./order')
 //     })
 // }
 
-
+router.use("/orders", order)
 router.put("/:id", editUser)
 router.put("/:id/permits", changePermits)
-router.use("/:id/orders", order)
 router.delete("/:id", deleteUser)
 router.get("/", findUsers)
 
