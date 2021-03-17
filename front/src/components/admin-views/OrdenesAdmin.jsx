@@ -24,13 +24,9 @@ const OrdenesAdmin = () => {
     );
   }
 
-
-
   return (
-    <div>     
-      
-      <div>       
-        
+    <div>           
+      <div>        
         <Navbar collapseOnSelect expand="lg" className="bg-dark" variant="dark">
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
