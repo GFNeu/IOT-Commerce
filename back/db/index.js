@@ -1,7 +1,7 @@
 //ajskdbnaskjndszkjdnakjsdnkjasnd
 const Sequelize = require("sequelize");
 
-const db = new Sequelize("postgres://localhost:5432/iot-commerce", {
+const db = new Sequelize("postgres://localhost:5432/e-commerce", {
   logging: false, // set to console.log to see the raw SQL queries
 
   // Configuramos Seeds

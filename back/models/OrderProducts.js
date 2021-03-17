@@ -9,14 +9,12 @@ OrderProducts.init(
       type: S.INTEGER,
       allowNull: false,
     },
-  },
-  {
     precio: {
       type: S.FLOAT,
       allowNull: false,
     },
   },
-  { sequelize: db, modelName: "OrderProducts" }
+  { sequelize: db, modelName: "orderproducts" }
 );
 
 module.exports = OrderProducts;

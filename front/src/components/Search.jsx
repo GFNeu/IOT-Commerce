@@ -8,7 +8,7 @@ const Search = () => {
     
     return (
         <div>
-            <h1>Resultados de la busqueda</h1>
+            <h1 style={{display:"flex", justifyContent:"center", marginTop:"20px"}}>Resultados de la busqueda</h1>
               <Products/>  
             
         </div>

@@ -5,35 +5,27 @@ import Home from './views/Home.jsx'
 import {useDispatch, useSelector} from "react-redux"
 import Login from './components/Login';
 import Register from './components/Register';
-import Products from './components/Products';
+
 import ProductDetail from './components/ProductDetail';
 import Footer from './components/Footer.jsx'
 import Cart from './components/Cart.jsx'
-import './App.css';
-import NoDisponible from './components/NoDisponible.jsx'
 import Category from "./components/Category"
 import { setUser } from "./state/user";
 import { setCarrito } from './state/carrito'
 import { Switch, Route } from "react-router-dom";
-import Login from "./components/Login";
-import Register from "./components/Register";
-
-import ProductDetail from "./components/ProductDetail";
-import Footer from "./components/Footer.jsx";
-import Cart from "./components/Cart.jsx";
 
 import Reviews from "./components/Reviews.jsx";
 import OrderDetail from "./components/OrderDetail.jsx";
 import Search from "./components/Search.jsx";
-
 import NoDisponible from "./components/NoDisponible.jsx";
+
 import AdminPanel from "./components/admin-views/AdminPanel";
 import ProductosAdmin from "./components/admin-views/ProductosAdmin.jsx";
 import UsuariosAdmin from "./components/admin-views/UsuariosAdmin.jsx";
 import OrdenesAdmin from "./components/admin-views/OrdenesAdmin.jsx";
 import OrdenesUsuario from "./components/admin-views/OrdenesUsuario.jsx";
 import "./App.css";
-import {getUsers} from "./state/allusers"
+import { getUsers } from "./state/allusers"
 
 function App() {
   const dispatch = useDispatch();
@@ -53,12 +45,6 @@ function App() {
     dispatch(setCarrito())
         
   dispatch(getUsers())
-
-
-
-
-
-
 
   }, []);
 
