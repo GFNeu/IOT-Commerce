@@ -70,18 +70,30 @@ const productsController = {
       .catch((err) => next(err));
   },
 
+ 
+  getProductsByKeyword(req,res,next){
+    const baseQuery = req.query.name 
+    const splitQuery= req.query.name.split(" ")
+    
 
-  getProductsByKeyword(req, res, next) {
-    const baseQuery = req.query.name;
 
+    console.log("SPLITEADO", splitQuery)
     Products.findAll({
-      where: {
-        name: { [Op.iLike]: `%${baseQuery}%` },
-      },
-    })
-      .then((productsByKeyword) => res.send(productsByKeyword))
-      .catch((err) => next(err));
+      where :{ [Op.or]: [
+        { name: {[Op.iLike]: `%${baseQuery}%`}},
+        {name: {[Op.and]: [
+          {[Op.iLike]: `%${splitQuery[0]}%`},
+          {[Op.iLike]: `%${splitQuery[1]}%`},
+        ]}},
+        { name: {[Op.in]: splitQuery}}
+      ] 
+      }
+    }).then(productsByKeyword => {
+      console.log("LO ENCONTRADO", productsByKeyword)
+      res.send(productsByKeyword)})
+    .catch(err => next(err))
   },
+   
   findOneProduct(req, res, next) {
     const query = req.params.name;
     Products.findAll({
@@ -92,6 +104,6 @@ const productsController = {
       .then((user) => res.send(user))
       .catch((err) => next(err));
   },
-};
+ };
 
 module.exports = productsController;
