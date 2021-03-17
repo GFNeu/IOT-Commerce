@@ -26,10 +26,17 @@ DELETE PRODUCT
 
 router.get("/search", getProductsByKeyword);
 router.put("/:id", editOne);
+<<<<<<< HEAD
 router.get("/admin/:name", findOneProduct);
 router.get("/:id/reviews", getReviewsByProduct);
 router.get("/:id", getOne);
+=======
+router.get("/search", getProductsByKeyword);
+router.get("/admin/:name", findOneProduct);
+>>>>>>> 888ae3a0772f2b7de2c960ad3729b07b311b370b
 router.get("/byCategory/:id", byCategory);
+router.get("/:id/reviews", getReviewsByProduct);
+router.get("/:id", getOne);
 router.post("/:id/reviews", addReview);
 router.get("/", getAll);
 
