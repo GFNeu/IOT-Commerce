@@ -1,6 +1,12 @@
-const router = require('express').Router()
-const {editUser, changePermits, deleteUser, findUsers} = require("../controllers/users")
-const order = require('./order')
+const router = require("express").Router();
+const {
+  editUser,
+  changePermits,
+  deleteUser,
+  findUsers,
+  findOneUser,
+} = require("../controllers/users");
+const order = require("./order");
 
 // export function isAdmin(req, res, next){
 //     User.findByPk(req.params.id)
@@ -13,13 +19,12 @@ const order = require('./order')
 //     })
 // }
 
-router.use("/orders", order)
-router.put("/:id", editUser)
-router.put("/:id/permits", changePermits)
-router.delete("/:id", deleteUser)
-router.get("/", findUsers)
+router.use("/orders", order);
+router.get("/ ", findUsers);
+router.get("/:name", findOneUser);
+router.put("/:id", editUser);
+router.put("/:id/permits", changePermits);
+router.delete("/:id", deleteUser);
 
 
-
-
-module.exports = router
+module.exports = router;

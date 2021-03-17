@@ -15,23 +15,8 @@ export const login= createAsyncThunk("LOGIN_REQUEST", (data)=>{
 export const setUser= createAction("SET_USER")
 
 
-export const editUser= createAsyncThunk("EDIT_USER", (data)=>{
-  /*conseguir id */
-  return axios.put("/api/users/userId", data).then((respuesta)=>respuesta.data)
-})
 
 export const logout = createAction("LOGOUT")
-
-
-
-export const changePermits= createAsyncThunk("CHANGE_PERMITS", (data)=>{
-  return axios.put("/api/users/userId/permits")
-  })
-
-
-
-
-
 
 
 const userReducer= createReducer([], {
@@ -39,9 +24,7 @@ const userReducer= createReducer([], {
     [login.fulfilled] : (state, action) =>  action.payload.usuario,
     [logout]: (state, action) => [],
     [setUser]: (state, action) => action.payload,
-    [editUser.fulfilled] : (state, action) =>  action.payload,
-    [register.fulfilled] : (state, action) =>  action.payload,
-    [changePermits.fulfilled] : (state, action) =>  action.payload
+     [register.fulfilled] : (state, action) =>  action.payload,    
 })
 
   
