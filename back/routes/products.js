@@ -1,7 +1,6 @@
 const router = require("express").Router();
 //const {User} = require("../models")
 
- 
 const {
   getAll,
   getOne,
@@ -12,6 +11,7 @@ const {
   deleteOne,
   getProductsByKeyword,
   findOneProduct,
+  editOne,
 } = require("../controllers/products");
 const { getReviewsByProduct } = require("../controllers/reviews");
 
@@ -23,6 +23,7 @@ CHANGE PRODUCT
 DELETE PRODUCT
 */
 //aca ya estoy parado sobre /products !
+router.put("/:id", editOne);
 router.get("/:name", findOneProduct);
 router.get("/:id/reviews", getReviewsByProduct);
 router.get("/search", getProductsByKeyword);
