@@ -17,10 +17,7 @@ import { Switch, Route } from "react-router-dom";
 import Reviews from "./components/Reviews.jsx";
 import OrderDetail from "./components/OrderDetail.jsx";
 import Search from "./components/Search.jsx";
-<<<<<<< HEAD
-=======
 import NoDisponible from "./components/NoDisponible.jsx";
->>>>>>> b2dbc7b5d6d41911a58e85565782d253996e7fff
 import AdminPanel from "./components/admin-views/AdminPanel";
 import ProductosAdmin from "./components/admin-views/ProductosAdmin.jsx";
 import UsuariosAdmin from "./components/admin-views/UsuariosAdmin.jsx";
