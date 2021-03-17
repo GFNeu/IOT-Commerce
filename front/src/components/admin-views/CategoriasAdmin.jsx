@@ -5,28 +5,58 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
 import FormControl from "react-bootstrap/FormControl";
 import Card from "react-bootstrap/Card";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-import { busquedaUsuario } from "../../state/allusers";
+import { oneCategory, allCategoriesAdmin, deleteCategory } from "../../state/categoriesAdmin";
+import { getCategories } from "../../state/categories";
 
-const UsuariosAdmin = () => {
-  const users = useSelector((state) => state.allUser);
+const CategoriasAdmin = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
-  const [usuarioBuscado, setUsuarioBuscado] = useState("");
-
+  const [categoriaBuscada, setCategoriaBuscada] = useState("");
+  const user= useSelector(state => state.user)
+  React.useEffect(()=>{
+    axios.get("/api/categories").then(respuesta=> dispatch(allCategoriesAdmin(respuesta.data)))
+    axios.get("/api/categories").then(respuesta=> dispatch(getCategories(respuesta.data)))
+  }, [])
+  const categorias = useSelector((state) => state.categoriesAdmin);
   const handleChange = (e) => {
-    setUsuarioBuscado(e.target.value);
+    setCategoriaBuscada(e.target.value);
   };
 
   const handleClick = (e) => {
     e.preventDefault();
     axios
-      .get(`/api/users/${usuarioBuscado}`)
-      .then(({ data }) => dispatch(busquedaUsuario(data)))
+      .get(`/api/categories/admin/${categoriaBuscada}`)
+      .then(({ data }) => dispatch(oneCategory(data)))
 
       .catch((err) => console.log(err));
   };
+  const selectCategory= (id)=>{
+    axios
+    .get(`/api/categories/admin/${id}`)
+    .then(({ data }) => dispatch(oneCategory(data)))
+
+    .catch((err) => console.log(err));
+  }
+  const eliminarCategoria= (userAdmin, id)=>{
+    return axios
+    .delete(`/api/categories/admin/${userAdmin}/${id}`)
+    .then((respuesta) => respuesta.data)
+    .then((data) => {
+      
+      dispatch(deleteCategory())
+     
+      
+      return swal("Categoria eliminada") //Ver que quede el mensaje
+      //history.push("/adminPanel")
+    
+      
+      
+    }).then(()=> history.go(0))
+    .catch(e=> swal("No esta autorizado para realizar la accion") )
+  }
 
   return (
     <div>
@@ -65,35 +95,35 @@ const UsuariosAdmin = () => {
       </div>
       <div>
         <div className="row no-gutters">
-          <div className="h3 p-5">Administración de usuarios:</div>
+          <div className="h3 p-5">Administración de categorias:</div>
         </div>
         <div className="row no-gutters">
           <div className="col-sm-12 col-md-4">
             <InputGroup className="mb-3 px-5 py-4" onChange={handleChange}>
               <InputGroup.Prepend>
                 <Button variant="warning" onClick={handleClick}>
-                  Buscar usuario
+                  Buscar categoria
                 </Button>
               </InputGroup.Prepend>
               <FormControl aria-describedby="basic-addon1" />
             </InputGroup>
+            <Link to="/adminPanel/categorias/crear"><Button className="ml-5" variant="warning">
+                  Crear categoria
+                </Button></Link>
           </div>
 
           <div className="col-sm-12 col-md-8">
-            {users.map((user) => (
+            {categorias.length && categorias.map((categoria) => (
               <div className="mb-5 p-4">
-                <Card key={user.id}>
+                <Card key={categoria.id}>
                   <Card.Header as="h5">
-                    Usuario : {user.name} {user.lastName}
+                    Categoria : {categoria.statusDescription}
                   </Card.Header>
                   <Card.Body>
-                    <Card.Title> {user.email}</Card.Title>
-                    <Card.Text>
-                      Para visualizar todas las órdenes ingresa al usuario
-                    </Card.Text>
-                    <Link to={`/adminPanel/usuarios/SingleUsuario`}>
-                      <Button variant="warning">Ver usuario</Button>
+                    <Link to={`/adminPanel/categorias/editar/${categoria.id}`}>
+                      <Button onClick={()=>selectCategory(categoria.id)}variant="warning">Editar categoria</Button>
                     </Link>
+                    <Button variant="warning" onClick={()=> eliminarCategoria(user.id, categoria.id)} className="ml-2">Eliminar categoria</Button>
                   </Card.Body>
                 </Card>
               </div>
@@ -105,4 +135,4 @@ const UsuariosAdmin = () => {
   );
 };
 
-export default UsuariosAdmin;
+export default CategoriasAdmin;

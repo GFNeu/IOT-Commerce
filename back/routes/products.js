@@ -26,7 +26,7 @@ DELETE PRODUCT
 
 router.get("/search", getProductsByKeyword);
 router.put("/:id", editOne);
-router.get("/:name", findOneProduct);
+router.get("/admin/:name", findOneProduct);
 router.get("/:id/reviews", getReviewsByProduct);
 router.get("/:id", getOne);
 router.get("/byCategory/:id", byCategory);
