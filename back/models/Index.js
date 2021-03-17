@@ -4,7 +4,7 @@ const OrderStatus = require("./OrderStatus");
 const Products = require("./Products");
 const Reviews = require("./Reviews");
 const User = require("./Users");
-const OrdersProducts= require("./OrderProducts")
+const OrderProducts= require("./OrderProducts")
 const db = require("../db/index");
 const ProductCategories = require("./ProductCategories");
 
@@ -25,8 +25,8 @@ Reviews.belongsTo(User)
 User.hasMany(Order);
 Order.belongsTo(User);
 OrderStatus.hasMany(Order);
-Order.belongsToMany(Products, {through: OrdersProducts});
-Products.belongsToMany(Order, {through: OrdersProducts});
+Order.belongsToMany(Products, {through: OrderProducts});
+Products.belongsToMany(Order, {through: OrderProducts});
 
 // PRODUCTS
 // Categories.belongsToMany(Products, {through: "products_categories"});
@@ -42,4 +42,4 @@ Products.belongsToMany(Categories, {
     foreignKey: 'category_id',
   });
 
-module.exports = { db, Categories, Order, OrderStatus, Products, Reviews, User };
+module.exports = { db, Categories, Order, OrderStatus, Products, Reviews, User};

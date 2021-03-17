@@ -13,8 +13,8 @@ const Products = () => {
       
           {products.length
             ? products.map((product) => {
-                return (   <div className="col-sm-12 col-md-3 my-3 py-5 px-3">
-                  <div className="card p-3 rounded ">
+                return (   <div className="col-sm-12 col-md-3 my-3 py-5 px-3 ">
+                  <div className="card p-3 rounded">
                     <img className="card-img-top mx-auto container" src={product.photo} />
                     <div className="card-body d-flex flex-column ">
                       <h5 className="card-title">
@@ -38,7 +38,7 @@ const Products = () => {
                   </div>
                 );
               })
-            : "loading"}
+            : <h3>No hay productos que coincidan.</h3>}
         </div>
      
     </>

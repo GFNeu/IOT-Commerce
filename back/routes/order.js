@@ -1,33 +1,23 @@
 const router = require('express').Router()
-const {createOrder} = require('../controllers/order')
+const {createOrder, getPendingOrder, updateOrder, checkout, removeOrder, getPastOrders} = require('../controllers/order')
 
 //get la orden que este pending
-router.get('/pending', (req,res,next)=>{
-    res.send("esta es la ruta de órdenes GET PENDING")
-})
+router.get('/:id/pending', getPendingOrder)
 
 //get todas las órdenes completas
-router.get('/', (req,res,next)=>{
-    res.send("esta es la ruta de órdenes GET ALL")
-})
-
-//MODIFICAR UNA ORDEN
-router.put('/', (req,res,next)=>{
-    res.send("esta es la ruta de órdenes PUT")
-})
+router.get('/:id', getPastOrders)
 
 //CHECKOUT
-router.post('/checkout', (req,res,next)=>{
-    res.send("esta es la ruta de órdenes CHECKOUT")
-})
+router.put('/checkout', checkout)
+
+//MODIFICAR UNA ORDEN
+router.put('/:id', updateOrder)
 
 //CREATE ORDER
-router.post('/', createOrder)
+router.post('/:id', createOrder)
 
 //BORRAR ORDEN
-router.delete('/', (req,res,next)=>{
-    res.send("esta es la ruta de órdenes DELETE")
-})
+router.delete('/:id', removeOrder)
 
 
 

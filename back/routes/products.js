@@ -1,4 +1,4 @@
-const router = require('express').Router()
+const router = require("express").Router();
 //const {User} = require("../models")
 
 
@@ -14,21 +14,18 @@ CHANGE PRODUCT
 DELETE PRODUCT
 */
 //aca ya estoy parado sobre /products !
-
-
-router.get("/:id/reviews", getReviewsByProduct)
-router.get("/search", getProductsByKeyword)
-router.get("/:id", getOne)
-router.get("/byCategory/:id", byCategory)
-router.post("/:id/reviews", addReview)
-router.get("/", getAll)
+router.put("/:id", editOne);
+router.get("/:name", findOneProduct);
+router.get("/:id/reviews", getReviewsByProduct);
+router.get("/search", getProductsByKeyword);
+router.get("/:id", getOne);
+router.get("/byCategory/:id", byCategory);
+router.post("/:id/reviews", addReview);
+router.get("/", getAll);
 
 //ADMIN
-router.post("/", addOne)
-router.put("/:id", changeOne)
-router.delete("/:id", deleteOne)
+router.post("/", addOne);
+router.put("/:id", changeOne);
+router.delete("/:id", deleteOne);
 
-
-
-
-module.exports = router
+module.exports = router;
