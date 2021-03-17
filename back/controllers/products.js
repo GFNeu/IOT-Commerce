@@ -63,8 +63,6 @@ const productsController = {
       )
       .catch((err) => next(err));
   },
-<<<<<<< HEAD
-=======
   editOne(req, res, next) {
     User.findByPk(req.params.id)
       .then((product) => product.update(req.body))
@@ -73,7 +71,6 @@ const productsController = {
   },
 
  
->>>>>>> 6d0332bf74831bbdec9813c384edcc33153c9c9f
   getProductsByKeyword(req,res,next){
     const baseQuery = req.query.name 
     const splitQuery= req.query.name.split(" ")
@@ -93,11 +90,7 @@ const productsController = {
       res.send(productsByKeyword)})
     .catch(err => next(err))
   },
-<<<<<<< HEAD
-  
-=======
    
->>>>>>> 6d0332bf74831bbdec9813c384edcc33153c9c9f
   findOneProduct(req, res, next) {
     const query = req.params.name;
     Products.findAll({
@@ -108,10 +101,6 @@ const productsController = {
       .then((user) => res.send(user))
       .catch((err) => next(err));
   },
-<<<<<<< HEAD
 };
-=======
- };
->>>>>>> 6d0332bf74831bbdec9813c384edcc33153c9c9f
 
 module.exports = productsController;
