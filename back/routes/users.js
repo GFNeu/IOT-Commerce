@@ -20,10 +20,10 @@ const order = require("./order");
 // }
 
 router.use("/orders", order);
-router.get("/", findUsers);
 router.get("/:name", findOneUser);
-router.put("/:id", editUser);
+router.get("/", findUsers);
 router.put("/:id/permits", changePermits);
+router.put("/:id", editUser);
 router.delete("/:id", deleteUser);
 
 

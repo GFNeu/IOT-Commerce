@@ -1,10 +1,19 @@
 const router = require("express").Router();
 //const {User} = require("../models")
 
-
-const {getAll, byCategory, getOne, addReview, addOne, changeOne, deleteOne, getProductsByKeyword}= require("../controllers/products")
-const { getReviewsByProduct } = require('../controllers/reviews')
-
+const {
+  getAll,
+  getOne,
+  addReview,
+  byCategory,
+  addOne,
+  changeOne,
+  deleteOne,
+  getProductsByKeyword,
+  findOneProduct,
+  editOne,
+} = require("../controllers/products");
+const { getReviewsByProduct } = require("../controllers/reviews");
 
 /*RUTAS NECESARIAS
 GET ALL PRODUCTS

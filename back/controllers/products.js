@@ -1,11 +1,6 @@
-<<<<<<< HEAD
-const {Products, Reviews, Categories} = require("../models/Index");
-const { Op } =require ('sequelize');
-=======
 const { Products, Reviews, Categories } = require("../models/Index");
 const ProductCategories = require("../models/ProductCategories");
 const { Op } = require("sequelize");
->>>>>>> 6d0332bf74831bbdec9813c384edcc33153c9c9f
 
 const productsController = {
   getAll(req, res, next) {
