@@ -1,4 +1,6 @@
 const { User } = require("../models/Index");
+const { Op } = require("sequelize");
+
 
 const usersController = {
   findUsers(req, res, next) {
@@ -6,12 +8,15 @@ const usersController = {
       .then((products) => res.send(products))
       .catch((err) => next(err)); // Se usaba asi el error MW?
   },
-
   findOneUser(req, res, next) {
-    User.findAll({ where: { name: req.params.name } })
-
+    const queryUser = req.params.name;
+    User.findAll({
+      where: {
+        name: { [Op.iLike]: `%${queryUser}%` },
+      },
+    })
       .then((user) => res.send(user))
-      .catch((err) => next(err)); // Se usaba asi el error MW?
+      .catch((err) => next(err));
   },
 
   editUser(req, res, next) {

@@ -19,6 +19,9 @@ const ProductDetail = ( {id} ) => {
     },[id])
     const categories= useSelector(state=> state.categories)
     const idForName = id - 1
+    const products= useSelector(state=> state.product)
+    console.log(id)
+    console.log(products)
     
 
     return (

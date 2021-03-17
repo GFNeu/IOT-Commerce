@@ -4,7 +4,7 @@ const OrderStatus = require("./OrderStatus");
 const Products = require("./Products");
 const Reviews = require("./Reviews");
 const User = require("./Users");
-const OrdersProducts= require("./OrderProducts")
+const OrderProducts= require("./OrderProducts")
 const db = require("../db/index");
 const ProductCategories = require("./ProductCategories");
 
@@ -17,8 +17,8 @@ Reviews.belongsTo(User)
 User.hasMany(Order);
 Order.belongsTo(User);
 OrderStatus.hasMany(Order);
-Order.belongsToMany(Products, {through: OrdersProducts});
-Products.belongsToMany(Order, {through: OrdersProducts});
+Order.belongsToMany(Products, {through: OrderProducts});
+Products.belongsToMany(Order, {through: OrderProducts});
 
 Products.belongsToMany(Categories, {
     through: ProductCategories,
