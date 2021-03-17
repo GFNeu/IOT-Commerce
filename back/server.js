@@ -6,9 +6,7 @@ const routes = require('./routes')
 const db = require('./db')
 const app = express();
 
-
 app.use(morgan('tiny'))
-
 
 //app.use(express.static(path.resolve(__dirname, "./src/public")));
 app.use(cors()); // esta librería es para poder trabajar front con back en localhost
