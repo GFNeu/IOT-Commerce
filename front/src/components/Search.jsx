@@ -1,11 +1,19 @@
 import React from 'react';
 import Products from './Products'
-import {useSelector} from 'react-redux'
+import {useSelector, useDispatch} from 'react-redux'
+import { useHistory } from 'react-router';
+import { getProductsByKeyword } from '../state/product';
+const Search = ({match}) => {
+    const history= useHistory()
+    const dispatch= useDispatch()
+    React.useEffect(()=>{
+        let keyword= history.location.search.split("=")[1]
+        if(keyword){
+            console.log(keyword)
+            dispatch(getProductsByKeyword(keyword))
+        }
+    }, [])
 
-const Search = () => {
-
-    const productsByKeyword= useSelector(state =>state.product);
-    
     return (
         <div>
             <h1>Resultados de la busqueda</h1>

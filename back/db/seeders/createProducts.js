@@ -11,7 +11,7 @@ Products.bulkCreate(
   [
     //Conectividad
   {
-   name: "Cable de alimentación USB a plug invertido",
+   name: "Cable de alimentacion USB a plug invertido",
    description: "Este cable tiene un conector USB tipo A en un extremo y en el otro un conector tipo plug invertido (5.4 mm)",
    photo: "https://www.geekfactory.mx/wp-content/uploads/2020/01/USB-PLUG.jpg",
    price: 52,
@@ -20,7 +20,7 @@ Products.bulkCreate(
 
   },
   {
-   name: "Cable dupont hembra hembra 10 centímetros",
+   name: "Cable dupont hembra hembra 10 centimetros",
    description: "Realiza tus conexiones de forma más profesional, sin soldaduras, sin falsos contactos y sin desorden con este arnés de cable dupont hembra hembra . Los cables vienen en un arnés de cable plano (tipo listón) de 40 conductores, cada uno con su conector independiente. Puedes separarlos todos y utilizarlos de manera individual o crear tus arneses especiales de 2, 4, 8 o más conductores removiendo solamente unas piezas conforme se requieran.",
    photo: "https://www.geekfactory.mx/wp-content/uploads/2018/04/cable_dupont_hembra_hembra_10_centimetros.jpg",
    price: 63,
@@ -29,7 +29,7 @@ Products.bulkCreate(
 
   },
   {
-   name: "Cable dupont hembra hembra 20 centímetros",
+   name: "Cable dupont hembra hembra 20 centimetros",
    description: "Realiza tus conexiones de forma más profesional, sin soldaduras, sin falsos contactos y sin desorden con este arnés de cable dupont hembra hembra . Los cables vienen en un arnés de cable plano (tipo listón) de 40 conductores, cada uno con su conector independiente. Puedes separarlos todos y utilizarlos de manera individual o crear tus arneses especiales de 2, 4, 8 o más conductores removiendo solamente unas piezas conforme se requieran.",
    photo: "https://www.geekfactory.mx/wp-content/uploads/2013/06/cable-dupont-hembra-hembra.jpg",
    price: 72,
@@ -38,7 +38,7 @@ Products.bulkCreate(
 
   },
   {
-   name: "Cable dupont macho hembra 10 centímetros",
+   name: "Cable dupont macho hembra 10 centimetros",
    description: "Realiza tus conexiones de forma más profesional, sin soldaduras, sin falsos contactos y sin desorden con este arnés de cable dupont macho hembra. Los cables vienen en un arnés de cable plano (tipo listón) de 40 conductores, cada uno con su conector independiente. Puedes separarlos todos y utilizarlos de manera individual o crear tus arneses especiales de 2, 4, 8 o más conductores removiendo solamente unas piezas conforme se requieran.",
    photo: "https://www.geekfactory.mx/wp-content/uploads/2018/06/cable_dupont_macho_hembra_10_centimetros.jpg",
    price: 42,
@@ -47,7 +47,7 @@ Products.bulkCreate(
 
   },
   {
-   name: "Cable dupont macho hembra 20 centímetros",
+   name: "Cable dupont macho hembra 20 centimetros",
    description: "Realiza tus conexiones de forma más profesional, sin soldaduras, sin falsos contactos y sin desorden con este arnés de cable dupont macho hembra. Los cables vienen en un arnés de cable plano (tipo listón) de 40 conductores, cada uno con su conector independiente. Puedes separarlos todos y utilizarlos de manera individual o crear tus arneses especiales de 2, 4, 8 o más conductores removiendo solamente unas piezas conforme se requieran.",
    photo: "https://www.geekfactory.mx/wp-content/uploads/2014/08/cable-dupont-macho-hembra.jpg",
    price: 92,  
@@ -56,7 +56,7 @@ Products.bulkCreate(
 
   },
   {
-   name: "Cable dupont macho macho 10 centímetros",
+   name: "Cable dupont macho macho 10 centimetros",
    description: "Realiza tus conexiones de forma más profesional, sin soldaduras, sin falsos contactos y sin desorden con este arnés de cable dupont macho macho. Los cables vienen en un arnés de cable plano (tipo listón) de 40 conductores, cada uno con su conector independiente. Puedes separarlos todos y utilizarlos de manera individual o crear tus arneses especiales de 2, 4, 8 o más conductores removiendo solamente unas piezas conforme se requieran.",
    photo: "https://www.geekfactory.mx/wp-content/uploads/2018/06/cable_dupont_macho_macho_10_centimetros.jpg",
    price: 68, 
@@ -65,7 +65,7 @@ Products.bulkCreate(
 
   },
   {
-   name: "Cable dupont macho macho 20 centímetros",
+   name: "Cable dupont macho macho 20 centimetros",
    description: "Realiza tus conexiones de forma más profesional, sin soldaduras, sin falsos contactos y sin desorden con este arnés de cable dupont macho macho. Los cables vienen en un arnés de cable plano (tipo listón) de 40 conductores, cada uno con su conector independiente. Puedes separarlos todos y utilizarlos de manera individual o crear tus arneses especiales de 2, 4, 8 o más conductores removiendo solamente unas piezas conforme se requieran.",
    photo: "https://www.geekfactory.mx/wp-content/uploads/2013/06/cable-dupont-macho-macho.jpg",
    price: 25,  
@@ -158,7 +158,7 @@ Products.bulkCreate(
 
   },
   {
-    name: "Pantalla Raspberry Pi táctil 7 pulgadas oficial",
+    name: "Pantalla Raspberry Pi tactil 7 pulgadas oficial",
     description: "Crea proyectos con interfaz gráfica de alto impacto gracias a la pantalla para Raspberry Pi oficial. Con una resolución de 800 x 480 y panel táctil multi touch.",
     photo: "https://www.geekfactory.mx/wp-content/uploads/pantalla-tactil-7-pulgagas-para-raspberry-pi-oficial.jpg",
     price: 89,
@@ -167,7 +167,7 @@ Products.bulkCreate(
 
   },
   {
-    name: "Shield pantalla LCD táctil 3.2 pulgadas para mega Itead",
+    name: "Shield pantalla LCD tactil 3.2 pulgadas para mega Itead",
     description: "Arduino Shield Pantalla LCD 3.2 Pulgadas con tecnología touch es compatible con el Arduino Mega, tiene una gran variedad de colores, pantalla TFT táctil y entrada para tarjeta SD. Está basada en el módulo controlador SSD1289 con 8 bit de datos y 4 bit de interfaz de control.",
     photo: "https://www.geekfactory.mx/wp-content/uploads/2016/01/shield_pantalla_lcd_tactil_3_2_pulgadas_para_mega_itead.jpg",
     price: 79,
@@ -224,7 +224,7 @@ Products.bulkCreate(
 
   },
   {
-    name: "Encoder para micro motorreductor metálico Gravity DFRobot",
+    name: "Encoder para micro motorreductor metalico Gravity DFRobot",
     description: "El Encoder para micro motorreductor metálico es ideal para utilizarse con los motorreductores metálicos que vendemos (GeekMotor) y motorreductores metálicos de pololu.",
     photo: "https://www.geekfactory.mx/wp-content/uploads/2016/08/encoder_para_motor_3.jpg",
     price: 34,
@@ -242,7 +242,7 @@ Products.bulkCreate(
 
   },
   {
-    name: "Micro motorreductor metálico 100 RPM",
+    name: "Micro motorreductor metalico 100 RPM",
     description: "Micro motorreductor metálico 100 RPM. Ideal para proyectos de robótica como robots seguidores de lineas, laberinto o sumo.",
     photo: "https://www.geekfactory.mx/wp-content/uploads/2016/04/micro-motorreductor-metalico.jpg",
     price: 94,
@@ -287,7 +287,7 @@ Products.bulkCreate(
 
   },
   {
-    name: "Set de Hélices para Dron",
+    name: "Set de Helices para Dron",
     description: "Adquiere el Set de 4 Hélices especiales para prototipo de vehículo aéreo no tripulado, y qué no te falte ningún componente para desarrollar tu proyecto.",
     photo: "https://www.geekfactory.mx/wp-content/uploads/2017/03/Helices_drone.png",
     price: 57,
@@ -305,7 +305,7 @@ Products.bulkCreate(
 
   },
   {
-    name: "Válvula solenoide 1/2 pulgada electroválvula 12 volts",
+    name: "Valvula solenoide 1/2 pulgada electrovalvula 12 volts",
     description: "Válvula solenoide 1/2 pulgada o electroválvula con bobina de 12 volts. Operación normalmente cerrada para agua o fluidos de baja viscosidad.",
     photo: "https://www.geekfactory.mx/wp-content/uploads/valvula-solenoide-1-2-pulgada-electrovalvula-12-volts.jpg",
     price: 55,
@@ -353,7 +353,7 @@ Products.bulkCreate(
 
   },
   {
-    name: "Pantalla alfanumérica LCD 16X2 con Arduino",
+    name: "Pantalla alfanumerica LCD 16X2 con Arduino",
     description: "En este tutorial enseñaremos a utilizar la pantalla LCD 16X2 con Arduino. Abordaremos lo más básico: desde la conexión de la pantalla con el arduino, mostrar cadenas de texto, enviar la lectura de un sensor a la pantalla y finalmente llegaremos a generar caracteres personalizados en la pantalla para hacer aún más vistosos nuestros proyectos.",
     photo: "https://www.geekfactory.mx/wp-content/uploads/2017/10/lcd_16x2_con_arduino_1-700x573.jpg",
     price: 99,
@@ -373,7 +373,7 @@ Products.bulkCreate(
     
     //Sensores
 {
-  name: "AD8232 Módulo ECG monitor de pulso cardíaco",
+  name: "AD8232 Módulo ECG monitor de pulso cardiaco",
   description: "Este módulo basado en el circuito ACS712 de Allegro MicroSystems permite medir la cantidad de corriente a través de un circuito hasta 20 Amperes.",
   photo: "https://www.geekfactory.mx/wp-content/uploads/2013/06/acs712_modulo_sensor_de_corriente_20_a.jpg",
   price: 85,
@@ -382,7 +382,7 @@ Products.bulkCreate(
 
 },
 {
-  name: "ADXL335 Acelerómetro analógico 3 ejes",
+  name: "ADXL335 Acelerometro analogico 3 ejes",
   description: "El ADXL335 es un acelerómetro de salida analógica con rango de +/- 3G y salidas acondicionadas. Está montado en un módulo que facilita su conexión.",
   photo: "https://www.geekfactory.mx/wp-content/uploads/2017/12/adxl335_acelerometro_analogico_3_ejes.jpg",
   price: 82, 
@@ -391,7 +391,7 @@ Products.bulkCreate(
 
 },
 {
-  name: "CNY70 Sensor óptico de reflexión",
+  name: "CNY70 Sensor optico de reflexion",
   description: "El sensor CNY70 esta compuesto de un diodo emisor de infrarrojo y un fototransistor. Permite la detección de objetos a corta distancia.",
   photo: "https://www.geekfactory.mx/wp-content/uploads/2016/02/cny70-sensor-optico-de-reflexion.jpg",
   price: 29, 
@@ -400,7 +400,7 @@ Products.bulkCreate(
 
 },
 {
-  name: "Cámara OV7670",
+  name: "Camara OV7670",
   description: "El módulo con cámara OV7670 es ideal para experimentar con sensores de imágen. Es capaz de generar 30 cuadros por segundo con resolución de 640×480 pixeles.",
   photo: "https://www.geekfactory.mx/wp-content/uploads/2015/12/camara-ov7670.jpg",
   price: 98,
@@ -409,7 +409,7 @@ Products.bulkCreate(
 
 },
 {
-  name: "FS400A caudalímetro sensor de flujo 1 pulgada",
+  name: "FS400A caudalimetro sensor de flujo 1 pulgada",
   description: "El sensor de flujo FS400A cuenta con salida digital a frecuencia. Está basado en un sensor de efecto hall por lo que es muy confiable.",
   photo: "https://www.geekfactory.mx/wp-content/uploads/2018/07/fs400a-caudalimetro-sensor-de-flujo-1-pulgada.jpg",
   price: 75,
@@ -418,7 +418,7 @@ Products.bulkCreate(
 
 },
 {
-  name: "BMP085 Sensor de Presión Atmosférica",
+  name: "BMP085 Sensor de Presión Atmosferica",
   description: "Sensor de presión atmosférica BMP085. Ideal en aplicaciones de meteorología y también para usarse como altímetro. Cuenta con interfaz I2C para comunicarse con el procesador.",
   photo: "https://www.geekfactory.mx/wp-content/uploads/2013/06/BMP085.jpg",
   price: 96,
@@ -445,7 +445,7 @@ Products.bulkCreate(
 
 },
 {
-  name: "IMU 10 grados unidad de medición inercial",
+  name: "IMU 10 grados unidad de medicion inercial",
   description: "Unidad de Medición Inercial (IMU) de 10 grados de libertad. Se compone de varios dispositivos electrónicos soldados en una mísma placa de circuito impreso. Este IMU dispone de 1 acelerómetro de 3 ejes, un giroscopio de 3 ejes y un magnetómetro de 3 ejes.",
   photo: "https://www.geekfactory.mx/wp-content/uploads/2013/06/IMU-10-Grados-Unidad-de-Medici%C3%B3n-Inercial_5.jpg",
   price: 42,
@@ -463,7 +463,7 @@ Products.bulkCreate(
 
 },
 {
-  name: "Micrófono electret",
+  name: "Microfono electret",
   description: "El Mini Micrófono Electret es excelente por su bajo costo, fácil manipulación y por su gran cantidad de aplicaciones tanto para módulos de voz como para grabación de audio.",
   photo: "https://www.geekfactory.mx/wp-content/uploads/2017/12/electret.jpg",
   price: 58,

@@ -80,7 +80,7 @@ const AppBar = ( ) => {
             </NavDropdown>
             <Form onSubmit={searchHandler} className='w-100'>
             <InputGroup id={s.max_width} className={s.form} onChange={(e)=> setKeyword(e.target.value) }>
-                <FormControl type="text" placeholder="NO DISPONIBLE. Estamos trabajando en ello!" />
+                <FormControl type="text" placeholder="¿Qué estás buscando?" />
                 
                 <InputGroup.Append >
                   <Button variant="light" style={{maxHeight: 38}}> <AiOutlineSearch /> </Button>
