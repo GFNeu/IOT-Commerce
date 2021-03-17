@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../state/user";
 import { useHistory } from "react-router-dom";
+import { setCarrito } from "../state/carrito"
 import swal from "sweetalert";
 import { Link } from "react-router-dom";
 import "./Login.css";
@@ -15,7 +16,7 @@ const Login = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(typeof(email))
+    
     if (emailValidate == "mostrar" && emailValidate == "mostrar") {
       dispatch(login({ email: email, password: password })).then((data) => {
  
@@ -26,8 +27,11 @@ const Login = () => {
 
         if (data.payload) {
           localStorage.setItem("token", data.payload.token);
-          history.push("/");
-          swal("Logged in!");
+
+          dispatch(setCarrito()).then((order)=>{
+            history.push("/")
+            swal("Logged in!");
+          });          
         }
       });
     } else {

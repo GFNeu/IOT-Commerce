@@ -44,7 +44,7 @@ const DisplayCursosHome = () => {
           {cursos &&
           
           cursos.map(curso =>{
-            return(  <Col xs={12} md className={classes.col}>
+            return(  <Col xs={12} md className={classes.col} key={curso.id}>
                 <Link to={`/products/${curso.id}`} className={classes.link} key={curso.id}>
                     <div className={classes.imgCont}>
                       <Card.Img variant="top" src={curso.photo} id={classes.photo} />

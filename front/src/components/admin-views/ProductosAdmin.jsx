@@ -1,14 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import InputGroup from "react-bootstrap/InputGroup";
-import Button from "react-bootstrap/Button";
+ import Button from "react-bootstrap/Button";
 import FormControl from "react-bootstrap/FormControl";
 import Card from "react-bootstrap/Card";
-import { Link } from "react-router-dom";
-
+import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
+import { busquedaProducto } from "../../state/product";
 
 const ProductosAdmin = () => {
+  const product = useSelector((state) => state.product);
+  const dispatch = useDispatch();
+
+  const [productoBuscado, setProductoBuscado] = useState("");
+
+  const handleChange = (e) => {
+    setProductoBuscado(e.target.value);
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    axios
+      .get(`/api/products/${productoBuscado}`)
+      .then(({ data }) => dispatch(busquedaProducto(data)))
+
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div>
       <div>
@@ -45,56 +64,41 @@ const ProductosAdmin = () => {
         </div>
         <div className="row no-gutters">
           <div className="col-sm-12 col-md-4">
-            <InputGroup className="mb-3 px-5">
+            <InputGroup className="mb-3 px-5 py-4" onChange={handleChange}>
               <InputGroup.Prepend>
-                <Button variant="warning">Buscar producto</Button>
+                <Button variant="warning" onClick={handleClick}>
+                  Buscar producto
+                </Button>
               </InputGroup.Prepend>
               <FormControl aria-describedby="basic-addon1" />
             </InputGroup>
           </div>
-
           <div className="col-sm-12 col-md-8">
             <div className=" mx-4">
-              <div className="row no-gutters">
-                <div className="col-sm-12 col-md-4">
-                  <Card className="px-4 mx-5">
-                    <Card.Body>Imagen Producto</Card.Body>
+              {product.map((prod) => (
+                <div className="mb-5 p-4">
+                  <Card key={prod.id}>
+                    <Card.Header as="h5">
+                      {" "}
+                      Nombre producto: {prod.name}
+                    </Card.Header>
+                    <Card.Body>
+                      <Card.Title>
+                        {" "}
+                       Precio $ {prod.price} 
+                      </Card.Title>
+                      <Card.Text>Marca : {prod.mark} </Card.Text>
+
+                      <Card.Text>Imagen path : {prod.photo} </Card.Text>
+                      <Card.Text>Imagen vista :  <img className="mx-5" src={prod.photo} width="150px"></img> </Card.Text>
+
+                      <Card.Text>{prod.description} </Card.Text>
+                      
+                       
+                    </Card.Body>
                   </Card>
                 </div>
-
-                <div className="col-sm-12 col-md-8">Titulo producto</div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="row no-gutters">
-          <div className="col-sm-12 col-md-4 py-5">
-            <InputGroup className="mb-3 px-5">
-              <InputGroup.Prepend>
-                <Button variant="warning">Buscar producto</Button>
-              </InputGroup.Prepend>
-              <FormControl aria-describedby="basic-addon1" />
-            </InputGroup>
-          </div>
-
-          <div className="col-sm-12 col-md-8 py-5">
-            <div className=" mx-4">
-              <div className="row no-gutters">
-                <div className="col-sm-12 col-md-4">
-                  <Card className="px-4 mx-5">
-                    <Card.Body>Imagen Producto</Card.Body>
-                  </Card>
-                </div>
-
-                <div className="col-sm-12 col-md-8  ">
-                  <div className="col-sm-12 col-md-8 h4">Título producto</div>
-
-                  <div className="col-sm-12 col-md-8 h4">Precio producto</div>
-                  <div className="col-sm-12 col-md-8 h4">Descripción</div>
-                  <div className="col-sm-12 col-md-8 h4">ssfgsf</div>
-
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>

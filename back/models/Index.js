@@ -42,4 +42,4 @@ Products.belongsToMany(Categories, {
     foreignKey: 'category_id',
   });
 
-module.exports = { db, Categories, Order, OrderStatus, Products, Reviews, User };
+module.exports = { db, Categories, Order, OrderStatus, Products, Reviews, User};

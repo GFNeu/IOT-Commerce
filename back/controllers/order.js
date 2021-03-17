@@ -5,7 +5,7 @@ const { Op } = require("sequelize");
 const ordersController = {
       
     createOrder(req,res,next){
-        
+        console.log(req.body)
         User.findByPk(req.body.userID)
             .then(user=>{
                return Order.create()
@@ -33,6 +33,7 @@ const ordersController = {
     },
 
     updateOrder(req,res,next){
+        console.log(req.body.carrito)
         Order.findAll({
             where: {
                 [Op.and]: [
@@ -51,7 +52,7 @@ const ordersController = {
                 }
             }})
             .then(products=>{
-                products.forEach((product, index)=>order[0].setProducts(product, {through: {cantidad: carrito[index].cantidad, precio: carrito[index].precio}})
+                products.forEach((product, index)=>order[0].addProducts(product, {through: {cantidad: carrito[index].cantidad, precio: carrito[index].precio}})
             )})
             
         })
@@ -60,13 +61,14 @@ const ordersController = {
     },
 
     getPendingOrder(req,res,next){
+        console.log("QUERY",req.query)
+        console.log("PARAMS",req.params)
             Order.findAll({
                         where: {
                             [Op.and]: [
                                 {orderStatusId: 4},
-                                {userId: req.body.userId}
-                            ]
-                            
+                                {userId: req.params.id}
+                            ] 
                         },
                         include: [
                             {
@@ -101,7 +103,7 @@ const ordersController = {
             where: {
                 [Op.and]: [
                     {orderStatusId: 4},
-                    {userId: req.body.userID}
+                    {userId: req.params.id}
                 ]
             },
         })

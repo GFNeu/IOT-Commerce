@@ -71,7 +71,7 @@ const AppBar = ( ) => {
               id={s.cats}
             >
               {categories.length ? categories.map(category =>{
-                return <NavDropdown.Item><Link to={`/categories/${category.id}`}>
+                return <NavDropdown.Item key={category.id}><Link to={`/categories/${category.id}`}>
                 {category.statusDescription}</Link>
               </NavDropdown.Item>
               }): "Cargando categorias"}
