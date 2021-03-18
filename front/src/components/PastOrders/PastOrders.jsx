@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {useHistory} from 'react-router-dom'
 import {useSelector} from 'react-redux'
+import {Link} from 'react-router-dom'
 import axios from 'axios'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -52,7 +53,7 @@ const PastOrders = () => {
             </Col>
             <Col sm={12} md={6} lg={5}><Fotitos products={o.products}/></Col>
             
-            <Col><Button variant="secondary" className="align-self-start">Ver detalles</Button></Col>
+            <Col><Link to={`/pastOrders/${o.id}`}><Button variant="secondary" className="align-self-start">Ver detalles</Button></Link></Col>
             </Row>
             </Container>
           </Card.Body>
