@@ -7,15 +7,30 @@ import FormControl from "react-bootstrap/FormControl";
 import Card from "react-bootstrap/Card";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
-import { busquedaProducto } from "../../state/product";
-import { Link } from "react-router-dom";
+import { busquedaProducto, getOne } from "../../state/product";
+import { Link, useHistory } from "react-router-dom";
 
 const ProductosAdmin = () => {
   const product = useSelector((state) => state.product);
   const dispatch = useDispatch();
+  const history=useHistory()
+  console.log("EN TODOS", product)
+
+  React.useEffect(()=>{},
+  
+  )
 
   const [productoBuscado, setProductoBuscado] = useState("");
+const seleccionarProducto= (id)=>{
+  return axios  
+          .get(`/api/products/admin/${id}`)
+          .then(({data})=> {
+            dispatch(getOne(data))
+            history.push(`/adminPanel/productos/editarProducto/${id}`)
+            })
+  
 
+}
   const handleChange = (e) => {
     setProductoBuscado(e.target.value);
   };
@@ -23,7 +38,7 @@ const ProductosAdmin = () => {
   const handleClick = (e) => {
     e.preventDefault();
     axios
-      .get(`/api/products/${productoBuscado}`)
+      .get(`/api/products/admin/${productoBuscado}`)
       .then(({ data }) => dispatch(busquedaProducto(data)))
 
       .catch((err) => console.log(err));
@@ -98,13 +113,11 @@ const ProductosAdmin = () => {
                         </div>
 
                         <div className="   p-4">
-                          <Link
-                            to={`/adminPanel/productos/editarProducto/${prod.id}`}
-                          >
-                            <button className="btn btn-lg p-2 btn-warning">
+                          
+                            <button onClick={()=>seleccionarProducto(prod.id)}className="btn btn-lg p-2 btn-warning">
                               Editar
                             </button>
-                          </Link>
+                        
                         </div>
                       </div>
                     </Card.Header>

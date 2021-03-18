@@ -82,6 +82,7 @@ function App() {
 
           <Route path="/courses/:id"><NoDisponible/></Route>
           {/* <Route path ="/products/detail" component={ProductDetail}/> */}
+          <Route path="/categories/:id" render={({ match }) => <Category id={match.params.id} />} />
 
           <Route exact path="/adminPanel">
             <AdminPanel />
@@ -89,6 +90,11 @@ function App() {
           <Route exact path="/adminPanel/productos">
             <ProductosAdmin />
           </Route>
+          <Route
+            exact
+            path="/adminPanel/productos/editarProducto/:id"
+            render={({ match }) => <EditarProducto id={match.params.id} />}
+          />
           <Route exact path="/adminPanel/usuarios">
             <UsuariosAdmin />
           </Route>
@@ -98,6 +104,11 @@ function App() {
           <Route exact path="/adminPanel/categorias">
             <CategoriasAdmin />
           </Route>
+          <Route
+            exact
+            path="/adminPanel/usuarios/SingleUsuario/edit/:id"
+            render={({ match }) => <EditarUsuario id={match.params.id} />}
+          />
           <Route
             exact
             path="/adminPanel/categorias/editar/:id"
@@ -126,21 +137,6 @@ function App() {
             render={({ match }) => <EditarOrdenes id={match.params.id} />}
           />
 
-          <Route
-            exact
-            path="/adminPanel/usuarios/SingleUsuario/edit/:id"
-            render={({ match }) => <EditarUsuario id={match.params.id} />}
-          />
-
-           <Route
-             
-            path="/adminPanel/productos/editarProducto/:id"
-            render={({ match }) => <EditarProducto id={match.params.id} />}
-          />
-
-          <Route exact path="/adminPanel/usuarios/SingleUsuario/edit/:id"
-            render={({ match }) => <EditarUsuario id={match.params.id} />}
-          />
           <Route exact path="/adminPanel/productos/edit/:id" render={({ match }) => <EditarProducto id={match.params.id} />}/>
           <Route path="/order"><OrderDetail /></Route>
           

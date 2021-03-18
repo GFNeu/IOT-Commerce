@@ -1,13 +1,25 @@
 import React, { useState } from "react";
-import { editUser } from "../../state/allusers";
-import { useDispatch } from "react-redux";
+import { changePermits, editUser, exactUser } from "../../state/allusers";
+import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import swal from "sweetalert";
 import { useHistory } from "react-router-dom";
- 
+import Form from 'react-bootstrap/Form'
+
 
 const EditarUsuario = ({ id }) => {
+  const user= useSelector(state=> state.allUser)
+  const loggedUser= useSelector(state=> state.user)
   const dispatch = useDispatch();
+
+  const history = useHistory();
+  const userId= history.location.pathname.split("/")[5]
+  React.useEffect(()=>{
+    axios.
+        get(`/api/users/admin/${userId}`)
+        .then(({data})=> dispatch(exactUser(data)))
+        .catch(e=> console.log(e))
+  }, [])
 
   const [nombre, setNombre] = useState("");
   const [correo, setCorreo] = useState("");
@@ -25,7 +37,26 @@ const EditarUsuario = ({ id }) => {
   };
 
   const objeto = { email: correo, name: nombre, lastName: lastName };
-  const history = useHistory();
+  
+  
+  const cambiarPermisos= async(id) =>{ 
+    if(loggedUser.id == user.id){
+      return swal("No puedes cambiar tus propios permisos!")
+    }
+try{
+const res = await axios.put(`/api/users/${id}/permits`)
+
+        console.log('ACA ESTA EL AXIOS',res);
+      
+       
+       dispatch(changePermits(res.data))
+    
+       swal("Permisos cambiados")
+}catch(err){
+        console.error(err)
+}
+} 
+
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -156,15 +187,24 @@ const EditarUsuario = ({ id }) => {
               <div className="valid-feedback">Todo bien, continúe</div>
               <div className="invalid-feedback">Ingrese un email válido</div>
             </div>
-
+          <button
+              id="register_button"
+              className="btn btn-block py-3"
+              onClick={()=>cambiarPermisos(user.id)}
+            >
+              {user.isAdmin ? "Revocar permisos": "Promover a administrador"}
+            </button>
+            
             <button
               id="register_button"
               type="submit"
               className="btn btn-block py-3"
+              
             >
-              REGISTER
+              CONFIRMAR
             </button>
           </form>
+          
         </div>
       </div>
     </>
