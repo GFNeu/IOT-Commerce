@@ -18,6 +18,12 @@ const usersController = {
       .then((user) => res.send(user))
       .catch((err) => next(err));
   },
+  findExactUser(req, res, next) {
+    User.findByPk(req.params.id)
+      .then((user) => res.send(user))
+      .catch((err) => next(err));
+  },
+
 
   editUser(req, res, next) {
     User.findByPk(req.params.id)
@@ -40,7 +46,7 @@ const usersController = {
       .then((user) => {
         User.findByPk(req.params.id).then((user) => {
           console.log(user);
-          res.send("Permisos cambiados");
+          res.send(user);
         });
       })
       .catch((err) => next(err));

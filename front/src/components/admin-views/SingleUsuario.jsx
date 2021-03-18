@@ -3,13 +3,25 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Container from "react-bootstrap/Container";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { exactUser } from "../../state/allusers";
+
 
 const OrdenesUsuario = ({ id }) => {
   const users = useSelector((state) => state.allUser);
+  const dispatch= useDispatch()
+  const history= useHistory()
+  const idUser= (history.location.pathname.split("/")[4])
+  React.useEffect(()=>{
+    axios.
+        get(`/api/users/admin/${idUser}`)
+        .then(({data})=> dispatch(exactUser(data)))
+        .catch(e=> console.log(e))
+  }, [])
   return (
     <div>
       <div>
@@ -54,7 +66,7 @@ const OrdenesUsuario = ({ id }) => {
         </div>
         <div className="row no-gutters">
           <div className="col-sm-12 col-md-12">
-            {users.map((user) => (
+            {users && users.map((user) => (
               <div className="mb-5 p-4">
                 <Card key={user.id}>
                   <Card.Header as="h5">
@@ -83,45 +95,7 @@ const OrdenesUsuario = ({ id }) => {
             ))}
           </div>
           <div className="col-sm-12 col-md-12 py-1 px-5">
-            <Jumbotron fluid>
-              <Container>
-                <h1>Order Id</h1>
-                <div className="row">
-                  <div className="col-sm-12 col-md-4 ">
-                    <p>
-                      Client Info
-                      <br />
-                      Name: pepe
-                      <br />
-                      Lastname: pepe
-                      <br />
-                      Total Amount: $ 1000
-                      <br />
-                    </p>
-                  </div>
-                  <div className="col-sm-12 col-md-4">
-                    <p>
-                      Payment Status
-                      <br />
-                      PAID
-                      <br />
-                      Order Status:
-                      <br />
-                      Delivered ()
-                      <br />
-                    </p>
-                  </div>
-
-                  <div className="col-sm-12 col-md-4">
-                    <p>
-                      Foto y nombre producto
-                      <br />
-                      Cantidades
-                    </p>
-                  </div>
-                </div>
-              </Container>
-            </Jumbotron>
+            
           </div>
         </div>
       </div>

@@ -1,5 +1,4 @@
 import React,{useEffect, useState } from 'react';
-
 import {useDispatch , useSelector} from 'react-redux';
 import { getPastOrders } from '../state/order'
 import Modal from 'react-bootstrap/Modal'
@@ -13,46 +12,61 @@ import InputGroup from 'react-bootstrap/InputGroup'
 import FormControl from 'react-bootstrap/FormControl'
 import axios from 'axios'
 import swal from "sweetalert";
+import Rating from 'react-rating'
+import { FaRegStar } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 
 const OrderDetail = () => {
     const [review, setReview] =useState('');
     const [show, setShow] = useState(false);
+    const [productId, setProductId]= useState(0)
+    const [puntaje, setPuntaje]= useState(0)
     const dispatch = useDispatch();
 
     const orders = useSelector(state=> state.orders)
     const user = useSelector(state => state.user)
     
+   
+    const handleShow = (e,param) => {
+        setProductId(param)
+ 
+        setShow(true)};
 
     const createReview = async(e, productId, userId ) =>{
         e.preventDefault();
+
+        if(puntaje==0){
+            return swal("Ingrese un puntaje")
+        }
         
     try{
-        const body = {review, userId};
+        const body = {review, userId, puntaje};
     const res = await axios.post(`/api/products/${productId}/reviews`, body)
 
             console.log('ACA ESTA EL AXIOS',res);
             if(res.data==='ya existe una review'){
-                swal('ya existe una review de este producto')
+                swal('Ya existe una review de este producto')
             }else{
-                swal('review guardada!')
+                swal('Review guardada!')
             }
             setShow(false);
     }catch(err){
             console.error(err)
     }
     }
+    
     const handleClose = () => {
+
         setShow(false);
     }
-    const handleShow = (e,param) => setShow(true);
-
+   
     useEffect(()=>{
         dispatch(getPastOrders())
-    },[])
+    },[productId])
 
 return (
 <>
-{console.log(orders[orders.length-1])}
+
 { orders[orders.length-1] ?
     <div className="container container-fluid">
 	
@@ -78,7 +92,7 @@ return (
 
             {
             orders.slice(-1)[0].products.map(order=>{
-
+                
             return <div className="cart-item my-1">
                         <div className="row my-5">
                             <div className="col-4 ">
@@ -88,22 +102,23 @@ return (
                             <div className="col-5 ">
                                 
                                 {/* aca va el modal */}
-                            <Button variant="warning" onClick={handleShow} data-toggle='modal' 
-                            data-target={`#id${order.id}`}>Add Review</Button>
+                            
+                            <Button variant="warning" onClick={(e)=> handleShow(e, order.id)} data-toggle='modal' 
+                            data-target={`#id${order.id}`}>Agregar review</Button>
                                <Form onSubmit={createReview} id={`id${order.id}`}>
                                     <Modal show={show} onHide={handleClose}  className='modal fade' role='dialog'>
                                         <ModalHeader closeButton>
-                                            <ModalTitle>Agrega tu Review</ModalTitle>
+                                            <ModalTitle>Agregar review</ModalTitle>
                                         </ModalHeader>
-                                        <ModalBody>
-                                            <InputGroup placeholder ='review...'onChange={ e=> setReview(e.target.value)}>
-                                                <FormControl type="text" placeholder="agrega tu review.." />
-                                            </InputGroup>
-                                        
+                                        <ModalBody><InputGroup placeholder ='review...'onChange={ e=> setReview(e.target.value)}>
+                                        <FormControl type="text" placeholder="agrega tu review.." />
+                                        </InputGroup>
+                                        <hr/>
+                                        <p>Agregale un puntaje:</p><Rating  onChange={(e)=> setPuntaje(e)}initialRating={puntaje} emptySymbol={<FaRegStar/>} fullSymbol={<FaStar/>}></Rating>
                                         </ModalBody>
                                         <ModalFooter>
                                             <Button variant="secondary" onClick={handleClose}>Close</Button>
-                                            <Button variant="primary" onClick={(e)=>createReview(e, order.id, user.id)} >Save Review</Button>
+                                            <Button variant="primary" onClick={(e)=>createReview(e, productId, user.id)} >Save Review</Button>
                                         </ModalFooter>
                                     </Modal>
                                 </Form>

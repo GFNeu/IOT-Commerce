@@ -11,7 +11,8 @@ const reviewsControllers ={
         .catch(err=> next(err))
     },
     addReview(req, res, next) {
-       
+       console.log("PRODUCTO UNOOOO", req.body)
+       console.log(req.params)
         Reviews.findAll({
             where:{ [Op.and] :[
                 { productId :req.params.id },
@@ -19,11 +20,14 @@ const reviewsControllers ={
                 ]
             }
         }).then(review=>{
-            
+            console.log(review)
+            console.log(review.length)
             if(review.length < 1){
                 Reviews.create({
                     descripcion : req.body.review,
                     productId : req.params.id,
+                    userId : req.body.userId,
+                    puntaje: req.body.puntaje
                 })
                   .then(review =>res.send(review))
                   
