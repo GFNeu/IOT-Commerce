@@ -60,6 +60,7 @@ function App() {
       <div className="main">
         <Switch>
           <Route path exact="/"><Home /></Route>
+          <Route path="/categories/:id" render={({ match }) => <Category id={match.params.id} />} />
           <Route path="/login"><Login /></Route>
           <Route path="/register"><Register /></Route>
 
@@ -142,7 +143,7 @@ function App() {
           />
           <Route exact path="/adminPanel/productos/edit/:id" render={({ match }) => <EditarProducto id={match.params.id} />}/>
           <Route path="/order"><OrderDetail /></Route>
-          <Route path="/categories/:id" render={({ match }) => <Category id={match.params.id} />} />
+          
         </Switch>
       </div>
       <Footer />

@@ -5,6 +5,9 @@ import { addProduct } from '../state/carrito'
 import { getReviewsByProduct } from '../state/reviews'
 import { Link } from 'react-router-dom'
 import s from './ProductDetail.module.css';
+import Rating from 'react-rating'
+import { FaRegStar } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 
 const ProductDetail = ( {id} ) => {
    
@@ -41,7 +44,13 @@ const ProductDetail = ( {id} ) => {
              <hr/>
 
              <div className="rating">
-                
+             <Rating 
+                          readonly 
+                          initialRating={rating}
+                          emptySymbol={<FaRegStar style={{color: "#cfcfcf"}}/>}
+                          fullSymbol={<FaStar style={{color: "#ffc107"}}/>}
+                          fractions={2}
+            />
                 <p id="product_id">{rating>0 ?`Rating: ${rating}` :'No rating'}</p> 
                    
              </div>
@@ -50,11 +59,11 @@ const ProductDetail = ( {id} ) => {
 
              <p id="product_price">{`$${product[0].price}`}</p>
              <div className={`${s.stockCounter} d-inline`}>
-                 <span className="btn btn-danger minus" onClick={()=> setCantidad(x => {if(x>0) return x-1})}>-</span>
+                 <span className="btn btn-dark minus mr-1" onClick={()=> setCantidad(x => {if(x>0) return x-1})}>-</span>
 
-                 <input type="number" className="form-control count d-inline" value={cantidad} readOnly />
+                 <input type="number" className="form-control d-inline" value={cantidad} readOnly />
                  
-                 <span className="btn btn-primary plus" onClick={()=> setCantidad(x => x+1)}>+</span>
+                 <span className="btn btn-dark plus ml-1" onClick={()=> setCantidad(x => x+1)}>+</span>
              </div>
               <button type="button" id="cart_btn" className="btn btn-primary d-inline ml-4" onClick={()=>handleSubmit()}>Add to Cart</button>
               <Link to={`/products/${product[0].id}/reviews`}><button type="button" id="cart_btn" className="btn btn-warning d-inline ml-4" >Reviews</button></Link>
