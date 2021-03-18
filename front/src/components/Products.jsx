@@ -37,7 +37,7 @@ const Products = () => {
                       <RatingByProduct product={product}/>
                       </div>
                       <p className="card-text">{`Price: $ ${product.price}`}</p>
-                      <Link to={`/product/${product.id}`}>
+                      <Link to={`/products/${product.id}`}>
                         <button id="view_btn">View Product Detail</button>
                       </Link>
                       <hr />
