@@ -14,14 +14,11 @@ const Category = ( {id} ) => {
     console.log(category)
     const dispatch = useDispatch()
     useEffect(()=>{
-        console.log("HOLAAA")
+        
         if(id != 654){
-            console.log("ENTRE AL IF")
-    return axios
-      .get(`/api/categories/admin/one/${id}`)
-      .then(({ data }) => dispatch(oneCategory(data))).then(()=>axios.get(`/api/products/byCategory/${id}`).then(respuesta=> dispatch(getCategoryProducts(respuesta.data))))
-         
-            
+           return axios
+            .get(`/api/categories/admin/one/${id}`)
+            .then(({ data }) => dispatch(oneCategory(data))).then(()=>axios.get(`/api/products/byCategory/${id}`).then(respuesta=> dispatch(getCategoryProducts(respuesta.data))))
         }else{
             dispatch(getProducts())
         }

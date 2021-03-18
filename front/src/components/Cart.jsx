@@ -24,13 +24,13 @@ const Cart = () => {
     }
 
 return (
-  <>
-    <h2 className="mt-3">
+  <div className="d-block w-100">
+    <h2 className="m-3 d-block">
       Your Cart: <b> {cartItems.length ? cartItems.length : "No"} items</b>
     </h2>
 
     {cartItems.length > 0 && (
-      <div className="row d-flex justify-content-around">
+      <div className="row d-flex justify-content-around w-100">
         <div className="col-12 col-lg-8">
           {cartItems.length &&
             cartItems.map((item) => (
@@ -39,11 +39,11 @@ return (
 
                 <div className="cart-item" key={item.id}>
                   <div className="row">
-                    <div className="col-4 col-lg-3">
+                    <div className="col-4 col-lg-2">
                       <img src={item.photo} height="100" width="115" />
                     </div>
 
-                    <div className="col-4 col-lg-2 mt-4 ">
+                    <div className="col-5 col-lg-5 mt-4 ">
                       <Link to={`/products/${item.id}`}>
                         <p id="card_item_name">
                           <strong>{item.name}</strong>
@@ -52,10 +52,10 @@ return (
                       <p id="card_item_price">${item.price}</p>
                     </div>
 
-                    <div className="col-4 col-lg-3 mt-4">
+                    <div className="col-3 col-lg-3 mt-4">
                       <div className="stockCounter d-inline-flex w-100">
                         <span
-                          className="btn btn-danger minus"
+                          className="btn btn-dark minus mr-1"
                           onClick={() => dispatch(removeAmount(item.id))}
                         >
                           -
@@ -63,13 +63,14 @@ return (
 
                         <input
                           type="text"
-                          className="form-control count d-inline"
+                          className="form-control d-inline"
+                          style={{width: "3rem"}}
                           value={item.cantidad}
                           disabled
                         />
 
                         <span
-                          className="btn btn-primary plus "
+                          className="btn btn-dark plus ml-1"
                           onClick={() => dispatch(addAmount(item.id))}
                         >
                           +
@@ -109,12 +110,12 @@ return (
               Checkout
             </button>
             <hr/>
-            <button className="btn btn-danger btn-block" onClick={() => dispatch(emptyCarrito())}>Vaciar carrito</button>
+            <button className="btn btn-dark btn-block" onClick={() => dispatch(emptyCarrito())}>Vaciar carrito</button>
           </div>
         </div>
       </div>
     )}
-  </>
+  </div>
 );
 }
 
