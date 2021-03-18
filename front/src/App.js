@@ -30,6 +30,9 @@ import EditarUsuario from "./components/admin-views/EditarUsuario";
 import CategoriasAdmin from "./components/admin-views/CategoriasAdmin"
 import EditarCategoria from "./components/admin-views/EditarCategoria"
 import CrearCategoria from "./components/admin-views/CrearCategoria"
+import SingleOrden from "./components/admin-views/SingleOrden"
+import EditarOrdenes from "./components/admin-views/EditarOrdenes"
+
 function App() {
   const dispatch = useDispatch();
   const carrito = useSelector((state) => state.carrito);
@@ -98,6 +101,17 @@ function App() {
           <Route exact path="/adminPanel/usuarios/SingleUsuario">
             <SingleUsuario />
           </Route>
+
+          <Route
+            exact
+            path="/adminPanel/ordenes/singleOrdenes/:id"
+            render={({ match }) => <SingleOrden id={match.params.id} />}
+          />
+          <Route
+            exact
+            path="/adminPanel/ordenes/singleOrdenes/editarOrdenes/:id"
+            render={({ match }) => <EditarOrdenes id={match.params.id} />}
+          />
 
           <Route
             exact

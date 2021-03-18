@@ -1,6 +1,7 @@
-const {Order, User, Products} = require("../models/Index");
+const {Order, User, Products, OrderStatus} = require("../models/Index");
 const {OrderProducts} = require('../models/OrderProducts')
 const { Op } = require("sequelize");
+
 
 const ordersController = {
       
@@ -168,7 +169,19 @@ const ordersController = {
               ]
         })
         .then(orders=>res.send(orders))
-    }
+    },
+
+    getAllOrders(req, res, next) {
+        Order.findAll(
+            {
+                include: [{ model: OrderStatus } , { model: User }],
+            }
+        )
+          .then((order) => {
+            console.log("order en el .then ", order)  
+            res.send(order)})
+          .catch((err) => next(err)); // Se usaba asi el error MW?
+      },
 
 }
 
