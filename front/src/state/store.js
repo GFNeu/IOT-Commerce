@@ -6,6 +6,7 @@ import productReducer from "./product"
 import userReducer from "./user"
 import reviewsReducer from "./reviews"
 import allUserReducer from "./allusers"
+import orderReducer from "./order"
 
 
 const store = configureStore({
@@ -16,7 +17,8 @@ const store = configureStore({
         product: productReducer,
         user: userReducer,
         allUser: allUserReducer,
-        reviews : reviewsReducer
+        reviews : reviewsReducer,
+        orders : orderReducer
     },
 });
 
