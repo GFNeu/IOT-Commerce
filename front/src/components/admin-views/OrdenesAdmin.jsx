@@ -41,7 +41,7 @@ dispatch(getOrders())
             <Nav className="m-auto">
               <Nav.Link
                 href="/adminPanel/usuarios"
-                className=" mx-5 text-dark btn btn-large bg-warning"
+                className=" mx-5 text-light"
               >
                 Usuarios
               </Nav.Link>
@@ -56,7 +56,7 @@ dispatch(getOrders())
               Categorias
             </Nav.Link>
 
-              <Nav.Link href="/adminPanel/ordenes" className="mx-5 text-light ">
+              <Nav.Link href="/adminPanel/ordenes" className="mx-5  text-dark btn btn-large bg-warning ">
                 Órdenes
               </Nav.Link>
             </Nav>
@@ -106,7 +106,8 @@ dispatch(getOrders())
                   {order.orderStatus.statusType =="Pago confirmado"? // comienza ternario
                   
                    <tr>
-                     <td >{order.id}</td>
+                     <td>{order.id}</td>
+                     
                       
                       <td>{order.user.fullName}</td>
                       <Link > <td>{order.user.email}</td> </Link>
@@ -137,10 +138,10 @@ dispatch(getOrders())
                    order.orderStatus.statusType =="Pendiente"? // comienza tercer ternario
                   
                   <tr>
-                    <td >{order.id}</td>
+                    <Link to={`/adminPanel/ordenes/singleOrdenes/${order.id}`}><td >{order.id}</td></Link>
                      
                      <td>{order.user.fullName}</td>
-                     <Link > <td>{order.user.email}</td> </Link>
+                     <Link to={`/adminPanel/usuarios/SingleUsuario/${order.user.id}`}> <td>{order.user.email}</td> </Link>
                      <td style = {{backgroundColor:"rgb(201, 76, 76)"}}>{order.orderStatus.statusType}</td>                   
                    </tr>
                    :

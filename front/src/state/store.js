@@ -21,7 +21,7 @@ const store = configureStore({
         allUser: allUserReducer,
         reviews : reviewsReducer,
         allOrders: allOrdersReducer,
-        Orders: orderReducer,
+        orders : orderReducer,
         categoriesAdmin: categoriesAdminReducer,
 
     },

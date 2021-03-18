@@ -166,6 +166,7 @@ const ordersController = {
                   model: Products,
                   through: OrderProducts,
                 },
+                { model: OrderStatus }
               ]
         })
         .then(orders=>res.send(orders))

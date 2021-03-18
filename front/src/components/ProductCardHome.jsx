@@ -1,7 +1,7 @@
 import React from 'react'
 import {createUseStyles} from 'react-jss'
-import Rating from 'react-rating'
 import {Link} from 'react-router-dom'
+import Rating from 'react-rating'
 import { FaRegStar } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 

@@ -1,7 +1,7 @@
 import React,{useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { getReviewsByProduct } from '../state/reviews'
-
+import Container from 'react-bootstrap/Container'
 
 const Reviews = ( {id} ) => {
     //console.log(id);
@@ -15,13 +15,13 @@ const Reviews = ( {id} ) => {
 
   
 return (
-<>
+<div className="w-100">
 
 {console.log(reviews)}
 
 {reviews.length ?
-    <>
-        <div className='row justify-content center mt-3 ml-5 text-center'>
+    <Container className="mt-4">
+        <div className='m-2'>
             <h4><b>REVIEWS</b></h4>
         </div>
         
@@ -48,9 +48,9 @@ return (
                 
             </tbody>
         </table>
-    </>
+    </Container>
     : <div className='row justify-content center mt-3 ml-5'><b>Este producto no tiene reviews</b></div>}    
-</>
+</div>
 
 )
 }
