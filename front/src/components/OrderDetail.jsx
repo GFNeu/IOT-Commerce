@@ -95,9 +95,12 @@ return (
                                         <ModalHeader closeButton>
                                             <ModalTitle>Agrega tu Review</ModalTitle>
                                         </ModalHeader>
-                                        <ModalBody><InputGroup placeholder ='review...'onChange={ e=> setReview(e.target.value)}>
-                                        <FormControl type="text" placeholder="agrega tu review.." />
-                                        </InputGroup></ModalBody>
+                                        <ModalBody>
+                                            <InputGroup placeholder ='review...'onChange={ e=> setReview(e.target.value)}>
+                                                <FormControl type="text" placeholder="agrega tu review.." />
+                                            </InputGroup>
+                                        
+                                        </ModalBody>
                                         <ModalFooter>
                                             <Button variant="secondary" onClick={handleClose}>Close</Button>
                                             <Button variant="primary" onClick={(e)=>createReview(e, order.id, user.id)} >Save Review</Button>
