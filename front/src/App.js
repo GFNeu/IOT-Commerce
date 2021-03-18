@@ -69,40 +69,24 @@ function App() {
 
           <Route path="/products/:id" render={({ match }) => <ProductDetail id={match.params.id} />} />
 
-          <Route path="/cart">
-            <Cart />
-          </Route>
-          <Route path="/order">
-            <OrderDetail />
-          </Route>
-          <Route path="/pastOrders">
-            <PastOrders />
-          </Route>
+          <Route path="/cart"><Cart /></Route>
+          <Route path="/order"><OrderDetail /></Route>
+          <Route path="/pastOrders"><PastOrders /></Route>
 
           <Route path="/courses/:id"><NoDisponible/></Route>
           {/* <Route path ="/products/detail" component={ProductDetail}/> */}
           <Route path="/categories/:id" render={({ match }) => <Category id={match.params.id} />} />
 
-          <Route exact path="/adminPanel">
-            <AdminPanel />
-          </Route>
-          <Route exact path="/adminPanel/productos">
-            <ProductosAdmin />
-          </Route>
+          <Route exact path="/adminPanel"><AdminPanel /></Route>
+          <Route exact path="/adminPanel/productos"><ProductosAdmin/></Route>
           <Route
             exact
             path="/adminPanel/productos/editarProducto/:id"
             render={({ match }) => <EditarProducto id={match.params.id} />}
           />
-          <Route exact path="/adminPanel/usuarios">
-            <UsuariosAdmin />
-          </Route>
-          <Route exact path="/adminPanel/ordenes">
-            <OrdenesAdmin />
-          </Route>
-          <Route exact path="/adminPanel/categorias">
-            <CategoriasAdmin />
-          </Route>
+          <Route exact path="/adminPanel/usuarios"><UsuariosAdmin /></Route>
+          <Route exact path="/adminPanel/ordenes"><OrdenesAdmin /></Route>
+          <Route exact path="/adminPanel/categorias"><CategoriasAdmin /></Route>
           <Route
             exact
             path="/adminPanel/usuarios/SingleUsuario/edit/:id"
@@ -113,12 +97,8 @@ function App() {
             path="/adminPanel/categorias/editar/:id"
             render={({ match }) => <EditarCategoria id={match.params.id} />}
           />
-          <Route exact path="/adminPanel/categorias/crear">
-            <CrearCategoria />
-          </Route>
-          <Route exact>
-            <SingleUsuario />
-          </Route>
+          <Route exact path="/adminPanel/categorias/crear"><CrearCategoria /></Route>
+          <Route exact><SingleUsuario /></Route>
           <Route
             exact
             path="/adminPanel/usuarios/SingleUsuario/:id"
