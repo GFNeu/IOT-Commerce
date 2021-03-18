@@ -1,5 +1,5 @@
 const { OrderProducts } = require("../../models/Index");
-const cantidad = 20
+const cantidad = 50
 
 for (let i = 0; i < cantidad; i++) {
   

@@ -90,8 +90,7 @@ dispatch(getOrders())
           <div>
             <Table responsive>
               <Table striped bordered hover size="sm">
-                <thead>
-                  
+                <thead>                  
                   <tr>
                     <th>#Orden</th>
                     <th>First, Lastname</th>
@@ -103,21 +102,18 @@ dispatch(getOrders())
                 {orders.length>0 &&  orders.map((order) => (
                   
                   <tbody>
-                  {order.orderStatus.statusType =="Pago confirmado"? // comienza ternario
-                  
+                  {order.orderStatus.statusType =="Pago confirmado"? // comienza ternario                  
                    <tr>
-                     <td>{order.id}</td>
-                     
-                      
+                   <Link to={`/adminPanel/ordenes/singleOrdenes/${order.id}`}><td >{order.id}</td></Link>                      
                       <td>{order.user.fullName}</td>
                       <Link > <td>{order.user.email}</td> </Link>
-                      <td style = {{backgroundColor:"green"}}>{order.orderStatus.statusType}</td>                   
+                      <td style = {{backgroundColor:"rgb(3, 252, 53)"}}>{order.orderStatus.statusType}</td>                   
                     </tr>: 
 
                     order.orderStatus.statusType =="Cancelado"? // comienza segundo ternario
                   
                    <tr>
-                     <td >{order.id}</td>
+                   <Link to={`/adminPanel/ordenes/singleOrdenes/${order.id}`}><td >{order.id}</td></Link>
                       
                       <td>{order.user.fullName}</td>
                       <Link > <td>{order.user.email}</td> </Link>
@@ -127,17 +123,16 @@ dispatch(getOrders())
                     order.orderStatus.statusType =="Iniciado"? // comienza tercer ternario
                   
                   <tr>
-                    <td >{order.id}</td>
+                  <Link to={`/adminPanel/ordenes/singleOrdenes/${order.id}`}><td >{order.id}</td></Link>
                      
                      <td>{order.user.fullName}</td>
                      <Link > <td>{order.user.email}</td> </Link>
-                     <td style = {{backgroundColor:"blue"}}>{order.orderStatus.statusType}</td>                   
+                     <td style = {{backgroundColor:"rgb(185, 222, 2)"}}>{order.orderStatus.statusType}</td>                   
                    </tr>
                    :
 
-                   order.orderStatus.statusType =="Pendiente"? // comienza tercer ternario
-                  
-                  <tr>
+                   order.orderStatus.statusType =="Pendiente"? // comienza cuarto ternario
+                   <tr>
                     <Link to={`/adminPanel/ordenes/singleOrdenes/${order.id}`}><td >{order.id}</td></Link>
                      
                      <td>{order.user.fullName}</td>
@@ -145,19 +140,23 @@ dispatch(getOrders())
                      <td style = {{backgroundColor:"rgb(201, 76, 76)"}}>{order.orderStatus.statusType}</td>                   
                    </tr>
                    :
-
-                    <tr>
-                     <td >{order.id}</td>
-                      
+                   order.orderStatus.statusType =="Confirmado"? // comienza cuarto ternario
+                   <tr>
+                    <Link to={`/adminPanel/ordenes/singleOrdenes/${order.id}`}><td >{order.id}</td></Link>
+                     
+                     <td>{order.user.fullName}</td>
+                     <Link to={`/adminPanel/usuarios/SingleUsuario/${order.user.id}`}> <td>{order.user.email}</td> </Link>
+                     <td style = {{backgroundColor:"rgb(2, 149, 222)"}}>{order.orderStatus.statusType}</td>                   
+                   </tr>
+                   :
+                    <tr>                    
+                    <Link to={`/adminPanel/ordenes/singleOrdenes/${order.id}`}><td >{order.id}</td></Link>                    
                       <td>{order.user.fullName}</td>
-                      <td>{order.user.email}</td> 
+                      <Link to={`/adminPanel/usuarios/SingleUsuario/${order.user.id}`}> <td>{order.user.email}</td> </Link>
                       <td style = {{backgroundColor:"red"}}>{order.orderStatus.statusType}</td>
-                      {/* <Link > <td>{user.email}</td> </Link> */}
-                    </tr>}
-                   
-                    
-                  </tbody>
-                  
+                      
+                    </tr>}                    
+                  </tbody>                  
                 ))}
               </Table>
             </Table>

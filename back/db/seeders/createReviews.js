@@ -4,7 +4,7 @@ const { Reviews } = require("../../models/Index");
 console.log("")
 console.log("Comienza creacion de Reviews")
 
-for (let i = 0; i < 45; i++) {
+for (let i = 0; i < 55; i++) {
   let numeroDesc = Math.floor(Math.random() * 3);
   const descripcion = [
     "Muy malo",
