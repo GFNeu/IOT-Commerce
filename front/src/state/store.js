@@ -11,6 +11,7 @@ import orderReducer from "./order"
 import categoriesAdminReducer from "./categoriesAdmin"
 
 
+
 const store = configureStore({
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
     reducer: {

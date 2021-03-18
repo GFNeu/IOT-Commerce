@@ -60,6 +60,7 @@ function App() {
       <div className="main">
         <Switch>
           <Route path exact="/"><Home /></Route>
+          <Route path="/categories/:id" render={({ match }) => <Category id={match.params.id} />} />
           <Route path="/login"><Login /></Route>
           <Route path="/register"><Register /></Route>
 

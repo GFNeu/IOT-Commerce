@@ -29,10 +29,10 @@ const PastOrders = () => {
 
     return (
       <Container className={s.cont}>
-          {orders.length && console.log(orders)}
-        {orders.length ? <h3>Mis compras: </h3> : <h3>Todavía no realizaste ninguna compra!</h3>}
+          
+        {orders.length > 0 ? <h3>Mis compras: </h3> : <h3>Todavía no realizaste ninguna compra...</h3>}
         <hr/>
-        {orders.length && orders.map(o => (
+        {orders.length > 0 && orders.map(o => (
         <Card key={o.id} className={s.card}>
           <Card.Header>ID de la compra: {o.id}</Card.Header>
           <Card.Body >
@@ -47,7 +47,7 @@ const PastOrders = () => {
               Fecha de compra: {dateFormater(o.updatedAt)}
             </Card.Text>
             <Card.Text>
-              Status: {o.orderStatusId}
+              Status: {o.orderStatus.statusType}
             </Card.Text>
             </Col>
             <Col sm={12} md={6} lg={5}><Fotitos products={o.products}/></Col>

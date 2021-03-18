@@ -82,7 +82,7 @@ export const setCarrito = createAsyncThunk("SET_CARRITO",(data, thunkAPI)=>{
 
 
 
-export const addProduct= createAsyncThunk("ADD_PRODUCT", (data, thunkAPI)=>{
+export const addProduct= createAsyncThunk("ADD_PRODUCT_CART", (data, thunkAPI)=>{
   /*En algun lugar de la data tiene que venir el id para encontrar la ruta*/ 
     console.log("addProduct DISPATCH")
   const { user } = thunkAPI.getState();

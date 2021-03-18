@@ -4,7 +4,7 @@ const router = require("express").Router();
 const {
   getAll,
   getOne,
-  
+  getById,
   byCategory,
   addOne,
   deleteOne,
@@ -29,6 +29,7 @@ router.put("/:id", editOne);
 router.get("/admin/:name", getOne);
 router.get("/byCategory/:id", byCategory);
 router.get("/:id/reviews", getReviewsByProduct);
+router.get("/:id", getById)
 router.post("/:id/reviews", addReview);
 
 router.get("/", getAll);

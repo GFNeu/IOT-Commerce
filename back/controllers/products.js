@@ -80,6 +80,13 @@ const productsController = {
     .catch(err => next(err))
   },
    
+  getById(req,res,next){
+    Products.findByPk(Number(req.params.id))
+            .then(product => res.send(product))
+            .catch(next)
+  },
+
+
   findOneProduct(req, res, next) {
     const query = req.params.name;
     Products.findAll({
