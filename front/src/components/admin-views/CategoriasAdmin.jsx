@@ -67,7 +67,7 @@ const CategoriasAdmin = () => {
             <Nav className="m-auto">
               <Nav.Link
                 href="/adminPanel/usuarios"
-                className=" mx-5 text-dark btn btn-large bg-warning"
+                className=" mx-5 text-light "
               >
                 Usuarios
               </Nav.Link>
@@ -78,7 +78,7 @@ const CategoriasAdmin = () => {
                 Productos
               </Nav.Link>
 
-              <Nav.Link href="/adminPanel/categorias" className=" mx-5 text-light">
+              <Nav.Link href="/adminPanel/categorias" className=" mx-5 text-dark btn btn-large bg-warning">
               Categorias
             </Nav.Link>
             

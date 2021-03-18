@@ -8,7 +8,7 @@ import Jumbotron from "react-bootstrap/Jumbotron";
 import Container from "react-bootstrap/Container";
 import { useSelector } from "react-redux";
 
-const OrdenesUsuario = () => {
+const OrdenesUsuario = ({ id }) => {
   const users = useSelector((state) => state.allUser);
   return (
     <div>
@@ -30,10 +30,13 @@ const OrdenesUsuario = () => {
                 Productos
               </Nav.Link>
 
-              <Nav.Link href="/adminPanel/categorias" className=" mx-5 text-light">
-              Categorias
-            </Nav.Link>
-            
+              <Nav.Link
+                href="/adminPanel/categorias"
+                className=" mx-5 text-light"
+              >
+                Categorias
+              </Nav.Link>
+
               <Nav.Link href="/adminPanel/ordenes" className="mx-5 text-light ">
                 Órdenes
               </Nav.Link>
@@ -53,14 +56,24 @@ const OrdenesUsuario = () => {
           <div className="col-sm-12 col-md-12">
             {users.map((user) => (
               <div className="mb-5 p-4">
-                <Link to={`/adminPanel/usuarios/SingleUsuario/edit/${user.id}`}>
-                  {" "}
-                  <button> boton</button>{" "}
-                </Link>
-
                 <Card key={user.id}>
                   <Card.Header as="h5">
-                    Usuario : {user.name} {user.lastName}
+                    <div className="d-flex  justify-content-between ">
+                      <div>
+                        Usuario : {user.name} {user.lastName}
+                      </div>
+                      <div className="px-2">
+                        {" "}
+                        <Link
+                          to={`/adminPanel/usuarios/SingleUsuario/edit/${user.id}`}
+                        >
+                          <button className="btn btn-large bg-warning">
+                            {" "}
+                            Editar
+                          </button>
+                        </Link>
+                      </div>
+                    </div>
                   </Card.Header>
                   <Card.Body>
                     <Card.Title> Correo : {user.email}</Card.Title>
@@ -73,7 +86,6 @@ const OrdenesUsuario = () => {
             <Jumbotron fluid>
               <Container>
                 <h1>Order Id</h1>
-
                 <div className="row">
                   <div className="col-sm-12 col-md-4 ">
                     <p>

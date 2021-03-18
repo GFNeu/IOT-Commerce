@@ -4,8 +4,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import swal from "sweetalert";
 import { useHistory } from "react-router-dom";
-import Form from "react-bootstrap/Form";
-import Col from "react-bootstrap/Col";
+ 
 
 const EditarUsuario = ({ id }) => {
   const dispatch = useDispatch();
