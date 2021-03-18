@@ -21,9 +21,7 @@ router.post("/", (req, res, next) => {
           name: usuario.name,
           lastName: usuario.lastName
           
-             },
-        "IOTKEY",
-        (err, token) => {
+        },"IOTKEY",(err, token) => {
           res.json({token:token, usuario:usuario});
         }
       );
