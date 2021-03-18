@@ -64,7 +64,7 @@ const productsController = {
       .catch((err) => next(err));
   },
   editOne(req, res, next) {
-    User.findByPk(req.params.id)
+    Products.findByPk(req.params.id)
       .then((product) => product.update(req.body))
       .then((product) => res.send(product))
       .catch((err) => next(err));

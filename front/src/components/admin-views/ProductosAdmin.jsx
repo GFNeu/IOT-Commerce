@@ -2,16 +2,13 @@ import React, { useState } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import InputGroup from "react-bootstrap/InputGroup";
- import Button from "react-bootstrap/Button";
+import Button from "react-bootstrap/Button";
 import FormControl from "react-bootstrap/FormControl";
 import Card from "react-bootstrap/Card";
 import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
 import { busquedaProducto } from "../../state/product";
- 
-
- 
-
+import { Link } from "react-router-dom";
 
 const ProductosAdmin = () => {
   const product = useSelector((state) => state.product);
@@ -52,10 +49,13 @@ const ProductosAdmin = () => {
                 Productos
               </Nav.Link>
 
-              <Nav.Link href="/adminPanel/categorias" className=" mx-5 text-light">
-              Categorias
-            </Nav.Link>
-            
+              <Nav.Link
+                href="/adminPanel/categorias"
+                className=" mx-5 text-light"
+              >
+                Categorias
+              </Nav.Link>
+
               <Nav.Link href="/adminPanel/ordenes" className="mx-5 text-light">
                 Órdenes
               </Nav.Link>
@@ -87,23 +87,61 @@ const ProductosAdmin = () => {
               {product.map((prod) => (
                 <div className="mb-5 p-4">
                   <Card key={prod.id}>
-                    <Card.Header as="h5">
+                    <Card.Header as="h5" >
                       {" "}
-                      Nombre producto: {prod.name}
+                      <div className="d-flex justify-content-between">
+                        <div>
+                          <div className="font-weight-bold p-3">
+                            Nombre producto:
+                          </div>
+                          <div>{prod.name}</div>
+                        </div>
+
+                        <div className="   p-4">
+                          <Link
+                            to={`/adminPanel/productos/editarProducto/${prod.id}`}
+                          >
+                            <button className="btn btn-lg p-2 btn-warning">
+                              Editar
+                            </button>
+                          </Link>
+                        </div>
+                      </div>
                     </Card.Header>
                     <Card.Body>
-                      <Card.Title>
+                      <Card.Title className="px-3">
                         {" "}
-                       Precio $ {prod.price} 
+                        <div className="font-weight-bold p-3">
+                          Precio :
+                        </div>$ {prod.price}
                       </Card.Title>
-                      <Card.Text>Marca : {prod.mark} </Card.Text>
+                      <Card.Text className="px-3">
+                        <div className="font-weight-bold p-3">Marca :</div>{" "}
+                        {prod.mark}
+                      </Card.Text>
 
-                      <Card.Text>Imagen path : {prod.photo} </Card.Text>
-                      <Card.Text>Imagen vista :  <img className="mx-5" src={prod.photo} width="150px"></img> </Card.Text>
-
-                      <Card.Text>{prod.description} </Card.Text>
+                      <Card.Text className="px-3">
+                        <div className="font-weight-bold p-3">
+                          Imagen path :{" "}
+                        </div>{" "}
+                        {prod.photo}{" "}
+                      </Card.Text>
+                      <Card.Text className="px-1">
+                        <div className="font-weight-bold p-3">
+                          Imagen foto :
+                        </div>
                       
-                       
+                        <img
+                          className="mx-5 border border-dark "
+                          src={prod.photo}
+                          width="150px"
+                        ></img>{" "}
+                      </Card.Text>
+
+                      <Card.Text className="px-1">
+                        <div className="font-weight-bold p-3">Descripción</div>
+                        {prod.description}{" "}
+                      </Card.Text>
                     </Card.Body>
                   </Card>
                 </div>

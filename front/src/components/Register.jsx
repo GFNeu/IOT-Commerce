@@ -19,6 +19,7 @@ const Register = () => {
     if (
       emailValidate == "mostrar" &&
       nameValidate == "mostrar" &&
+      passwordValidate == "mostrar" &&
       lastNameValidate == "mostrar"
     ) {
       dispatch(register(newUser)).then((data) => {

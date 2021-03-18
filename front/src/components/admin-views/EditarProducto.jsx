@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-import { editUser } from "../../state/allusers";
+// import { editUser } from "../../state/allusers";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import swal from "sweetalert";
 import { useHistory } from "react-router-dom";
-import Form from "react-bootstrap/Form";
-import Col from "react-bootstrap/Col";
 
 const EditarProducto = ({ id }) => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   // id name  price mark  photo photo  description
 
@@ -20,14 +18,13 @@ const EditarProducto = ({ id }) => {
   const [model, setModel] = useState("");
   const [stock, setStock] = useState("");
 
- 
-
   const handleChangeName = (e) => {
     setName(e.target.value);
   };
 
   const handleChangeDescription = (e) => {
     setDescription(e.target.value);
+  };
 
   const handleChangePhoto = (e) => {
     setPhoto(e.target.value);
@@ -45,43 +42,36 @@ const EditarProducto = ({ id }) => {
     setModel(e.target.value);
   };
 
-
   const handleChangeStock = (e) => {
     setStock(e.target.value);
   };
- 
-   
 
-  const objeto = { name , description, photo, price, mark, model, stock};
+  const objeto = { name, description, photo, price, mark, model, stock };
   const history = useHistory();
 
   const submitHandler = (e) => {
     e.preventDefault();
     if (
-      emailValidate == "mostrar" &&
       nameValidate == "mostrar" &&
-      lastNameValidate == "mostrar"
+      descriptionValidate == "mostrar" &&
+      photoValidate == "mostrar" &&
+      priceValidate == "mostrar" &&
+      markValidate == "mostrar" &&
+      modelValidate == "mostrar" &&
+      stockValidate == "mostrar"
     ) {
-      return axios
-        .put(`/api/users/${id}`, objeto)
-        .then((respuesta) => respuesta.data)
-        .then((data) => {
-          dispatch(editUser(data));
-          swal("Usuario editado!");
-          history.push("/adminPanel/usuarios");
-        });
+      // return axios
+      //   .put(`/api/products/${id}`, objeto)
+      //   .then((respuesta) => respuesta.data)
+      //   .then((data) => {
+      //     dispatch(editProduct(data));
+      //     swal("Usuario editado!");
+      //     history.push("/adminPanel/productos");
+      //   });
     }
   };
 
   // dispatch(user(objeto)).then((data) => data);
-
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [photo, setPhoto] = useState("");
-  const [price, setPrice] = useState("");
-  const [mark, setMark] = useState("");
-  const [model, setModel] = useState("");
-  const [stock, setStock] = useState("");
 
   const [nameValidate, setNameValidate] = useState("inicial");
   const [descriptionValidate, setDescriptionValidate] = useState("inicial");
@@ -89,12 +79,12 @@ const EditarProducto = ({ id }) => {
 
   const [priceValidate, setPriceValidate] = useState("inicial");
   const [markValidate, setMarkValidate] = useState("inicial");
-  const [modelValidate, setValidate] = useState("inicial");
-  const [idValidate, setIdValidate] = useState("inicial");
+  const [modelValidate, setModelValidate] = useState("inicial");
 
-   
-  const requeridoId = (e) => {
-    let expresion = /[0-9]/;
+  const [stockValidate, setStockValidate] = useState("inicial");
+
+  const requeridoName = (e) => {
+    let expresion = /([A-Za-z0-9-]+)/;
 
     if (objeto.name != "" && expresion.test(objeto.name)) {
       setNameValidate("mostrar");
@@ -103,17 +93,70 @@ const EditarProducto = ({ id }) => {
       setNameValidate("nomostrar");
     }
   };
-  const requeridoName = (e) => {
-    let expresion = /[A-Za-z]/;
 
-    if (objeto.lastName != "" && expresion.test(objeto.lastName)) {
-      setLastNameValidate("mostrar");
+  const requeridoDescription = (e) => {
+    let expresion = /([A-Za-z0-9-]+)/;
+
+    if (objeto.description != "" && expresion.test(objeto.description)) {
+      setDescriptionValidate("mostrar");
     } else {
       // el input esta vacio
-      setLastNameValidate("nomostrar");
+      setDescriptionValidate("nomostrar");
     }
   };
 
+  const requeridoPhoto = (e) => {
+    if (objeto.photo != "") {
+      setPhotoValidate("mostrar");
+    } else {
+      // el input esta vacio
+      setPhotoValidate("nomostrar");
+    }
+  };
+
+  const requeridoPrice = (e) => {
+    let expresion = /[0-9]/;
+
+    if (objeto.price != "" && expresion.test(objeto.price)) {
+      setPriceValidate("mostrar");
+    } else {
+      // el input esta vacio
+      setPriceValidate("nomostrar");
+    }
+  };
+
+  const requeridoMark = (e) => {
+    let expresion = /([A-Za-z0-9-]+)/;
+
+    if (objeto.mark != "" && expresion.test(objeto.mark)) {
+      setMarkValidate("mostrar");
+    } else {
+      // el input esta vacio
+      setMarkValidate("nomostrar");
+    }
+  };
+
+  const requeridoModel = (e) => {
+    let expresion = /([A-Za-z0-9-]+)/;
+
+    if (objeto.model != "" && expresion.test(objeto.model)) {
+      setModelValidate("mostrar");
+    } else {
+      // el input esta vacio
+      setModelValidate("nomostrar");
+    }
+  };
+
+  const requeridoStock = (e) => {
+    let expresion = /[0-9]/;
+
+    if (objeto.stock != "" && expresion.test(objeto.stock)) {
+      setStockValidate("mostrar");
+    } else {
+      // el input esta vacio
+      setStockValidate("nomostrar");
+    }
+  };
   return (
     <>
       <div className="row no-gutters wrapper">
@@ -123,13 +166,11 @@ const EditarProducto = ({ id }) => {
             onSubmit={submitHandler}
             encType="multipart/form-data"
           >
-            <h1 className="mb-3">Editar usuario</h1>
+            <h1 className="mb-3">Editar Producto</h1>
 
             <div className="form-group">
-              <label htmlFor="name_field"> Nombre </label>
+              <label> Nombre </label>
               <input
-                type="name"
-                id="name_field"
                 className={` form-control ${
                   nameValidate == "inicial"
                     ? ""
@@ -138,53 +179,124 @@ const EditarProducto = ({ id }) => {
                     : "is-invalid"
                 }             
                     `}
-                name="name"
-                onChange={handleChangeNombre}
+                onChange={handleChangeName}
                 onBlur={requeridoName}
               />
               <div className="valid-feedback">Todo bien continúe</div>
               <div className="invalid-feedback">Entre un nombre válido </div>
             </div>
+
+            <div class="form-group"></div>
+
             <div className="form-group">
-              <label htmlFor="lastname_field"> Apellido </label>
-              <input
-                type="lastname"
-                id="lastname_field"
+              <label>Descripción</label>
+              <textarea
                 className={` form-control ${
-                  lastNameValidate == "inicial"
+                  descriptionValidate == "inicial"
                     ? ""
-                    : lastNameValidate == "mostrar"
+                    : descriptionValidate == "mostrar"
                     ? "is-valid "
                     : "is-invalid"
                 }             
                     `}
-                name="lastName"
-                onChange={handleChangeApellido}
-                onBlur={requeridoLastName}
-              />
+                onChange={handleChangeDescription}
+                onBlur={requeridoDescription}
+              ></textarea>
+
               <div className="valid-feedback">Todo bien, continúe</div>
-              <div className="invalid-feedback">Entre un apellido válido </div>
+              <div className="invalid-feedback">
+                Entre un descripción válida
+              </div>
             </div>
 
             <div className="form-group">
-              <label htmlFor="email_field">Email</label>
+              <label>Fotografía</label>
               <input
-                type="email"
-                id="email_field"
                 className={` form-control ${
-                  emailValidate == "inicial"
+                  photoValidate == "inicial"
                     ? ""
-                    : emailValidate == "mostrar"
+                    : photoValidate == "mostrar"
                     ? "is-valid "
                     : "is-invalid"
                 }             
                     `}
-                name="email"
-                onChange={handleChangeCorreo}
-                onBlur={requeridoEmail}
+                onChange={handleChangePhoto}
+                onBlur={requeridoPhoto}
               />
               <div className="valid-feedback">Todo bien, continúe</div>
-              <div className="invalid-feedback">Ingrese un email válido</div>
+              <div className="invalid-feedback">Ingrese una foto válida</div>
+            </div>
+
+            <div className="form-group">
+              <label>Precio</label>
+              <input
+                className={` form-control ${
+                  priceValidate == "inicial"
+                    ? ""
+                    : priceValidate == "mostrar"
+                    ? "is-valid "
+                    : "is-invalid"
+                }             
+                    `}
+                onChange={handleChangePrice}
+                onBlur={requeridoPrice}
+              />
+              <div className="valid-feedback">Todo bien, continúe</div>
+              <div className="invalid-feedback">Ingrese un precio</div>
+            </div>
+
+            <div className="form-group">
+              <label> Marca </label>
+              <input
+                className={` form-control ${
+                  markValidate == "inicial"
+                    ? ""
+                    : markValidate == "mostrar"
+                    ? "is-valid "
+                    : "is-invalid"
+                }             
+                    `}
+                onChange={handleChangeMark}
+                onBlur={requeridoMark}
+              />
+              <div className="valid-feedback">Todo bien continúe</div>
+              <div className="invalid-feedback">Entre una marca válido </div>
+            </div>
+
+            <div className="form-group">
+              <label> Modelo</label>
+              <input
+                className={` form-control ${
+                  modelValidate == "inicial"
+                    ? ""
+                    : modelValidate == "mostrar"
+                    ? "is-valid "
+                    : "is-invalid"
+                }             
+                    `}
+                onChange={handleChangeModel}
+                onBlur={requeridoModel}
+              />
+              <div className="valid-feedback">Todo bien continúe</div>
+              <div className="invalid-feedback">Entre un modelo válido </div>
+            </div>
+
+            <div className="form-group">
+              <label> Stock</label>
+              <input
+                className={` form-control ${
+                  stockValidate == "inicial"
+                    ? ""
+                    : stockValidate == "mostrar"
+                    ? "is-valid "
+                    : "is-invalid"
+                }             
+                    `}
+                onChange={handleChangeStock}
+                onBlur={requeridoStock}
+              />
+              <div className="valid-feedback">Todo bien continúe</div>
+              <div className="invalid-feedback">Entre un modelo válido </div>
             </div>
 
             <button
@@ -202,18 +314,3 @@ const EditarProducto = ({ id }) => {
 };
 
 export default EditarProducto;
-
-// <Form>
-//   <Form.Check
-//     type="switch"
-//     id="custom-switch"
-//     label="Check this switch"
-//   />
-//   <Form.Check
-//     disabled
-//     type="switch"
-//     label="disabled switch"
-//     id="disabled-custom-switch"
-//   />
-// </Form>
- 
