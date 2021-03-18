@@ -12,13 +12,15 @@ router.post("/", (req, res, next) => {
   }).then((usuario) => {
     if (usuario) {
       res.status(400).send("These user already exist");
-    }
-
-    User.create(body)
+    }else{
+      User.create(body)
       .then((user) => {
         res.status(200).send(user);
       })
       .catch((err) => console.log(err));
+    }
+
+    
   });
 });
 

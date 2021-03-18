@@ -1,6 +1,7 @@
-const {Order, User, Products} = require("../models/Index");
+const {Order, User, Products, OrderStatus} = require("../models/Index");
 const {OrderProducts} = require('../models/OrderProducts')
 const { Op } = require("sequelize");
+
 
 const ordersController = {
       
@@ -96,23 +97,27 @@ const ordersController = {
     },
 
     getPendingOrder(req,res,next){
-        console.log("QUERY",req.query)
-        console.log("PARAMS",req.params)
+        console.log("USER",req.user)
+        console.log("PARAMS",typeof req.params.id)
+        if(req.user.id != req.params.id ){
+            return res.sendStatus(403)
+        }else{
             Order.findAll({
-                        where: {
-                            [Op.and]: [
-                                {orderStatusId: 4},
-                                {userId: req.params.id}
-                            ] 
-                        },
-                        include: [
-                            {
-                              model: Products,
-                              through: OrderProducts,
-                            },
-                          ],
-                    })
-             .then(orders => res.send(orders))
+                where: {
+                    [Op.and]: [
+                        {orderStatusId: 4},
+                        {userId: req.params.id}
+                    ] 
+                },
+                include: [
+                    {
+                      model: Products,
+                      through: OrderProducts,
+                    },
+                  ],
+            }).then(orders => res.send(orders)) 
+        }
+                
     },
 
     checkout(req,res,next){
@@ -148,11 +153,12 @@ const ordersController = {
     },
 
     getPastOrders(req,res,next){
+       
         Order.findAll({
             where: {
                 [Op.and]: [
                     {orderStatusId: 2},
-                    {userId: req.params.id}
+                    {userId:req.params.id}
                 ]
             },
             include: [
@@ -163,7 +169,19 @@ const ordersController = {
               ]
         })
         .then(orders=>res.send(orders))
-    }
+    },
+
+    getAllOrders(req, res, next) {
+        Order.findAll(
+            {
+                include: [{ model: OrderStatus } , { model: User }],
+            }
+        )
+          .then((order) => {
+            console.log("order en el .then ", order)  
+            res.send(order)})
+          .catch((err) => next(err)); // Se usaba asi el error MW?
+      },
 
 }
 

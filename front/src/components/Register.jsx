@@ -18,8 +18,8 @@ const Register = () => {
     e.preventDefault();
     if (
       emailValidate == "mostrar" &&
-      passwordValidate == "mostrar" &&
       nameValidate == "mostrar" &&
+      passwordValidate == "mostrar" &&
       lastNameValidate == "mostrar"
     ) {
       dispatch(register(newUser)).then((data) => {

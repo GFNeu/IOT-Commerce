@@ -8,8 +8,15 @@ export const setCarrito = createAsyncThunk("SET_CARRITO",(data, thunkAPI)=>{
   const localS = localStorage.getItem('carrito')
   
   if(user.id){
-    return axios.get(`/api/users/orders/${user.id}/pending`)
-         .then(res => res.data)
+    const token = localStorage.getItem("token");
+    
+
+    return axios({ method: "GET",
+      url: `/api/users/orders/${user.id}/pending`,
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      
+      .then(res => res.data)
          .then(order=>{
           console.log(order)   
            //Si no hay una orden en el back
@@ -73,6 +80,8 @@ export const setCarrito = createAsyncThunk("SET_CARRITO",(data, thunkAPI)=>{
   }
 })
 
+
+
 export const addProduct= createAsyncThunk("ADD_PRODUCT", (data, thunkAPI)=>{
   /*En algun lugar de la data tiene que venir el id para encontrar la ruta*/ 
     console.log("addProduct DISPATCH")
@@ -83,9 +92,21 @@ export const addProduct= createAsyncThunk("ADD_PRODUCT", (data, thunkAPI)=>{
   if(user.id){
         
     if(!localS){
+      const token = localStorage.getItem("token");
+      //axios.defaults.headers.authorization = `${token}`;
+
+  //axios.defaults.headers.common = {'Authorization': `Bearer ${token}`}
+
+    //   return axios({ method: "POST",
+    //   url: `/api/users/orders/${user.id}`,
+    //   headers: { Authorization: `Bearer ${token}` },
+    //   body:{userID: user.id, carrito: [{id: Number(id), cantidad, precio: price}]},
+    // }).then(() => {return {id: Number(id), name, price, photo, cantidad}})
       //si NO hay ítems en el carrito hacemos axios.post
       return axios.post(`/api/users/orders/${user.id}`,{userID: user.id, carrito: [{id: Number(id), cantidad, precio: price}]})
-                  .then(() => {return {id: Number(id), name, price, photo, cantidad}})
+                   .then(() => {return {id: Number(id), name, price, photo, cantidad}})
+
+
     }else {
       //si SÍ hay ítems en el carrito hacemos axios.put
       //Normalización del local storage: 

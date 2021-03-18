@@ -47,6 +47,14 @@ const UsuariosAdmin = () => {
               >
                 Productos
               </Nav.Link>
+
+              <Nav.Link
+                href="/adminPanel/categorias"
+                className=" mx-5 text-light"
+              >
+                Categorias
+              </Nav.Link>
+
               <Nav.Link href="/adminPanel/ordenes" className="mx-5 text-light ">
                 Órdenes
               </Nav.Link>
@@ -86,8 +94,9 @@ const UsuariosAdmin = () => {
                     <Card.Text>
                       Para visualizar todas las órdenes ingresa al usuario
                     </Card.Text>
-                    <Link to={`/adminPanel/usuarios/SingleUsuario`}>
-                      <Button variant="warning">Ver usuario</Button>
+                    <Link to={`/adminPanel/usuarios/SingleUsuario/${user.id}`}>
+                      {/* onClick={()=>conseguirUsuario(user.id)}  */}
+                      <Button variant="warning">Ver usuario</Button>{" "}
                     </Link>
                   </Card.Body>
                 </Card>
