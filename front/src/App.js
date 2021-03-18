@@ -24,6 +24,7 @@ import ProductosAdmin from "./components/admin-views/ProductosAdmin.jsx";
 import UsuariosAdmin from "./components/admin-views/UsuariosAdmin.jsx";
 import OrdenesAdmin from "./components/admin-views/OrdenesAdmin.jsx";
 import SingleUsuario from "./components/admin-views/SingleUsuario.jsx";
+import PastOrders from "./components/PastOrders/PastOrders.jsx"
 import "./App.css";
 import { getUsers } from "./state/allusers";
 import EditarUsuario from "./components/admin-views/EditarUsuario";
@@ -68,8 +69,15 @@ function App() {
 
           <Route path="/products/:id" render={({ match }) => <ProductDetail id={match.params.id} />} />
 
-          <Route path="/cart"><Cart /> </Route>
-          <Route path="/order"><OrderDetail /></Route>
+          <Route path="/cart">
+            <Cart />
+          </Route>
+          <Route path="/order">
+            <OrderDetail />
+          </Route>
+          <Route path="/pastOrders">
+            <PastOrders />
+          </Route>
 
           <Route path="/courses/:id"><NoDisponible/></Route>
           {/* <Route path ="/products/detail" component={ProductDetail}/> */}

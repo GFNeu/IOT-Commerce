@@ -5,3 +5,11 @@
     font-weight: bold;
     color: rgb(88, 88, 88);
   }
+
+  .arrow-prev{
+    font-size: 3em;
+  }
+
+  .arrow-next{
+    font-size: 3em;
+  }

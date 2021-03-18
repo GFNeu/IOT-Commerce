@@ -1,7 +1,25 @@
 const S = require("sequelize");
 const db = require("../db/index");
+const Reviews = require("./Reviews")
 
-class Products extends S.Model {}
+class Products extends S.Model {
+
+  static getAllWithReview (){
+    return Products.findAll({include: {
+      model: Reviews,
+      attributes: ['puntaje']
+    }})
+    .then(products =>{
+        return products.map(p => {
+          const rating = p.reviews.reduce((acc, item)=> { return acc += item.puntaje}, 0)/p.reviews.length
+          const {id, photo, name, description, price, mark, model, stock, createdAt, updatedAt} = p
+          return {id, photo, name, description, price, mark, model, stock, createdAt, updatedAt, rating}
+        }) 
+        
+    })
+  }
+
+}
 
 Products.init(
   {
