@@ -45,9 +45,7 @@ const AppBar = ( ) => {
      
       dispatch(getProductsByKeyword(keyword))
       //.then(()=>window.location = `/products/search?name=${keyword}`)      
-       .then(()=>{
-        history.push ( `/products/search?name=${keyword}`)})      
-     
+       .then(()=>history.push ( `/products/search?name=${keyword}`))      
     }
     else {
       history.push('/')}

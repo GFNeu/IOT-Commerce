@@ -5,11 +5,11 @@ import Home from './views/Home.jsx'
 import {useDispatch, useSelector} from "react-redux"
 import Login from './components/Login';
 import Register from './components/Register';
-import Products from './components/Products';
+
 import ProductDetail from './components/ProductDetail';
 import Footer from './components/Footer.jsx'
 import Cart from './components/Cart.jsx'
-import './App.css';
+
 import Category from "./components/Category"
 import { setUser } from "./state/user";
 import { setCarrito } from './state/carrito'
@@ -18,6 +18,7 @@ import Reviews from "./components/Reviews.jsx";
 import OrderDetail from "./components/OrderDetail.jsx";
 import Search from "./components/Search.jsx";
 import NoDisponible from "./components/NoDisponible.jsx";
+
 import AdminPanel from "./components/admin-views/AdminPanel";
 import ProductosAdmin from "./components/admin-views/ProductosAdmin.jsx";
 import UsuariosAdmin from "./components/admin-views/UsuariosAdmin.jsx";
@@ -47,47 +48,28 @@ function App() {
     dispatch(setCarrito())
         
   dispatch(getUsers())
-}, []);
+
+  }, []);
 
   return (
     <div className="App bg-light">
       <AppBar />
       <div className="main">
         <Switch>
-          <Route path exact="/">
-            <Home />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/register">
-            <Register />
-          </Route>
+          <Route path exact="/"><Home /></Route>
+          <Route path="/login"><Login /></Route>
+          <Route path="/register"><Register /></Route>
 
-          <Route path="/products/search">
-            <Search />
-          </Route>
+          <Route path="/products/search"><Search /></Route>
 
-          <Route
-            path="/products/:id/reviews"
-            render={({ match }) => <Reviews id={match.params.id} />}
-          />
+          <Route path="/products/:id/reviews" render={({ match }) => <Reviews id={match.params.id} />}/>
 
-          <Route
-            path="/products/:id"
-            render={({ match }) => <ProductDetail id={match.params.id} />}
-          />
+          <Route path="/products/:id" render={({ match }) => <ProductDetail id={match.params.id} />} />
 
-          <Route path="/cart">
-            <Cart />
-          </Route>
-          <Route path="/order">
-            <OrderDetail />
-          </Route>
+          <Route path="/cart"><Cart /> </Route>
+          <Route path="/order"><OrderDetail /></Route>
 
-          <Route path="/courses/:id">
-            <NoDisponible />
-          </Route>
+          <Route path="/courses/:id"><NoDisponible/></Route>
           {/* <Route path ="/products/detail" component={ProductDetail}/> */}
 
           <Route exact path="/adminPanel">
@@ -128,13 +110,12 @@ function App() {
             render={({ match }) => <EditarProducto id={match.params.id} />}
           />
 
-          <Route path="/order">
-            <OrderDetail />
-          </Route>
-          <Route
-            path="/categories/:id"
-            render={({ match }) => <Category id={match.params.id} />}
+          <Route exact path="/adminPanel/usuarios/SingleUsuario/edit/:id"
+            render={({ match }) => <EditarUsuario id={match.params.id} />}
           />
+          <Route exact path="/adminPanel/productos/edit/:id" render={({ match }) => <EditarProducto id={match.params.id} />}/>
+          <Route path="/order"><OrderDetail /></Route>
+          <Route path="/categories/:id" render={({ match }) => <Category id={match.params.id} />} />
         </Switch>
       </div>
       <Footer />

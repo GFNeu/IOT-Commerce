@@ -81,12 +81,7 @@ return (
                 <hr />
               </div>
             ))}
-          <button
-            className="btn btn-danger"
-            onClick={() => dispatch(emptyCarrito())}
-          >
-            Vaciar carrito
-          </button>
+          
         </div>
 
         <div className="col-12 col-lg-3 ">
@@ -113,6 +108,8 @@ return (
             <button id="buy_btn" className="btn btn-primary btn-block" onClick={handleCheckout}>
               Checkout
             </button>
+            <hr/>
+            <button className="btn btn-danger btn-block" onClick={() => dispatch(emptyCarrito())}>Vaciar carrito</button>
           </div>
         </div>
       </div>
