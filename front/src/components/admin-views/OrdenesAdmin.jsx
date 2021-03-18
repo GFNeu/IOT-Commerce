@@ -52,6 +52,10 @@ dispatch(getOrders())
                 Productos
               </Nav.Link>
 
+              <Nav.Link href="/adminPanel/categorias" className=" mx-5 text-light">
+              Categorias
+            </Nav.Link>
+
               <Nav.Link href="/adminPanel/ordenes" className="mx-5 text-light ">
                 Órdenes
               </Nav.Link>
@@ -92,27 +96,61 @@ dispatch(getOrders())
                     <th>#Orden</th>
                     <th>First, Lastname</th>
                     <th>Username</th>
-                    <th>Order Status</th>
-                    <th>Paid status</th>
-                    <th>Paid date</th>
-                    <th>Delivered date</th>
+                    <th>Order Status</th>                   
                   </tr>
                 </thead>
       
                 {orders.length>0 &&  orders.map((order) => (
                   
                   <tbody>
-                  {order.id<10? <tr>
-                    <Link to = "/"> <td style = {{backgroundColor:"red"}}>{order.id}</td> </Link>
+                  {order.orderStatus.statusType =="Pago confirmado"? // comienza ternario
+                  
+                   <tr>
+                     <td >{order.id}</td>
                       
                       <td>{order.user.fullName}</td>
                       <Link > <td>{order.user.email}</td> </Link>
+                      <td style = {{backgroundColor:"green"}}>{order.orderStatus.statusType}</td>                   
+                    </tr>: 
 
-                   
-                    </tr>: <tr>
-                    <Link > <td style = {{backgroundColor:"green"}}>{order.id}</td> </Link>
+                    order.orderStatus.statusType =="Cancelado"? // comienza segundo ternario
+                  
+                   <tr>
+                     <td >{order.id}</td>
                       
-                      <td>{order.OrderStatus.statusType}</td>
+                      <td>{order.user.fullName}</td>
+                      <Link > <td>{order.user.email}</td> </Link>
+                      <td style = {{backgroundColor:"orange"}}>{order.orderStatus.statusType}</td>                   
+                    </tr>
+                    :
+                    order.orderStatus.statusType =="Iniciado"? // comienza tercer ternario
+                  
+                  <tr>
+                    <td >{order.id}</td>
+                     
+                     <td>{order.user.fullName}</td>
+                     <Link > <td>{order.user.email}</td> </Link>
+                     <td style = {{backgroundColor:"blue"}}>{order.orderStatus.statusType}</td>                   
+                   </tr>
+                   :
+
+                   order.orderStatus.statusType =="Pendiente"? // comienza tercer ternario
+                  
+                  <tr>
+                    <td >{order.id}</td>
+                     
+                     <td>{order.user.fullName}</td>
+                     <Link > <td>{order.user.email}</td> </Link>
+                     <td style = {{backgroundColor:"rgb(201, 76, 76)"}}>{order.orderStatus.statusType}</td>                   
+                   </tr>
+                   :
+
+                    <tr>
+                     <td >{order.id}</td>
+                      
+                      <td>{order.user.fullName}</td>
+                      <td>{order.user.email}</td> 
+                      <td style = {{backgroundColor:"red"}}>{order.orderStatus.statusType}</td>
                       {/* <Link > <td>{user.email}</td> </Link> */}
                     </tr>}
                    

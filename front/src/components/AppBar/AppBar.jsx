@@ -45,10 +45,12 @@ const AppBar = ( ) => {
      
       dispatch(getProductsByKeyword(keyword))
       //.then(()=>window.location = `/products/search?name=${keyword}`)      
-       .then(()=>history.push ( `/products/search?name=${keyword}`))      
+       .then(()=>{
+        history.push ( `/products/search?name=${keyword}`)})      
      
     }
-    else history.push('/')
+    else {
+      history.push('/')}
   };
 
   
@@ -75,7 +77,7 @@ const AppBar = ( ) => {
                 {category.statusDescription}</Link>
               </NavDropdown.Item>
               }): "Cargando categorias"}
-              <NavDropdown.Item><Link to="/categories/6"> Todos los productos</Link> </NavDropdown.Item>
+              <NavDropdown.Item><Link to="/categories/654"> Todos los productos</Link> </NavDropdown.Item>
               
             </NavDropdown>
             <Form onSubmit={searchHandler} className='w-100'>
@@ -89,6 +91,7 @@ const AppBar = ( ) => {
             </Form>
           
           </Nav>
+          {user.isAdmin? <Link to="/adminPanel"><Button className="mr-1">Admin panel</Button></Link> : null}
           <Link to="/cart" >
             {carrito.length > 0 && <Badge pill variant="warning">{carrito.length}</Badge>}
             <FiShoppingCart className="text-white" id={s.carrito_icon}/>

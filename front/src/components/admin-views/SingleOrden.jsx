@@ -8,7 +8,7 @@ import Jumbotron from "react-bootstrap/Jumbotron";
 import Container from "react-bootstrap/Container";
 import { useSelector } from "react-redux";
 
-const OrdenesUsuario = () => {
+const SingleOrden = () => {
   const users = useSelector((state) => state.allUser);
   return (
     <div>
@@ -117,4 +117,4 @@ const OrdenesUsuario = () => {
   );
 };
 
-export default OrdenesUsuario;
+export default SingleOrden;

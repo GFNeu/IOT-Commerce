@@ -1,7 +1,7 @@
-const {Order, User, Products} = require("../models/Index");
+const {Order, User, Products, OrderStatus} = require("../models/Index");
 const {OrderProducts} = require('../models/OrderProducts')
 const { Op } = require("sequelize");
-const {OrderStatus}= require ("../models/OrderStatus")
+
 
 const ordersController = {
       
@@ -169,7 +169,7 @@ const ordersController = {
     getAllOrders(req, res, next) {
         Order.findAll(
             {
-                include: [{ model: User } , {model : OrderStatus}],
+                include: [{ model: OrderStatus } , { model: User }],
             }
         )
           .then((order) => {
