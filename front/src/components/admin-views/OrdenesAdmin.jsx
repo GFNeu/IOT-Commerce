@@ -8,10 +8,16 @@ import Table from "react-bootstrap/Table";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Pagination from "react-bootstrap/Pagination";
+import {getOrders} from "../../state/allorders"
+import { useDispatch } from "react-redux";
 
 
 const OrdenesAdmin = () => {
-  const users = useSelector((state) => state.allUser);
+  const dispatch = useDispatch();
+  React.useEffect(()=>{
+dispatch(getOrders())
+  },[])
+  const orders = useSelector((state) => state.allOrders);
   /* console.log("usuarios todos ", users) */
 
   let active = 1;
@@ -23,6 +29,8 @@ const OrdenesAdmin = () => {
       </Pagination.Item>,
     );
   }
+
+  console.log("Orders ",orders)
 
   return (
     <div>           
@@ -91,21 +99,21 @@ const OrdenesAdmin = () => {
                   </tr>
                 </thead>
       
-                {users.length>0 &&  users.map((user) => (
+                {orders.length>0 &&  orders.map((order) => (
                   
                   <tbody>
-                  {user.id<10? <tr>
-                    <Link to = "/"> <td style = {{backgroundColor:"red"}}>{user.id}</td> </Link>
+                  {order.id<10? <tr>
+                    <Link to = "/"> <td style = {{backgroundColor:"red"}}>{order.id}</td> </Link>
                       
-                      <td>{user.fullName}</td>
-                      <Link > <td>{user.email}</td> </Link>
+                      <td>{order.user.fullName}</td>
+                      <Link > <td>{order.user.email}</td> </Link>
 
                    
                     </tr>: <tr>
-                    <Link > <td style = {{backgroundColor:"green"}}>{user.id}</td> </Link>
+                    <Link > <td style = {{backgroundColor:"green"}}>{order.id}</td> </Link>
                       
-                      <td>{user.fullName}</td>
-                      <Link > <td>{user.email}</td> </Link>                   
+                      <td>{order.OrderStatus.statusType}</td>
+                      {/* <Link > <td>{user.email}</td> </Link> */}
                     </tr>}
                    
                     
