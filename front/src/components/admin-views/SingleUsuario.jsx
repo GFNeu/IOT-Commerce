@@ -29,6 +29,11 @@ const OrdenesUsuario = () => {
               >
                 Productos
               </Nav.Link>
+
+              <Nav.Link href="/adminPanel/categorias" className=" mx-5 text-light">
+              Categorias
+            </Nav.Link>
+            
               <Nav.Link href="/adminPanel/ordenes" className="mx-5 text-light ">
                 Órdenes
               </Nav.Link>

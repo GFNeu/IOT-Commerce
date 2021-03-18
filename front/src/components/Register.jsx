@@ -18,7 +18,6 @@ const Register = () => {
     e.preventDefault();
     if (
       emailValidate == "mostrar" &&
-      passwordValidate == "mostrar" &&
       nameValidate == "mostrar" &&
       lastNameValidate == "mostrar"
     ) {

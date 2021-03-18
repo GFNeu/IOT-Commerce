@@ -27,7 +27,9 @@ import SingleUsuario from "./components/admin-views/SingleUsuario.jsx";
 import "./App.css";
 import { getUsers } from "./state/allusers";
 import EditarUsuario from "./components/admin-views/EditarUsuario";
-
+import CategoriasAdmin from "./components/admin-views/CategoriasAdmin"
+import EditarCategoria from "./components/admin-views/EditarCategoria"
+import CrearCategoria from "./components/admin-views/CrearCategoria"
 function App() {
   const dispatch = useDispatch();
   const carrito = useSelector((state) => state.carrito);
@@ -70,11 +72,43 @@ function App() {
           <Route path="/courses/:id"><NoDisponible/></Route>
           {/* <Route path ="/products/detail" component={ProductDetail}/> */}
 
-          <Route exact path="/adminPanel"><AdminPanel /></Route>
-          <Route exact path="/adminPanel/productos"><ProductosAdmin /></Route>
-          <Route exact path="/adminPanel/usuarios"><UsuariosAdmin /></Route>
-          <Route exact path="/adminPanel/ordenes"><OrdenesAdmin /></Route>
-          <Route exact path="/adminPanel/usuarios/SingleUsuario"><SingleUsuario /></Route>
+          <Route exact path="/adminPanel">
+            <AdminPanel />
+          </Route>
+          <Route exact path="/adminPanel/productos">
+            <ProductosAdmin />
+          </Route>
+          <Route exact path="/adminPanel/usuarios">
+            <UsuariosAdmin />
+          </Route>
+          <Route exact path="/adminPanel/ordenes">
+            <OrdenesAdmin />
+          </Route>
+          <Route exact path="/adminPanel/categorias">
+            <CategoriasAdmin />
+          </Route>
+          <Route
+            exact
+            path="/adminPanel/categorias/editar/:id"
+            render={({ match }) => <EditarCategoria id={match.params.id} />}
+          />
+          <Route exact path="/adminPanel/categorias/crear">
+            <CrearCategoria />
+          </Route>
+          <Route exact path="/adminPanel/usuarios/SingleUsuario">
+            <SingleUsuario />
+          </Route>
+
+          <Route
+            exact
+            path="/adminPanel/usuarios/SingleUsuario/edit/:id"
+            render={({ match }) => <EditarUsuario id={match.params.id} />}
+          />
+          <Route
+            exact
+            path="/adminPanel/productos/edit/:id"
+            render={({ match }) => <EditarProducto id={match.params.id} />}
+          />
 
           <Route exact path="/adminPanel/usuarios/SingleUsuario/edit/:id"
             render={({ match }) => <EditarUsuario id={match.params.id} />}
