@@ -97,23 +97,27 @@ const ordersController = {
     },
 
     getPendingOrder(req,res,next){
-        console.log("QUERY",req.query)
-        console.log("PARAMS",req.params)
+        console.log("USER",req.user)
+        console.log("PARAMS",typeof req.params.id)
+        if(req.user.id != req.params.id ){
+            return res.sendStatus(403)
+        }else{
             Order.findAll({
-                        where: {
-                            [Op.and]: [
-                                {orderStatusId: 4},
-                                {userId: req.params.id}
-                            ] 
-                        },
-                        include: [
-                            {
-                              model: Products,
-                              through: OrderProducts,
-                            },
-                          ],
-                    })
-             .then(orders => res.send(orders))
+                where: {
+                    [Op.and]: [
+                        {orderStatusId: 4},
+                        {userId: req.params.id}
+                    ] 
+                },
+                include: [
+                    {
+                      model: Products,
+                      through: OrderProducts,
+                    },
+                  ],
+            }).then(orders => res.send(orders)) 
+        }
+                
     },
 
     checkout(req,res,next){
@@ -149,11 +153,12 @@ const ordersController = {
     },
 
     getPastOrders(req,res,next){
+       
         Order.findAll({
             where: {
                 [Op.and]: [
                     {orderStatusId: 2},
-                    {userId: req.body.userID}
+                    {userId:req.params.id}
                 ]
             },
             include: [
