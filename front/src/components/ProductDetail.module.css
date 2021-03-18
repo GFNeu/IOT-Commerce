@@ -1,0 +1,12 @@
+.stockCounter input {
+    border: none;
+    width: 3rem;
+    text-align: center;
+  }
+
+  .foto{
+    width: 100%;
+    height: auto;
+    max-height:450px; 
+    max-width:350px;
+  }

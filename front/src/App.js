@@ -23,6 +23,7 @@ import ProductosAdmin from "./components/admin-views/ProductosAdmin.jsx";
 import UsuariosAdmin from "./components/admin-views/UsuariosAdmin.jsx";
 import OrdenesAdmin from "./components/admin-views/OrdenesAdmin.jsx";
 import SingleUsuario from "./components/admin-views/SingleUsuario.jsx";
+import PastOrders from "./components/PastOrders/PastOrders.jsx"
 import "./App.css";
 import { getUsers } from "./state/allusers";
 import EditarUsuario from "./components/admin-views/EditarUsuario";
@@ -81,6 +82,9 @@ function App() {
           </Route>
           <Route path="/order">
             <OrderDetail />
+          </Route>
+          <Route path="/pastOrders">
+            <PastOrders />
           </Route>
 
           <Route path="/courses/:id">

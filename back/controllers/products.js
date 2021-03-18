@@ -4,7 +4,7 @@ const { Op } = require("sequelize");
 
 const productsController = {
   getAll(req, res, next) {
-    Products.findAll()
+    Products.getAllWithReview()
       .then((products) => res.send(products))
       .catch((err) => next(err)); // Se usaba asi el error MW?
   },

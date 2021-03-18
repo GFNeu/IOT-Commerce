@@ -152,7 +152,7 @@ const ordersController = {
             where: {
                 [Op.and]: [
                     {orderStatusId: 2},
-                    {userId: req.body.userID}
+                    {userId: req.params.id}
                 ]
             },
             include: [

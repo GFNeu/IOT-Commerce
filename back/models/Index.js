@@ -11,6 +11,7 @@ const ProductCategories = require("./ProductCategories");
 // REVIEWS
 User.hasMany(Reviews);
 Reviews.belongsTo(Products);
+Products.hasMany(Reviews)
 Reviews.belongsTo(User)
 
 // ORDERS

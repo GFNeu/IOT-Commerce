@@ -17,8 +17,10 @@ const useStyles = createUseStyles({
     },
     link:{
         flexGrow: 1,
+        height:"100%",
         display: "flex",
         flexFlow: "column",
+        justifyContent: "flex-end",
         textDecoration: "none",
         '&:hover': {
                 textDecoration: "none"
@@ -39,12 +41,13 @@ const useStyles = createUseStyles({
         justifyContent: "center",
         alignItems: "center",
         overflow: "hidden",
-        marginBottom: ".2rem"
+        marginBottom: ".2rem",
+        flexGrow: 1,
     },
     img:{
-        width: "100%",
+        width: "auto",
         maxWidth: "8rem",
-        height: "auto",
+        height: "100%",
         
     },
     price:{
