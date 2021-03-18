@@ -7,7 +7,6 @@ const {
   
   byCategory,
   addOne,
-  changeOne,
   deleteOne,
   getProductsByKeyword,
   findOneProduct,
@@ -27,16 +26,15 @@ DELETE PRODUCT
 
 router.get("/search", getProductsByKeyword);
 router.put("/:id", editOne);
-router.get("/admin/:name", findOneProduct);
+router.get("/admin/:name", getOne);
 router.get("/byCategory/:id", byCategory);
 router.get("/:id/reviews", getReviewsByProduct);
 router.post("/:id/reviews", addReview);
-router.get("/:id", getOne);
+
 router.get("/", getAll);
 
 //ADMIN
 router.post("/", addOne);
-router.put("/:id", changeOne);
 router.delete("/:id", deleteOne);
 
 module.exports = router;

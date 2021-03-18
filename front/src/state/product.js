@@ -19,10 +19,7 @@ export const getProducts = createAsyncThunk("GET_PRODUCTS", (data) => {
   return axios.get("/api/products/", data).then((respuesta) => respuesta.data);
 });
 
-export const getOne = createAsyncThunk("GET_ONE_PRODUCT", (data) => {
-  /*En algun lugar de la data tiene que venir el id para encontrar la ruta*/
-  return axios.get(`/api/products/${data}`).then((respuesta) => respuesta.data);
-});
+export const getOne = createAction("GET_ONE_PRODUCT")
 
 export const getCategoryProducts = createAction("GET_CATEGORY_PRODUCTS");
 
@@ -65,7 +62,7 @@ export const busquedaProducto = createAction("BUSQUEDA_PRODUCTO");
 
 const productReducer = createReducer([], {
   [getProducts.fulfilled]: (state, action) => action.payload,
-  [getOne.fulfilled]: (state, action) => [action.payload],
+  [getOne]: (state, action) => [action.payload],
   [getProductsByKeyword.fulfilled]: (state, action) => action.payload,
   [getCategoryProducts]: (state, action) => action.payload, //Devuelve un arreglo con productos
   [addReview.fulfilled]: (state, action) => action.payload, //Que devuelva el producto

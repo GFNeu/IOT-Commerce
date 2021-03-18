@@ -9,10 +9,17 @@ const productsController = {
       .catch((err) => next(err)); // Se usaba asi el error MW?
   },
   getOne(req, res, next) {
-    Products.findByPk(req.params.id)
-      .then((product) => res.send(product))
+    console.log("REQ PARAAAAMS", req.params)
+    const queryUser = req.params.name;
+    Products.findAll({
+      where: {
+        name: { [Op.iLike]: `%${queryUser}%` },
+      },
+    })
+      .then((user) => res.send(user))
       .catch((err) => next(err));
   },
+  
   byCategory(req, res, next) {
     Categories.findOne({
       where: { id: req.params.id },
@@ -30,17 +37,6 @@ const productsController = {
       .catch((err) => console.log(err));
   },
 
-  changeOne(req, res, next) {
-    Products.findByPk(req.params.id)
-      .then((product) =>
-        product
-          .update(req.body)
-          .then((product) =>
-            Products.findAll().then((products) => res.send(products))
-          )
-      )
-      .catch((err) => next(err));
-  },
   deleteOne(req, res, next) {
     Products.findByPk(req.params.id)
       .then((product) =>
@@ -53,10 +49,14 @@ const productsController = {
       .catch((err) => next(err));
   },
   editOne(req, res, next) {
+    console.log("ENTRE A ESTE CONTROLLER", req.body)
     Products.findByPk(req.params.id)
-      .then((product) => product.update(req.body))
-      .then((product) => res.send(product))
-      .catch((err) => next(err));
+      .then((product) => {
+        console.log(product)
+        product.update(req.body)
+      })
+       .then((product) => {res.send(product)})
+       .catch((err) => next(err));
   },
 
  
