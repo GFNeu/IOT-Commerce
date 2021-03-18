@@ -1,94 +1,135 @@
-import React from 'react';
-import { Link } from 'react-router-dom'
-import './OrderDetail.css'
+import React,{useEffect, useState } from 'react';
+
+import {useDispatch , useSelector} from 'react-redux';
+import { getPastOrders } from '../state/order'
+import Modal from 'react-bootstrap/Modal'
+import ModalTitle from 'react-bootstrap/ModalTitle'
+import ModalHeader from 'react-bootstrap/ModalHeader'
+import ModalFooter from 'react-bootstrap/ModalFooter'
+import ModalBody from 'react-bootstrap/ModalBody'
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+import InputGroup from 'react-bootstrap/InputGroup'
+import FormControl from 'react-bootstrap/FormControl'
+import axios from 'axios'
+import swal from "sweetalert";
 
 const OrderDetail = () => {
-    //consumir los estados de, user , cart, 
-    //esta vista es para
+    const [review, setReview] =useState('');
+    const [show, setShow] = useState(false);
+    const dispatch = useDispatch();
+
+    const orders = useSelector(state=> state.orders)
+    const user = useSelector(state => state.user)
+    
+
+    const createReview = async(e, productId, userId ) =>{
+        e.preventDefault();
+        
+    try{
+        const body = {review, userId};
+    const res = await axios.post(`/api/products/${productId}/reviews`, body)
+
+            console.log('ACA ESTA EL AXIOS',res);
+            if(res.data==='ya existe una review'){
+                swal('ya existe una review de este producto')
+            }else{
+                swal('review guardada!')
+            }
+            setShow(false);
+    }catch(err){
+            console.error(err)
+    }
+    }
+    const handleClose = () => {
+        setShow(false);
+    }
+    const handleShow = (e,param) => setShow(true);
+
+    useEffect(()=>{
+        dispatch(getPastOrders())
+    },[])
 
 return (
 <>
-<div className="container container-fluid">
+{console.log(orders[orders.length-1])}
+{ orders[orders.length-1] ?
+    <div className="container container-fluid">
 	
     <div className="row d-flex justify-content-between">
         <div className="col-12  mt-2 order-details">
 
-            <h1 className="my-5">Order Id# 5</h1>
+            <h1 className="my-3">{`Order Id: #${(orders[orders.length-1]).id}`}</h1>
 
-                <h4 className="mb-3">Client Info</h4>
-                    <p><b>Name:</b> pepe</p>
-                    <p><b>Lastname:</b> pepe</p>
-                    <p><b>Total Amount:</b> $ 1000</p>
+                <h4 className="mb-3"><b>Client Info</b></h4>
+                    <p><b>Name:</b> {user.name}</p>
+                    <p><b>Lastname:</b>{user.lastName}</p>
 
                     <hr/>
 
                     <h4 className="my-4">Payment Status</h4>
-                    <p style={{color:'green'}} ><b>PAID</b></p>
+                    <p style={{color:'green'}} ><b>{(orders.slice(-1))[0].orderStatusId===2? 'PAID':'PENDING'}</b></p>
 
                     <h4 className="my-4">Order Status:</h4>
-                    <p style={{color:'green'}}><b>Delivered ()</b></p>
+                    <p style={{color:'green'}}><b>{(orders.slice(-1))[0].orderStatusId===2? 'DELIVERED':'PENDING'}</b></p>
 
-                   <h4 className="my-4">Order Items: map??</h4>
-                    <hr />
-                    <div className="cart-item my-1">
+                   <h4 className="my-4">Order Items:</h4>
+                <hr />
+
+            {
+            orders.slice(-1)[0].products.map(order=>{
+
+            return <div className="cart-item my-1">
                         <div className="row my-5">
                             <div className="col-4 ">
-                                <img src='https://www.geekfactory.mx/wp-content/uploads/2020/01/USB-PLUG.jpg' alt="aaa" height="45" width="65" />
+                                <img src={order.photo} alt="foto" height="45" width="65" />
                             </div>
 
                             <div className="col-5 ">
-                                <button type="button" id="cart_btn" className='btn btn-warning ml-4' data-toggle='modal' >
-                                Add Review
-                                </button>
+                                
                                 {/* aca va el modal */}
-                                {/* <!-- Modal --> tengo q igualar data-target='#id5' con div id='id5'  */}
-
-                                <div  className='modal fade' role='dialog'>
-                                    <div className='modal-dialog'>
-                                        {/* <!-- Modal content--> */}
-                                        <div className='modal-content'>
-                                            <div className='modal-header'>
-                                                <button type='button' className='close' data-dismiss='modal'
-                                                // onClick={() => setDescription(todo.description)} 
-                                                >&times; </button>
-                                                <h4 className='modal-title'>Edit Todo</h4>
-                                            </div>
-                                            <div className='modal-body'>
-                                                {/*aca meto un input form para poder editar el todo */}
-                                                <input 
-                                                    type="text" 
-                                                    className="form-control" 
-                                                    //value= { description }
-                                                    //onChange = { e => setDescription(e.target.value) }                            
-                                                />
-                                            </div>
-                                            <div className='modal-footer'>
-                                                {/*aca hay 1 boton mas para confirmar el posteo del review  */}
-                                                <button type='button' className='btn btn-success' data-dismiss='modal'>
-                                                    Post Review
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
+                            <Button variant="warning" onClick={handleShow} data-toggle='modal' 
+                            data-target={`#id${order.id}`}>Add Review</Button>
+                               <Form onSubmit={createReview} id={`id${order.id}`}>
+                                    <Modal show={show} onHide={handleClose}  className='modal fade' role='dialog'>
+                                        <ModalHeader closeButton>
+                                            <ModalTitle>Agrega tu Review</ModalTitle>
+                                        </ModalHeader>
+                                        <ModalBody><InputGroup placeholder ='review...'onChange={ e=> setReview(e.target.value)}>
+                                        <FormControl type="text" placeholder="agrega tu review.." />
+                                        </InputGroup></ModalBody>
+                                        <ModalFooter>
+                                            <Button variant="secondary" onClick={handleClose}>Close</Button>
+                                            <Button variant="primary" onClick={(e)=>createReview(e, order.id, user.id)} >Save Review</Button>
+                                        </ModalFooter>
+                                    </Modal>
+                                </Form>
                             </div>
 
 
                             <div className="col-4 mt-4 ">
-                                <p> <b>Name:</b>Cable de alimentación USB a plug invertido</p>
+                                <p> <b>Product Name: </b>{order.name}</p>
                             </div>
 
                             <div className="col-4 mt-4 ">
-                                <p> <b>Cantidad:</b> consumir las cantidades del cart??</p>
+                                <p> <b>Quantity Buyed: </b>{order.OrderProducts.cantidad}</p>
                             </div>
                         </div>
                     </div>
+
+                    })
+                    }
+                  
                 <hr />
         </div>
     </div>
     
 </div>  
+
+
+
+: 'loading'} 
+
 </>
 )
 }

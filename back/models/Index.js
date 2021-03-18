@@ -11,11 +11,13 @@ const ProductCategories = require("./ProductCategories");
 // REVIEWS
 User.hasMany(Reviews);
 Reviews.belongsTo(Products);
+Products.hasMany(Reviews)
 Reviews.belongsTo(User)
 
 // ORDERS
 User.hasMany(Order);
 Order.belongsTo(User);
+Order.belongsTo(OrderStatus);
 OrderStatus.hasMany(Order);
 Order.belongsToMany(Products, {through: OrderProducts});
 Products.belongsToMany(Order, {through: OrderProducts});

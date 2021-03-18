@@ -4,7 +4,7 @@ import { getOne } from '../state/product'
 import { addProduct } from '../state/carrito'
 import { getReviewsByProduct } from '../state/reviews'
 import { Link } from 'react-router-dom'
-import './ProductDetail.css';
+import s from './ProductDetail.module.css';
 
 const ProductDetail = ( {id} ) => {
    
@@ -31,7 +31,7 @@ const ProductDetail = ( {id} ) => {
         { product.length ? 
          <div className="row f-flex justify-content-around">
             <div className="col-12 col-lg-5 img-fluid mt-5" id="product_image">
-                <img src={product[0].photo} height="450" width="350"/>
+                <img src={product[0].photo} className={s.foto}/>
             </div>
 
          <div className="col-12 col-lg-5 mt-5">
@@ -49,7 +49,7 @@ const ProductDetail = ( {id} ) => {
              <hr/>
 
              <p id="product_price">{`$${product[0].price}`}</p>
-             <div className="stockCounter d-inline">
+             <div className={`${s.stockCounter} d-inline`}>
                  <span className="btn btn-danger minus" onClick={()=> setCantidad(x => {if(x>0) return x-1})}>-</span>
 
                  <input type="number" className="form-control count d-inline" value={cantidad} readOnly />

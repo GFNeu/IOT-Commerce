@@ -14,7 +14,7 @@ import { RiAccountCircleFill } from "react-icons/ri";
 import {Link ,useHistory } from "react-router-dom"
 import {useSelector, useDispatch} from "react-redux"
 import {logout} from "../../state/user"
-import logo from '../../assets/logo2.png'
+import logo from '../../assets/logo3.png'
 import axios from 'axios'
 import {getCategories} from "../../state/categories"
 import { getProductsByKeyword } from '../../state/product';
@@ -45,9 +45,7 @@ const AppBar = ( ) => {
      
       dispatch(getProductsByKeyword(keyword))
       //.then(()=>window.location = `/products/search?name=${keyword}`)      
-       .then(()=>{
-        history.push ( `/products/search?name=${keyword}`)})      
-     
+       .then(()=>history.push ( `/products/search?name=${keyword}`))      
     }
     else {
       history.push('/')}
@@ -59,7 +57,7 @@ const AppBar = ( ) => {
       <Navbar expand="lg" bg="primary">
         <Container fluid style={{maxWidth: 1500}}>
         <Link to="/">
-          <Navbar.Brand id={s.iot}><img src={logo} alt="IOT COMERCE"/></Navbar.Brand>
+          <Navbar.Brand id={s.iot}><img src={logo} alt="IOT COMERCE" className={s.logo}/></Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
@@ -107,7 +105,7 @@ const AppBar = ( ) => {
               alignRight
               className={s.dropdownPerfil}
               >
-                <NavDropdown.Item href="#action/3.1">Mis compras</NavDropdown.Item>
+                <NavDropdown.Item onClick={()=>history.push('/pastOrders')}>Mis compras</NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item onClick={logOut}>
                   Cerrar sesión

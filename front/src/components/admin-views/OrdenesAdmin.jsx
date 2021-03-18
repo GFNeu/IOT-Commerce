@@ -8,10 +8,16 @@ import Table from "react-bootstrap/Table";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Pagination from "react-bootstrap/Pagination";
+import {getOrders} from "../../state/allorders"
+import { useDispatch } from "react-redux";
 
 
 const OrdenesAdmin = () => {
-  const users = useSelector((state) => state.allUser);
+  const dispatch = useDispatch();
+  React.useEffect(()=>{
+dispatch(getOrders())
+  },[])
+  const orders = useSelector((state) => state.allOrders);
   /* console.log("usuarios todos ", users) */
 
   let active = 1;
@@ -24,13 +30,11 @@ const OrdenesAdmin = () => {
     );
   }
 
-
+  console.log("Orders ",orders)
 
   return (
-    <div>     
-      
-      <div>       
-        
+    <div>           
+      <div>        
         <Navbar collapseOnSelect expand="lg" className="bg-dark" variant="dark">
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
@@ -92,28 +96,62 @@ const OrdenesAdmin = () => {
                     <th>#Orden</th>
                     <th>First, Lastname</th>
                     <th>Username</th>
-                    <th>Order Status</th>
-                    <th>Paid status</th>
-                    <th>Paid date</th>
-                    <th>Delivered date</th>
+                    <th>Order Status</th>                   
                   </tr>
                 </thead>
       
-                {users.length>0 &&  users.map((user) => (
+                {orders.length>0 &&  orders.map((order) => (
                   
                   <tbody>
-                  {user.id<10? <tr>
-                    <Link to = "/"> <td style = {{backgroundColor:"red"}}>{user.id}</td> </Link>
+                  {order.orderStatus.statusType =="Pago confirmado"? // comienza ternario
+                  
+                   <tr>
+                     <td >{order.id}</td>
                       
-                      <td>{user.fullName}</td>
-                      <Link > <td>{user.email}</td> </Link>
+                      <td>{order.user.fullName}</td>
+                      <Link > <td>{order.user.email}</td> </Link>
+                      <td style = {{backgroundColor:"green"}}>{order.orderStatus.statusType}</td>                   
+                    </tr>: 
 
-                   
-                    </tr>: <tr>
-                    <Link > <td style = {{backgroundColor:"green"}}>{user.id}</td> </Link>
+                    order.orderStatus.statusType =="Cancelado"? // comienza segundo ternario
+                  
+                   <tr>
+                     <td >{order.id}</td>
                       
-                      <td>{user.fullName}</td>
-                      <Link > <td>{user.email}</td> </Link>                   
+                      <td>{order.user.fullName}</td>
+                      <Link > <td>{order.user.email}</td> </Link>
+                      <td style = {{backgroundColor:"orange"}}>{order.orderStatus.statusType}</td>                   
+                    </tr>
+                    :
+                    order.orderStatus.statusType =="Iniciado"? // comienza tercer ternario
+                  
+                  <tr>
+                    <td >{order.id}</td>
+                     
+                     <td>{order.user.fullName}</td>
+                     <Link > <td>{order.user.email}</td> </Link>
+                     <td style = {{backgroundColor:"blue"}}>{order.orderStatus.statusType}</td>                   
+                   </tr>
+                   :
+
+                   order.orderStatus.statusType =="Pendiente"? // comienza tercer ternario
+                  
+                  <tr>
+                    <td >{order.id}</td>
+                     
+                     <td>{order.user.fullName}</td>
+                     <Link > <td>{order.user.email}</td> </Link>
+                     <td style = {{backgroundColor:"rgb(201, 76, 76)"}}>{order.orderStatus.statusType}</td>                   
+                   </tr>
+                   :
+
+                    <tr>
+                     <td >{order.id}</td>
+                      
+                      <td>{order.user.fullName}</td>
+                      <td>{order.user.email}</td> 
+                      <td style = {{backgroundColor:"red"}}>{order.orderStatus.statusType}</td>
+                      {/* <Link > <td>{user.email}</td> </Link> */}
                     </tr>}
                    
                     
