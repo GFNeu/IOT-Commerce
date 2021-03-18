@@ -9,7 +9,6 @@ const {
   addOne,
   deleteOne,
   getProductsByKeyword,
-  findOneProduct,
   editOne,
 } = require("../controllers/products");
 const { addReview, getReviewsByProduct } = require("../controllers/reviews");
@@ -31,7 +30,6 @@ router.get("/byCategory/:id", byCategory);
 router.get("/:id/reviews", getReviewsByProduct);
 router.get("/:id", getById)
 router.post("/:id/reviews", addReview);
-
 router.get("/", getAll);
 
 //ADMIN
