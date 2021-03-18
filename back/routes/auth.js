@@ -3,8 +3,6 @@ const jwt = require("jsonwebtoken");
 const loginRoute = require("./auth/login");
 const registerRoute = require("./auth/register");
 
-
-
 router.use("/login", loginRoute);
 router.use("/register", registerRoute);
 
@@ -21,7 +19,6 @@ router.post("/me", (req, res)=>{
     }
     
 })
-
 
 
 module.exports = router;

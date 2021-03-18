@@ -18,6 +18,7 @@ import Reviews from "./components/Reviews.jsx";
 import OrderDetail from "./components/OrderDetail.jsx";
 import Search from "./components/Search.jsx";
 import NoDisponible from "./components/NoDisponible.jsx";
+
 import AdminPanel from "./components/admin-views/AdminPanel";
 import ProductosAdmin from "./components/admin-views/ProductosAdmin.jsx";
 import UsuariosAdmin from "./components/admin-views/UsuariosAdmin.jsx";
@@ -26,10 +27,13 @@ import SingleUsuario from "./components/admin-views/SingleUsuario.jsx";
 import "./App.css";
 import { getUsers } from "./state/allusers";
 import EditarUsuario from "./components/admin-views/EditarUsuario";
-import CategoriasAdmin from "./components/admin-views/CategoriasAdmin";
-import EditarCategoria from "./components/admin-views/EditarCategoria";
-import CrearCategoria from "./components/admin-views/CrearCategoria";
+import CategoriasAdmin from "./components/admin-views/CategoriasAdmin"
+import EditarCategoria from "./components/admin-views/EditarCategoria"
+import CrearCategoria from "./components/admin-views/CrearCategoria"
+import SingleOrden from "./components/admin-views/SingleOrden"
+import EditarOrdenes from "./components/admin-views/EditarOrdenes"
 import EditarProducto from "./components/admin-views/EditarProducto";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -54,40 +58,20 @@ function App() {
       <AppBar />
       <div className="main">
         <Switch>
-          <Route path exact="/">
-            <Home />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/register">
-            <Register />
-          </Route>
+          <Route path exact="/"><Home /></Route>
+          <Route path="/login"><Login /></Route>
+          <Route path="/register"><Register /></Route>
 
-          <Route path="/products/search">
-            <Search />
-          </Route>
+          <Route path="/products/search"><Search /></Route>
 
-          <Route
-            path="/products/:id/reviews"
-            render={({ match }) => <Reviews id={match.params.id} />}
-          />
+          <Route path="/products/:id/reviews" render={({ match }) => <Reviews id={match.params.id} />}/>
 
-          <Route
-            path="/products/:id"
-            render={({ match }) => <ProductDetail id={match.params.id} />}
-          />
+          <Route path="/products/:id" render={({ match }) => <ProductDetail id={match.params.id} />} />
 
-          <Route path="/cart">
-            <Cart />
-          </Route>
-          <Route path="/order">
-            <OrderDetail />
-          </Route>
+          <Route path="/cart"><Cart /> </Route>
+          <Route path="/order"><OrderDetail /></Route>
 
-          <Route path="/courses/:id">
-            <NoDisponible />
-          </Route>
+          <Route path="/courses/:id"><NoDisponible/></Route>
           {/* <Route path ="/products/detail" component={ProductDetail}/> */}
 
           <Route exact path="/adminPanel">
@@ -124,6 +108,17 @@ function App() {
 
           <Route
             exact
+            path="/adminPanel/ordenes/singleOrdenes/:id"
+            render={({ match }) => <SingleOrden id={match.params.id} />}
+          />
+          <Route
+            exact
+            path="/adminPanel/ordenes/singleOrdenes/editarOrdenes/:id"
+            render={({ match }) => <EditarOrdenes id={match.params.id} />}
+          />
+
+          <Route
+            exact
             path="/adminPanel/usuarios/SingleUsuario/edit/:id"
             render={({ match }) => <EditarUsuario id={match.params.id} />}
           />
@@ -134,13 +129,12 @@ function App() {
             render={({ match }) => <EditarProducto id={match.params.id} />}
           />
 
-          <Route path="/order">
-            <OrderDetail />
-          </Route>
-          <Route
-            path="/categories/:id"
-            render={({ match }) => <Category id={match.params.id} />}
+          <Route exact path="/adminPanel/usuarios/SingleUsuario/edit/:id"
+            render={({ match }) => <EditarUsuario id={match.params.id} />}
           />
+          <Route exact path="/adminPanel/productos/edit/:id" render={({ match }) => <EditarProducto id={match.params.id} />}/>
+          <Route path="/order"><OrderDetail /></Route>
+          <Route path="/categories/:id" render={({ match }) => <Category id={match.params.id} />} />
         </Switch>
       </div>
       <Footer />
