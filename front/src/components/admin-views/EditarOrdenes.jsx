@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import './OrderDetail.css'
+
 
 const OrderDetail = () => {
     //consumir los estados de, user , cart, 
