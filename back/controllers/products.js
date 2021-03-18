@@ -22,18 +22,7 @@ const productsController = {
       .catch((err) => next(err));
   },
 
-  addReview(req, res, next) {
-    Reviews.create({
-      /*Llenar con
-        campo de review: req.body.datoparacampo */
-      productId: req.params.id, //Ver con que nombre se creo el id del producto
-    })
-      .then((review) =>
-        Products.findByPk(req.params.id).then((product) => res.send(product))
-      )
-      .catch((err) => next(err));
-  },
-
+  
   addOne(req, res, next) {
     Products.create(req.body)
 
