@@ -1,5 +1,6 @@
 "use strict";
 const faker = require("faker"); 
+faker.locale="es";
 const {User} = require("../../models/Index");
 const cantidad = 60
 
