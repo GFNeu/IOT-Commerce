@@ -89,6 +89,9 @@ return (
                     <h4 className="my-4">Estado del pago:</h4>
                     <p style={{color:'green'}} ><b>{(orders.slice(-1))[0].orderStatusId===2? 'PAGADO':'PENDIENTE'}</b></p>
 
+                    <h4 className="my-4">Dirección de envío:</h4>
+                    <p>{`${(orders.slice(-1))[0].calle}  ${(orders.slice(-1))[0].numero}, Depto. ${(orders.slice(-1))[0].piso} ${(orders.slice(-1))[0].departamento} - ${(orders.slice(-1))[0].localidad}, ${(orders.slice(-1))[0].provincia} - ${(orders.slice(-1))[0].cp}`}</p>
+
                     <h4 className="my-4">Estado de la compra:</h4>
                     <p style={{color:'green'}}><b>{(orders.slice(-1))[0].orderStatusId===2? 'ENTREGADO':'PENDIENTE'}</b></p>
 
