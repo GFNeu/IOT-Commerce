@@ -10,6 +10,7 @@ const {
   deleteOne,
   getProductsByKeyword,
   editOne,
+  getAllProductsByPages
 } = require("../controllers/products");
 const { addReview, getReviewsByProduct } = require("../controllers/reviews");
 
@@ -24,6 +25,7 @@ DELETE PRODUCT
 
 
 router.get("/search", getProductsByKeyword);
+router.get("/prueba", getAllProductsByPages)
 router.put("/:id", editOne);
 router.get("/admin/:name", getOne);
 router.get("/byCategory/:id", byCategory);

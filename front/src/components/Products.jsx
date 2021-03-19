@@ -4,9 +4,6 @@ import { addProduct } from "../state/carrito"
 import { Link } from "react-router-dom";
 import "../Products.css";
 import { useSelector } from "react-redux";
-import Rating from 'react-rating'
-import { FaRegStar } from "react-icons/fa";
-import { FaStar } from "react-icons/fa";
 import RatingByProduct from "./RatingByProduct"
 
 
