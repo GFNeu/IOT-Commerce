@@ -4,9 +4,6 @@ import { addProduct } from "../state/carrito"
 import { Link } from "react-router-dom";
 import "../Products.css";
 import { useSelector } from "react-redux";
-import Rating from 'react-rating'
-import { FaRegStar } from "react-icons/fa";
-import { FaStar } from "react-icons/fa";
 import RatingByProduct from "./RatingByProduct"
 
 
@@ -24,9 +21,9 @@ const Products = () => {
           {products.length
             ? products.map((product) => {
                 return (   
-                <div className="col-sm-6 col-md-5 col-lg-3 col-xl-2 my-3 py-5 px-3">
+                <div className="col-sm-12 col-md-6 col-lg-3  my-3 py-5 px-5">
                   <div className="card p-3 rounded">
-                    <img className="card-img-top mx-auto container" src={product.photo}/>
+                    <img className="card-img-top px-auto" src={product.photo}/>
                     <div className="card-body d-flex flex-column ">
                       <h5 className="card-title">
                         <Link to={`/products/${product.id}`}>
@@ -37,7 +34,7 @@ const Products = () => {
                       <RatingByProduct product={product}/>
                       </div>
                       <p className="card-text">{`Price: $ ${product.price}`}</p>
-                      <Link to={`/product/${product.id}`}>
+                      <Link to={`/products/${product.id}`}>
                         <button id="view_btn">View Product Detail</button>
                       </Link>
                       <hr />

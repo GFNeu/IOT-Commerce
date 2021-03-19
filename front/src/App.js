@@ -34,6 +34,7 @@ import CrearCategoria from "./components/admin-views/CrearCategoria"
 import SingleOrden from "./components/admin-views/SingleOrden"
 import EditarOrdenes from "./components/admin-views/EditarOrdenes"
 import EditarProducto from "./components/admin-views/EditarProducto";
+import PastOrderDetail from "./components/PastOrderDetail.jsx"
 
 
 function App() {
@@ -76,6 +77,8 @@ function App() {
           <Route path="/order">
             <OrderDetail />
           </Route>
+          <Route path="/pastOrders/:id" render={({match})=> <PastOrderDetail id={match.params.id}/>}/>
+            
           <Route path="/pastOrders">
             <PastOrders />
           </Route>
@@ -84,26 +87,16 @@ function App() {
           {/* <Route path ="/products/detail" component={ProductDetail}/> */}
           <Route path="/categories/:id" render={({ match }) => <Category id={match.params.id} />} />
 
-          <Route exact path="/adminPanel">
-            <AdminPanel />
-          </Route>
-          <Route exact path="/adminPanel/productos">
-            <ProductosAdmin />
-          </Route>
+          <Route exact path="/adminPanel"><AdminPanel /></Route>
+          <Route exact path="/adminPanel/productos"><ProductosAdmin/></Route>
           <Route
             exact
             path="/adminPanel/productos/editarProducto/:id"
             render={({ match }) => <EditarProducto id={match.params.id} />}
           />
-          <Route exact path="/adminPanel/usuarios">
-            <UsuariosAdmin />
-          </Route>
-          <Route exact path="/adminPanel/ordenes">
-            <OrdenesAdmin />
-          </Route>
-          <Route exact path="/adminPanel/categorias">
-            <CategoriasAdmin />
-          </Route>
+          <Route exact path="/adminPanel/usuarios"><UsuariosAdmin /></Route>
+          <Route exact path="/adminPanel/ordenes"><OrdenesAdmin /></Route>
+          <Route exact path="/adminPanel/categorias"><CategoriasAdmin /></Route>
           <Route
             exact
             path="/adminPanel/usuarios/SingleUsuario/edit/:id"
@@ -117,20 +110,19 @@ function App() {
           <Route exact path="/adminPanel/categorias/crear">
             <CrearCategoria />
           </Route>
-          <Route exact>
-            <SingleUsuario />
-          </Route>
+          
+          <Route
+            exact
+            path="/adminPanel/ordenes/singleOrdenes/:id"
+            render={({ match }) => <SingleOrden id={match.params.id} />}
+          />
           <Route
             exact
             path="/adminPanel/usuarios/SingleUsuario/:id"
             render={({ match }) => <SingleUsuario id={match.params.id} />}
           />
 
-          <Route
-            exact
-            path="/adminPanel/ordenes/singleOrdenes/:id"
-            render={({ match }) => <SingleOrden id={match.params.id} />}
-          />
+          
           <Route
             exact
             path="/adminPanel/ordenes/singleOrdenes/editarOrdenes/:id"

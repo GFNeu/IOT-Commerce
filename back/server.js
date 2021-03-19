@@ -6,6 +6,7 @@ const routes = require('./routes')
 const db = require('./db')
 const app = express();
 
+
 app.use(morgan('tiny'))
 
 //app.use(express.static(path.resolve(__dirname, "./src/public")));
@@ -24,7 +25,7 @@ app.use((err, req, res, next) => {
   //res.sendStatus(404).send(err);
 })
 
-db.sync({ force: false}).then(() => {
+db.sync({ force: false }).then(() => {
   /* force: true */
   http.createServer(app).listen(8080, () => {
     console.log(`Server listening at port 8080`);

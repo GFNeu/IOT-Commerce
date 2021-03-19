@@ -13,6 +13,7 @@ import { exactUser } from "../../state/allusers";
 
 const OrdenesUsuario = ({ id }) => {
   const users = useSelector((state) => state.allUser);
+  const user= useSelector(state=> state.user)
   const dispatch= useDispatch()
   const history= useHistory()
   const idUser= (history.location.pathname.split("/")[4])
@@ -24,6 +25,7 @@ const OrdenesUsuario = ({ id }) => {
   }, [])
   return (
     <div>
+      {user.isAdmin ? <div>
       <div>
         <Navbar collapseOnSelect expand="lg" className="bg-dark" variant="dark">
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -66,18 +68,17 @@ const OrdenesUsuario = ({ id }) => {
         </div>
         <div className="row no-gutters">
           <div className="col-sm-12 col-md-12">
-            {users && users.map((user) => (
               <div className="mb-5 p-4">
-                <Card key={user.id}>
+                <Card key={users.id}>
                   <Card.Header as="h5">
                     <div className="d-flex  justify-content-between ">
                       <div>
-                        Usuario : {user.name} {user.lastName}
+                        Usuario : {users.name} {users.lastName}
                       </div>
                       <div className="px-2">
                         {" "}
                         <Link
-                          to={`/adminPanel/usuarios/SingleUsuario/edit/${user.id}`}
+                          to={`/adminPanel/usuarios/SingleUsuario/edit/${users.id}`}
                         >
                           <button className="btn btn-large bg-warning">
                             {" "}
@@ -88,17 +89,18 @@ const OrdenesUsuario = ({ id }) => {
                     </div>
                   </Card.Header>
                   <Card.Body>
-                    <Card.Title> Correo : {user.email}</Card.Title>
+                    <Card.Title> Correo : {users.email}</Card.Title>
                   </Card.Body>
                 </Card>
               </div>
-            ))}
+            ))
           </div>
           <div className="col-sm-12 col-md-12 py-1 px-5">
             
           </div>
         </div>
       </div>
+   </div> : <h1>Debes ser administrador para ver esta pagina</h1> }
     </div>
   );
 };

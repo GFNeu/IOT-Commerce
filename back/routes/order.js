@@ -1,15 +1,16 @@
 const router = require('express').Router()
-const {createOrder, getPendingOrder, updateOrder, getAllOrders,checkout, removeOrder, getPastOrders, removeAmount} = require('../controllers/order')
+const {changeState, onlyOneForAdmin, createOrder, getPendingOrder, updateOrder, getAllOrders,checkout, removeOrder, getPastOrders, removeAmount, getOrderById} = require('../controllers/order')
 const checkUserJWT = require('./auth/tokenUserMid')
 
+
+//get una orden por id de un usuario
+router.get('/:id/o/:orderId', getOrderById)
 
 //get la orden que este pending
 router.get('/:id/pending', checkUserJWT ,getPendingOrder)
 
 //get todas las órdenes completas
 router.get('/:id',getPastOrders)
-
-
 
 //CHECKOUT
 router.put('/:id/checkout', checkout)
@@ -25,6 +26,10 @@ router.post('/:id',createOrder)
 
 //BORRAR ORDEN
 router.delete('/:id', removeOrder)
+
+//UNA ORDEN PARA EL ADMIN
+router.put("/admin/edit/:id", changeState)
+router.get("/admin/:id", onlyOneForAdmin)
 
 //get todas las órdenes 
 router.get('/', getAllOrders)

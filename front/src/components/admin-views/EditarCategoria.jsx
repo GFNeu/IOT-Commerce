@@ -12,6 +12,7 @@ import "../admin-views/admin.css";
 const EditarCategoria = ({ id }) => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.product);
+  const user= useSelector(state=> state.user)
   const [nombre, setNombre] = useState("");
   const handleChangeNombre = (e) => {
     setNombre(e.target.value);
@@ -30,7 +31,7 @@ const EditarCategoria = ({ id }) => {
   const objeto = { statusDescription: nombre };
 
   console.log(category);
-  const user = useSelector((state) => state.user);
+
   const submitHandler = (e) => {
     e.preventDefault();
     swal("Cambios guardados!");
@@ -77,6 +78,8 @@ const EditarCategoria = ({ id }) => {
 
   return (
     <>
+    <div>
+      {user.isAdmin?
       <div className=" ">
         <div className="row no-gutters wrapper px-5">
           <form
@@ -94,6 +97,7 @@ const EditarCategoria = ({ id }) => {
                 <div className="col-sm-12 col-md-4 p-4">
                   <label htmlFor="name_field" className="px-3"> Nuevo nombre </label>
                   <input
+                  value={nombre}
                     type="name"
                     id="name_field"
                     name="name"
@@ -189,6 +193,8 @@ const EditarCategoria = ({ id }) => {
             </button>
           </form>
         </div>
+      </div>
+      : <h1>Debes ser administrador para ver esta pagina</h1>}
       </div>
     </>
   );

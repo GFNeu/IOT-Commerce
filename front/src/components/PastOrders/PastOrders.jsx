@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {useHistory} from 'react-router-dom'
 import {useSelector} from 'react-redux'
+import {Link} from 'react-router-dom'
 import axios from 'axios'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
@@ -20,6 +21,8 @@ const dateFormater = (date)=>{
 const PastOrders = () => {
     const [orders, setOrders] = useState([])
     const user = useSelector(state => state.user)
+    const history = useHistory()
+    if(!user.id) history.push('/')
     useEffect(()=>{
         axios.get(`/api/users/orders/${user.id}`)
              .then(res => res.data)
@@ -52,7 +55,7 @@ const PastOrders = () => {
             </Col>
             <Col sm={12} md={6} lg={5}><Fotitos products={o.products}/></Col>
             
-            <Col><Button variant="secondary" className="align-self-start">Ver detalles</Button></Col>
+            <Col><Link to={`/pastOrders/${o.id}`}><Button variant="secondary" className="align-self-start">Ver detalles</Button></Link></Col>
             </Row>
             </Container>
           </Card.Body>

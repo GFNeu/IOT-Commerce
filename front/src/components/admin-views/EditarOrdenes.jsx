@@ -1,13 +1,16 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 
 
 const OrderDetail = () => {
     //consumir los estados de, user , cart, 
     //esta vista es para
-
+const user= useSelector(state=> state.user)
 return (
 <>
+<div>
+    {user.isAdmin ? 
 <div className="container container-fluid">
 	
     <div className="row d-flex justify-content-between">
@@ -88,7 +91,8 @@ return (
         </div>
     </div>
     
-</div>  
+</div>: <h1>Debes ser administrador para ver esta pagina</h1> } 
+</div>
 </>
 )
 }
