@@ -123,6 +123,7 @@ const ordersController = {
     },
 
     checkout(req,res,next){
+        console.log(req.body.address)
        
         Order.findAll({
             where: {
@@ -135,6 +136,13 @@ const ordersController = {
         })
         .then(orders => {
             orders[0].orderStatusId = 2
+            orders[0].calle = req.body.address.calle
+            orders[0].numero = req.body.address.numero
+            orders[0].piso = req.body.address.piso
+            orders[0].departamento = req.body.address.departamento
+            orders[0].localidad = req.body.address.localidad
+            orders[0].provincia = req.body.address.provincia
+            orders[0].cp = req.body.address.cp
             return orders[0].save()
         })
         .then(

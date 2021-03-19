@@ -9,25 +9,17 @@ import Form from 'react-bootstrap/Form'
 
 const provincias =["Buenos Aires", "Capital Federal", "Catamarca", "Chaco", "Chubut", "Córdoba", "Corrientes", "Entre Ríos", "Formosa", "Jujuy", "La Pampa", "La Rioja", "Mendoza", "Misiones", "Neuquén", "Río Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe", "Santiago del Estero", "Tierra del Fuego", "Tucumán"]
 
-
-
-
-
-
-
 const Cart = () => {
     let history = useHistory();
     const dispatch = useDispatch()
     const cartItems = useSelector(state=> state.carrito)
     const user = useSelector(state => state.user)
     const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-    const [address, setAddress] = useState({calle: "", numero: "", piso: "", departamento:"", localidad:"", provincia:"", cp:""})
+    const [address, setAddress] = useState({calle: "", numero: "", piso: "", departamento:"", localidad:"", provincia:"Buenos Aires", cp:""})
     
     const handleCheckout = () => {
         if(user.id){
-          dispatch(checkout())
+          dispatch(checkout(address))
               .then(()=>{
                   swal('¡Gracias por su compra!')
                   history.push('/order')
@@ -37,6 +29,9 @@ const Cart = () => {
           history.push('/login')
         }
     }
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     const handleChange = (e)=>{
         const name = e.target.name

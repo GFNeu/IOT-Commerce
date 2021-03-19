@@ -38,11 +38,13 @@ return (
                 <h4 className="mb-3"><b>Información del cliente:</b></h4>
                     <p><b>Nombre:</b> {user.name}</p>
                     <p><b>Apellido:</b> {user.lastName}</p>
+                    <p><b>Dirección de envío:</b> {`${order[0].calle}  ${order[0].numero}, Depto. ${order[0].piso} ${order[0].departamento} - ${order[0].localidad}, ${order[0].provincia} - ${order[0].cp}`}</p>
 
                     <hr/>
 
                     <h4 className="my-4">Estado del pago:</h4>
                     <p style={{color:'green',textTransform:'uppercase'}}><b>{order[0].orderStatus.statusType}</b></p>
+
 
                     <h4 className="my-4">Estado de la compra:</h4>
                     {<p style={{color:'green'}}><b>{order[0].orderStatusId===2? 'ENTREGADO':'PENDIENTE'}</b></p>}

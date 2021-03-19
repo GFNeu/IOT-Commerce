@@ -165,7 +165,7 @@ export const emptyCarrito= createAsyncThunk("EMPTY_CARRITO", (data, thunkAPI)=>{
 export const checkout= createAsyncThunk("CHECKOUT", (data, thunkAPI)=>{
       const { user } = thunkAPI.getState();
       
-      return axios.put(`/api/users/orders/${user.id}/checkout`, {userID: user.id})
+      return axios.put(`/api/users/orders/${user.id}/checkout`, {userID: user.id, address: data})
            .then(()=>[])
   })
 
