@@ -81,17 +81,9 @@ dispatch(getOrders())
       <div>           
         <div className="row no-gutters">
           <div className="h3 p-5">Administración de ordenes:</div>
-        </div>
-        <div className="row no-gutters">
-          <div className="col-sm-12 col-md-4">
-            <InputGroup className="mb-3 px-5">
-              <InputGroup.Prepend>
-                <Button variant="warning">Buscar ordenes</Button>
-              </InputGroup.Prepend>
-              <FormControl aria-describedby="basic-addon1" />
-            </InputGroup>
-          </div>
-        </div>
+      </div>
+       
+     
        
 
        <div className="text-center p-2">
