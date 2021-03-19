@@ -17,8 +17,15 @@ const ProductosAdmin = () => {
   const history=useHistory()
   console.log("EN TODOS", product)
 
-  React.useEffect(()=>{},
-  
+  React.useEffect(()=>{
+    // return axios
+    //     .put(`/api/products/${id}`, objeto)
+    //     .then((respuesta) => dispatch(getOne(id))).then(()=> {
+    //       swal("Producto editado!");
+    //       history.push("/adminPanel/productos");
+    //     })
+  },
+[]
   )
 
   const [productoBuscado, setProductoBuscado] = useState("");
