@@ -15,7 +15,7 @@ import ToggleButton from 'react-bootstrap/ToggleButton'
 
 const Category = ( {id} ) => {
     const [isLoading, setIsLoading] = useState(true)
-    const [limit, setLimit] = useState(10)
+    const [limit, setLimit] = useState(12)
     const [page, setPage] = useState(1)
     const [pageQty, setPageQty] = useState(null)
     const categories= useSelector(state=> state.categories)
@@ -47,9 +47,9 @@ const Category = ( {id} ) => {
     }
 
     const radios = [
-        { name: '10', value: '10' },
-        { name: '20', value: '20' },
-        { name: '30', value: '30' },
+        { name: '12', value: '12' },
+        { name: '24', value: '24' },
+        { name: '36', value: '36' },
       ];
     
     
