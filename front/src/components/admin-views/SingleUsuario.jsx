@@ -23,6 +23,8 @@ const OrdenesUsuario = ({ id }) => {
         .then(({data})=> dispatch(exactUser(data)))
         .catch(e=> console.log(e))
   }, [])
+
+
   return (
     <div>
       {user.isAdmin ? <div>
@@ -93,15 +95,13 @@ const OrdenesUsuario = ({ id }) => {
                   </Card.Body>
                 </Card>
               </div>
-            ))
-          </div>
-          <div className="col-sm-12 col-md-12 py-1 px-5">
             
           </div>
+         
         </div>
       </div>
-   </div> : <h1>Debes ser administrador para ver esta pagina</h1> }
-    </div>
+   </div> : <h1 style={{textAlign:'center', marginTop:'15px'}}>Debes ser administrador para ver esta pagina</h1> }
+  </div>
   );
 };
 

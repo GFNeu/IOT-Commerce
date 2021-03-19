@@ -166,7 +166,7 @@ const seleccionarProducto= (id)=>{
           </div>
         </div>
       </div>
-    </div> : <h1>Debes ser administrador para ver esta pagina</h1>}
+    </div> : <h1 style={{textAlign:'center', marginTop:'15px'}}>Debes ser administrador para ver esta pagina</h1>}
     </div>
   );
 };
