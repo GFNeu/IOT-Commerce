@@ -37,6 +37,7 @@ const AppBar = ( ) => {
       e.preventDefault();
       localStorage.clear();
       dispatch(logout())
+      history.push('/')
   };
   const searchHandler = (e)=>{
    
