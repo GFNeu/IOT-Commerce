@@ -1,7 +1,6 @@
 const S = require("sequelize");
 const db = require("../db/index");
 const crypto = require("crypto");
-
 class User extends S.Model {
   /* static buscaUsuario(params) {
     User.findOne (where)
