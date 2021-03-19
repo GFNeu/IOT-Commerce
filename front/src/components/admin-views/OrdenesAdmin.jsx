@@ -1,13 +1,9 @@
 import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import InputGroup from "react-bootstrap/InputGroup";
-import Button from "react-bootstrap/Button";
-import FormControl from "react-bootstrap/FormControl";
 import Table from "react-bootstrap/Table";
 import { Link, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Pagination from "react-bootstrap/Pagination";
 import {getOrders, onlyOne} from "../../state/allorders"
 import { useDispatch } from "react-redux";
 import axios from "axios";
@@ -23,15 +19,7 @@ dispatch(getOrders())
   const orders = useSelector((state) => state.allOrders);
   /* console.log("usuarios todos ", users) */
 
-  let active = 1;
-  let items = [];
-  for (let number = 1; number <= 3; number++) {
-    items.push(
-      <Pagination.Item key={number} active={number === active}>
-        {number}
-      </Pagination.Item>,
-    );
-  }
+  
   const getOrder= (id)=>{
     
     return axios.get(`/api/orders/admin/${id}`)
@@ -165,10 +153,7 @@ dispatch(getOrders())
           </div>
         </div>
 
-        <div  >
-          <Pagination>{items}</Pagination>
-          <br />
-        </div>
+       
       </div>
     </div>
     </div>
