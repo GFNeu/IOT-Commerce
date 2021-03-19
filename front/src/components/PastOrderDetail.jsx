@@ -42,7 +42,7 @@ return (
                     <hr/>
 
                     <h4 className="my-4">Estado del pago:</h4>
-                    <p style={{color:'green'}} ><b>{order[0].orderStatus.statusType}</b></p>
+                    <p style={{color:'green',textTransform:'uppercase'}}><b>{order[0].orderStatus.statusType}</b></p>
 
                     <h4 className="my-4">Estado de la compra:</h4>
                     {<p style={{color:'green'}}><b>{order[0].orderStatusId===2? 'ENTREGADO':'PENDIENTE'}</b></p>}

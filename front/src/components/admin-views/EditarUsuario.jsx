@@ -123,8 +123,8 @@ const res = await axios.put(`/api/users/${id}/permits`)
       <div className="row no-gutters wrapper">
         <div className="col-10 col-lg-5">
         <button
-              
-              className="btn btn-block py-3"
+              style={{fontSize:'1.5rem', backgroundColor:'#fa9c23',marginBottom:'1rem'}}
+              className="btn btn-block py-2"
               onClick={()=>cambiarPermisos(user.id)}
             >
               {user.isAdmin ? "Revocar permisos": "Promover a administrador"}
@@ -206,7 +206,7 @@ const res = await axios.put(`/api/users/${id}/permits`)
               id="register_button"
               type="submit"
               className="btn btn-block py-3"
-              
+              style={{fontSize:'1.1rem', color:'black'}}
             >
               CONFIRMAR
             </button>

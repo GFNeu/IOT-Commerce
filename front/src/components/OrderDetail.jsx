@@ -46,7 +46,7 @@ const OrderDetail = () => {
         
     try{
         const body = {review, userId, puntaje};
-    const res = await axios.post(`/api/products/${productId}/reviews`, body)
+        const res = await axios.post(`/api/products/${productId}/reviews`, body)
 
             console.log('ACA ESTA EL AXIOS',res);
             if(res.data==='ya existe una review'){
@@ -135,7 +135,7 @@ return (
                             </div>
 
                             <div className="col-4 mt-4 ">
-                                <p> <b>Canidad: </b>{order.OrderProducts.cantidad}</p>
+                                <p> <b>Cantidad: </b>{order.OrderProducts.cantidad}</p>
                             </div>
                         </div>
                     </div>
