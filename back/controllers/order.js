@@ -7,7 +7,8 @@ const { sendEmail} = require("../controllers/auth");
 const ordersController = {
       
     createOrder(req,res,next){
-        console.log(req.body)
+        
+        
         User.findByPk(req.body.userID)
             .then(user=>{
                return Order.create()
@@ -122,6 +123,7 @@ const ordersController = {
     },
 
     checkout(req,res,next){
+       
         Order.findAll({
             where: {
                 [Op.and]: [
