@@ -107,7 +107,11 @@ dispatch(getOrders())
                    <Link to={`/adminPanel/ordenes/singleOrdenes/${order.id}`}><td >{order.id}</td></Link>                      
                       <td>{order.user.fullName}</td>
                       <Link > <td>{order.user.email}</td> </Link>
-                      <td style = {{backgroundColor:"rgb(3, 252, 53)"}}>{order.orderStatus.statusType}</td>                   
+                      <td >
+                            <div style = {{backgroundColor:"rgb(3, 252, 53)"}} className="badge rounded-pill p-2">
+                            {order.orderStatus.statusType}
+                            </div>                       
+                      </td>                  
                     </tr>: 
 
                     order.orderStatus.statusType =="Cancelado"? // comienza segundo ternario
@@ -117,7 +121,12 @@ dispatch(getOrders())
                       
                       <td>{order.user.fullName}</td>
                       <Link > <td>{order.user.email}</td> </Link>
-                      <td style = {{backgroundColor:"orange"}}>{order.orderStatus.statusType}</td>                   
+                      
+                      <td >
+                            <div style = {{backgroundColor:"orange"}} className="badge rounded-pill p-2">
+                            {order.orderStatus.statusType}
+                            </div>                       
+                      </td>                   
                     </tr>
                     :
                     order.orderStatus.statusType =="Iniciado"? // comienza tercer ternario
@@ -127,7 +136,11 @@ dispatch(getOrders())
                      
                      <td>{order.user.fullName}</td>
                      <Link > <td>{order.user.email}</td> </Link>
-                     <td style = {{backgroundColor:"rgb(185, 222, 2)"}}>{order.orderStatus.statusType}</td>                   
+                      <td >
+                            <div style = {{backgroundColor:"rgb(185, 222, 2)"}} className="badge rounded-pill p-2">
+                            {order.orderStatus.statusType}
+                            </div>                       
+                      </td>                   
                    </tr>
                    :
 
@@ -137,7 +150,11 @@ dispatch(getOrders())
                      
                      <td>{order.user.fullName}</td>
                      <Link to={`/adminPanel/usuarios/SingleUsuario/${order.user.id}`}> <td>{order.user.email}</td> </Link>
-                     <td style = {{backgroundColor:"rgb(201, 76, 76)"}}>{order.orderStatus.statusType}</td>                   
+                     <td >
+                            <div style = {{backgroundColor:"rgb(201, 76, 76)"}} className="badge rounded-pill p-2">
+                            {order.orderStatus.statusType}
+                            </div>                       
+                      </td>                 
                    </tr>
                    :
                    order.orderStatus.statusType =="Confirmado"? // comienza cuarto ternario
@@ -146,14 +163,22 @@ dispatch(getOrders())
                      
                      <td>{order.user.fullName}</td>
                      <Link to={`/adminPanel/usuarios/SingleUsuario/${order.user.id}`}> <td>{order.user.email}</td> </Link>
-                     <td style = {{backgroundColor:"rgb(2, 149, 222)"}}>{order.orderStatus.statusType}</td>                   
+                     <td >
+                            <div style = {{backgroundColor:"rgb(2, 149, 222)"}} className="badge rounded-pill p-2">
+                            {order.orderStatus.statusType}
+                            </div>                       
+                      </td>                
                    </tr>
                    :
                     <tr>                    
                     <Link to={`/adminPanel/ordenes/singleOrdenes/${order.id}`}><td >{order.id}</td></Link>                    
                       <td>{order.user.fullName}</td>
                       <Link to={`/adminPanel/usuarios/SingleUsuario/${order.user.id}`}> <td>{order.user.email}</td> </Link>
-                      <td style = {{backgroundColor:"red"}}>{order.orderStatus.statusType}</td>
+                      <td >
+                            <div style = {{backgroundColor:"red"}} className="badge rounded-pill p-2">
+                            {order.orderStatus.statusType}
+                            </div>                       
+                      </td> 
                       
                     </tr>}                    
                   </tbody>                  
