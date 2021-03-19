@@ -4,9 +4,31 @@ const { Op } = require("sequelize");
 
 const productsController = {
   getAll(req, res, next) {
-    Products.getAllWithReview()
+
+    const limit = req.query.limit || null
+    const page = req.query.page || 0
+    const offset = limit * (page-1) || 0
+
+    if(!limit){
+      console.log("no limit")
+      Products.getAllWithReview()
       .then((products) => res.send(products))
-      .catch((err) => next(err)); // Se usaba asi el error MW?
+      .catch((err) => next(err)); 
+    } else {
+      Products.count()
+            .then(n => {
+              const numOfPages = n/limit || 1
+              return {totalPages: numOfPages, currentPage: Number(page)}
+            })
+            .then((pages)=>{
+              console.log("hola")
+              
+              console.log("offset: ", offset, "page: ", page, "limit ", limit)
+              Products.getAllWithReview(limit, offset)
+              .then(products => res.send([products, pages]))
+            })
+    }
+    
   },
   getOne(req, res, next) {
     console.log("REQ PARAAAAMS", req.params)
@@ -97,6 +119,21 @@ const productsController = {
       .then((user) => res.send(user))
       .catch((err) => next(err));
   },
+
+  getAllProductsByPages(req,res,next){
+    const limit = req.query.limit || null
+    const offset = req.query.offset || null
+    Products.count()
+            .then(n => {
+              const numOfPages = n/limit || 1
+              const currentPage = offset/limit || 1
+              return {total: numOfPages, currentPage}
+            })
+            .then((pages)=>{
+              Products.getAllWithReview(limit, offset)
+              .then(products => res.send({pages, products}))
+            })
+  }
 };
 
 module.exports = productsController;

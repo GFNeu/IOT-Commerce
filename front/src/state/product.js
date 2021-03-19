@@ -15,6 +15,12 @@ Admin: agregar producto
 Admin: modificar producto
 Admin: eliminar producto
 */
+
+export const getProductsByPage = createAsyncThunk("GET_PRODUCTS_BY_PAGE", (data) => {
+  const {limit, page} = data
+  return axios.get(`/api/products?limit=${limit}&page=${page}`).then((respuesta) => respuesta.data);
+});
+
 export const getProducts = createAsyncThunk("GET_PRODUCTS", (data) => {
   return axios.get("/api/products/", data).then((respuesta) => respuesta.data);
 });
@@ -63,6 +69,7 @@ export const getProductsByKeyword = createAsyncThunk(
 export const busquedaProducto = createAction("BUSQUEDA_PRODUCTO");
 
 const productReducer = createReducer([], {
+  [getProductsByPage.fulfilled]: (state, action) => action.payload[0],
   [getProducts.fulfilled]: (state, action) => action.payload,
   [getOne.fulfilled]: (state, action) => [action.payload],
   [getProductsByKeyword.fulfilled]: (state, action) => action.payload,

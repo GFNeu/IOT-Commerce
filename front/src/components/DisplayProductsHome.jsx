@@ -61,7 +61,7 @@ const DisplayProductsHome = () => {
         console.log("hola")
       }
       
-      const menu = productos.map(item => (<ProductCard obj={item} key={item.id}/>));
+      const menu = productos.map(item => (<ProductCard obj={item} key={item.id}/>)).slice(0,15);
 
     return (
         <div className={classes.root}>
