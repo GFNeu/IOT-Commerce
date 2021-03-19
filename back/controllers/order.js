@@ -1,6 +1,7 @@
 const {Order, User, Products, OrderStatus} = require("../models/Index");
 const {OrderProducts} = require('../models/OrderProducts')
 const { Op } = require("sequelize");
+const { sendEmail} = require("../controllers/auth");
 
 
 const ordersController = {
@@ -134,7 +135,16 @@ const ordersController = {
             orders[0].orderStatusId = 2
             return orders[0].save()
         })
-        .then(()=>res.send("Checkout correcto"))
+        .then(
+            ()=>{
+                return User.findByPk(req.params.id)
+            }
+        )
+        .then((user)=>{
+            console.log("UUUSER",user)
+            sendEmail("IOT Commerce", user.email , "Compra exitosa","",`<h1>Compra confirmada <br> Gracias ${user.name}</h1>`)
+            res.send("Checkout correcto")
+        })
         .catch(next)
     },
 
