@@ -45,11 +45,10 @@ return (
 
                 )}
                
-                
             </tbody>
         </table>
     </Container>
-    : <div className='row justify-content center mt-3 ml-5'><b>Este producto no tiene reviews</b></div>}    
+    : <div className='d-flex row justify-content center mt-3 ml-5'><b>Este producto no tiene reviews</b></div>}    
 </div>
 
 )

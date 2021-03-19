@@ -194,7 +194,7 @@ const EditarCategoria = ({ id }) => {
           </form>
         </div>
       </div>
-      : <h1>Debes ser administrador para ver esta pagina</h1>}
+      : <h1 style={{textAlign:'center', marginTop:'15px'}}>Debes ser administrador para ver esta pagina</h1>}
       </div>
     </>
   );

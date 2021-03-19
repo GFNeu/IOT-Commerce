@@ -47,12 +47,8 @@ const CategoriasAdmin = () => {
     .then((data) => {
       
       dispatch(deleteCategory())
-     
-      
       return swal("Categoria eliminada") //Ver que quede el mensaje
       //history.push("/adminPanel")
-    
-      
       
     }).then(()=> history.go(0))
     .catch(e=> swal("No esta autorizado para realizar la accion") )
@@ -134,7 +130,7 @@ const CategoriasAdmin = () => {
         </div>
       </div>
       </div>
-    : <h1>Debes ser aministrador para ver esta pagina</h1>}
+    : <h1 style={{textAlign:'center', marginTop:'15px'}}>Debes ser aministrador para ver esta pagina</h1>}
       
     </div>
   );

@@ -81,97 +81,6 @@ console.log(product[0])
    
   };
 
-  // dispatch(user(objeto)).then((data) => data);
-
-  // const [nameValidate, setNameValidate] = useState("inicial");
-  // const [descriptionValidate, setDescriptionValidate] = useState("inicial");
-  // const [photoValidate, setPhotoValidate] = useState("inicial");
-
-  // const [priceValidate, setPriceValidate] = useState("inicial");
-  // const [markValidate, setMarkValidate] = useState("inicial");
-  // const [modelValidate, setModelValidate] = useState("inicial");
-
-  // const [stockValidate, setStockValidate] = useState("inicial");
-
-  // const requeridoName = (e) => {
-  //   let expresion = /([A-Za-z0-9-]+)/;
-
-  //   if (objeto.name != "" && expresion.test(objeto.name)) {
-  //     setNameValidate("mostrar");
-  //   } else {
-  //     // el input esta vacio
-  //     setNameValidate("nomostrar");
-  //   }
-  // };
-
-  // const requeridoDescription = (e) => {
-  //   let expresion = /([A-Za-z0-9-]+)/;
-
-  //   if (objeto.description != "" && expresion.test(objeto.description)) {
-  //     setDescriptionValidate("mostrar");
-  //   } else {
-  //     // el input esta vacio
-  //     setDescriptionValidate("nomostrar");
-  //   }
-  // };
-
-  // const requeridoPhoto = (e) => {
-  //   if (objeto.photo != "") {
-  //     setPhotoValidate("mostrar");
-  //   } else {
-  //     // el input esta vacio
-  //     setPhotoValidate("nomostrar");
-  //   }
-  // };
-
-  // const requeridoPrice = (e) => {
-  //   let expresion = /[0-9]/;
-
-  //   if (objeto.price != "" && expresion.test(objeto.price)) {
-  //     setPriceValidate("mostrar");
-  //   } else {
-  //     // el input esta vacio
-  //     setPriceValidate("nomostrar");
-  //   }
-  // };
-
-  // const requeridoMark = (e) => {
-  //   let expresion = /([A-Za-z0-9-]+)/;
-
-  //   if (objeto.mark != "" && expresion.test(objeto.mark)) {
-  //     setMarkValidate("mostrar");
-  //   } else {
-  //     // el input esta vacio
-  //     setMarkValidate("nomostrar");
-  //   }
-  // };
-
-  // const requeridoModel = (e) => {
-  //   let expresion = /([A-Za-z0-9-]+)/;
-
-  //   if (objeto.model != "" && expresion.test(objeto.model)) {
-  //     setModelValidate("mostrar");
-  //   } else {
-  //     // el input esta vacio
-  //     setModelValidate("nomostrar");
-  //   }
-  // };
-
-  // const requeridoStock = (e) => {
-  //   let expresion = /[0-9]/;
-
-  //   if (objeto.stock != "" && expresion.test(objeto.stock)) {
-  //     setStockValidate("mostrar");
-  //   } else {
-  //     // el input esta vacio
-  //     setStockValidate("nomostrar");
-  //   }
-  // };
-
-  
-
-
-
   return (
     <>
     <div>
@@ -192,21 +101,11 @@ console.log(product[0])
               <label> Nombre </label>
               <input
               value={name}
-              className="form-control"
-                // className={` form-control 
-                // ${
-                //   nameValidate == "inicial"
-                //     ? ""
-                //     : nameValidate == "mostrar"
-                //     ? "is-valid "
-                //     : "is-invalid"
-                // }             
-                //     `}
-                onChange={handleChangeName}
-                // onBlur={requeridoName}
+              className="form-control" 
+              onChange={handleChangeName}
+                
               />
-              {/* <div className="valid-feedback">Todo bien continúe</div>
-              <div className="invalid-feedback">Entre un nombre válido </div> */}
+             
             </div>
 
             <div class="form-group"></div>
@@ -216,22 +115,12 @@ console.log(product[0])
               <textarea
               value={description}
               className="form-control"
-                // className={` form-control ${
-                //   descriptionValidate == "inicial"
-                //     ? ""
-                //     : descriptionValidate == "mostrar"
-                //     ? "is-valid "
-                //     : "is-invalid"
-                // }             
-                //     `}
+               
                 onChange={handleChangeDescription}
-                // onBlur={requeridoDescription}
+                
               ></textarea>
 
-              {/* <div className="valid-feedback">Todo bien, continúe</div>
-              <div className="invalid-feedback">
-                Entre un descripción válida
-              </div> */}
+            
             </div>
 
             <div className="form-group">
@@ -239,19 +128,10 @@ console.log(product[0])
               <input
               value={photo}
               className="form-control"
-                // className={` form-control ${
-                //   photoValidate == "inicial"
-                //     ? ""
-                //     : photoValidate == "mostrar"
-                //     ? "is-valid "
-                //     : "is-invalid"
-                // }             
-                //     `}
-                onChange={handleChangePhoto}
-                // onBlur={requeridoPhoto}
+              onChange={handleChangePhoto}
+                
               />
-              {/* <div className="valid-feedback">Todo bien, continúe</div>
-              <div className="invalid-feedback">Ingrese una foto válida</div> */}
+             
             </div>
 
             <div className="form-group">
@@ -259,19 +139,10 @@ console.log(product[0])
               <input
               value={price}
               className="form-control"
-                // className={` form-control ${
-                //   priceValidate == "inicial"
-                //     ? ""
-                //     : priceValidate == "mostrar"
-                //     ? "is-valid "
-                //     : "is-invalid"
-                // }             
-                //     `}
-                onChange={handleChangePrice}
-                // onBlur={requeridoPrice}
+               
+              onChange={handleChangePrice}
               />
-              {/* <div className="valid-feedback">Todo bien, continúe</div>
-              <div className="invalid-feedback">Ingrese un precio</div> */}
+             
             </div>
 
             <div className="form-group">
@@ -279,19 +150,10 @@ console.log(product[0])
               <input
               value={mark}
               className="form-control"
-                // className={` form-control ${
-                //   markValidate == "inicial"
-                //     ? ""
-                //     : markValidate == "mostrar"
-                //     ? "is-valid "
-                //     : "is-invalid"
-                // }             
-                //     `}
-                onChange={handleChangeMark}
-                // onBlur={requeridoMark}
+              onChange={handleChangeMark}
+               
               />
-              {/* <div className="valid-feedback">Todo bien continúe</div>
-              <div className="invalid-feedback">Entre una marca válido </div> */}
+              
             </div>
 
             <div className="form-group">
@@ -299,19 +161,11 @@ console.log(product[0])
               <input
               value={model}
               className="form-control"
-                // className={` form-control ${
-                //   modelValidate == "inicial"
-                //     ? ""
-                //     : modelValidate == "mostrar"
-                //     ? "is-valid "
-                //     : "is-invalid"
-                // }             
-                //     `}
-                onChange={handleChangeModel}
-                // onBlur={requeridoModel}
+                
+              onChange={handleChangeModel}
+              
               />
-              {/* <div className="valid-feedback">Todo bien continúe</div>
-              <div className="invalid-feedback">Entre un modelo válido </div> */}
+          
             </div>
 
             <div className="form-group">
@@ -319,19 +173,10 @@ console.log(product[0])
               <input
               value={stock}
               className="form-control"
-                // className={` form-control ${
-                //   stockValidate == "inicial"
-                //     ? ""
-                //     : stockValidate == "mostrar"
-                //     ? "is-valid "
-                //     : "is-invalid"
-                // }             
-                //     `}
-                onChange={handleChangeStock}
+              onChange={handleChangeStock}
                 // onBlur={requeridoStock}
               />
-              {/* <div className="valid-feedback">Todo bien continúe</div>
-              <div className="invalid-feedback">Entre un modelo válido </div> */}
+             
             </div>
 
             <button
@@ -346,7 +191,7 @@ console.log(product[0])
       </div>
       : "loading"}
       </div>
-      : <h1>Debes ser administrador para ver esta pagina</h1>}
+      : <h1 style={{textAlign:'center', marginTop:'15px'}}>Debes ser administrador para ver esta pagina</h1>}
       </div>
     </>
   );

@@ -55,7 +55,7 @@ const Category = ( {id} ) => {
     
 
     return (
-      <div>
+      <div className='text-center'>
         {id == 654 ? (
           <h1
             style={{

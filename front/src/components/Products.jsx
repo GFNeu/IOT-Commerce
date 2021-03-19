@@ -16,14 +16,16 @@ const Products = () => {
 
   return (
     <>
-      <div className="row no-gutters px-5">
+      <div className="row no-gutters px-3">
       
           {products.length
             ? products.map((product) => {
                 return (   
-                <div className="col-sm-12 col-md-6 col-lg-3  my-3 py-5 px-5">
+                <div className="col-sm-12 col-md-4 col-lg-3 my-3 px-5">
                   <div className="card p-3 rounded">
-                    <img className="card-img-top px-auto" src={product.photo}/>
+                    <div className='text-center'>
+                    <img  src={product.photo} width='100%' height='200px'/>
+                    </div>
                     <div className="card-body d-flex flex-column ">
                       <h5 className="card-title">
                         <Link to={`/products/${product.id}`}>
