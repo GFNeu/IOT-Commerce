@@ -1,6 +1,7 @@
 const {Order, User, Products, OrderStatus} = require("../models/Index");
 const {OrderProducts} = require('../models/OrderProducts')
 const { Op } = require("sequelize");
+const { sendEmail} = require("../controllers/auth");
 
 
 const ordersController = {
@@ -134,7 +135,16 @@ const ordersController = {
             orders[0].orderStatusId = 2
             return orders[0].save()
         })
-        .then(()=>res.send("Checkout correcto"))
+        .then(
+            ()=>{
+                return User.findByPk(req.params.id)
+            }
+        )
+        .then((user)=>{
+            console.log("UUUSER",user)
+            sendEmail("IOT Commerce", user.email , "Compra exitosa","",`<h1>Compra confirmada <br> Gracias ${user.name}</h1>`)
+            res.send("Checkout correcto")
+        })
         .catch(next)
     },
 
@@ -198,6 +208,36 @@ const ordersController = {
               ]
         })
         .then(orders=>res.send(orders))
+    },
+
+    onlyOneForAdmin(req,res,next){
+        Order.findOne({where:{
+            id: req.params.id
+        }, include: [
+            {model: OrderStatus},
+            {
+                model: Products,
+                through: OrderProducts,
+              },
+              {model: User}
+        ]})
+        .then(orders=>res.send(orders))
+    },
+
+    changeState(req,res,next){
+        console.log("EL BODY", typeof(Number(req.body.estado)))
+        console.log("EL ID", req.params.id)
+        const estado= Number(req.body.estado)
+        console.log("INFO PROCESADA", typeof(estado), estado)
+        Order.findByPk(req.params.id)
+        .then(order=>{
+            console.log("EL VIEJO ESTADO", order.orderStatusId)
+            order.orderStatusId= estado
+            return order.save()
+        }).then(()=> Order.findByPk(req.params.id).then(order=>{
+            console.log("LA ORDEN CON EL NUEVO ESTADOOOOO", order.orderStatusId)
+            res.send(order)}))
+        .catch(e=> next(e))
     }
 
 }

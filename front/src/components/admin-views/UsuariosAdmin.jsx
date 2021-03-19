@@ -12,6 +12,7 @@ import { busquedaUsuario } from "../../state/allusers";
 
 const UsuariosAdmin = () => {
   const users = useSelector((state) => state.allUser);
+  const user= useSelector(state=> state.user)
   const dispatch = useDispatch();
   const [usuarioBuscado, setUsuarioBuscado] = useState("");
 
@@ -30,6 +31,7 @@ const UsuariosAdmin = () => {
 
   return (
     <div>
+      {user.isAdmin ? <div>
       <div>
         <Navbar collapseOnSelect expand="lg" className="bg-dark" variant="dark">
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -83,7 +85,7 @@ const UsuariosAdmin = () => {
           </div>
 
           <div className="col-sm-12 col-md-8">
-            {users.map((user) => (
+            {users.length && users.map((user) => (
               <div className="mb-5 p-4">
                 <Card key={user.id}>
                   <Card.Header as="h5">
@@ -105,6 +107,7 @@ const UsuariosAdmin = () => {
           </div>
         </div>
       </div>
+      </div>: <h1>Debes ser administrador para ver esta pagina</h1>}
     </div>
   );
 };

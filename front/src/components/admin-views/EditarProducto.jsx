@@ -9,6 +9,7 @@ import {getOne} from "../../state/product"
 const EditarProducto = ({ id }) => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const user= useSelector(state=> state.user)
 
   // id name  price mark  photo photo  description
 const product= useSelector(state=>state.product)
@@ -71,18 +72,13 @@ console.log(product[0])
     
       return axios
         .put(`/api/products/${id}`, objeto)
-        .then((respuesta) => respuesta.data)
-        .then((data) => {
-          return axios  
-          .get(`/api/products/admin/${id}`)
-          .then(({data})=> {
-            dispatch(getOne(data))
-            swal("Producto editado!");
+        .then((respuesta) => dispatch(getOne(id))).then(()=> {
+          swal("Producto editado!");
           history.push("/adminPanel/productos");
-            })
-          
-        });
-    // }
+        })
+            
+            
+   
   };
 
   // dispatch(user(objeto)).then((data) => data);
@@ -178,6 +174,10 @@ console.log(product[0])
 
   return (
     <>
+    <div>
+
+    {user.isAdmin? 
+    <div>
     {product.length ? 
       <div className="row no-gutters wrapper">
         <div className="col-10 col-lg-5">
@@ -345,6 +345,9 @@ console.log(product[0])
         </div>
       </div>
       : "loading"}
+      </div>
+      : <h1>Debes ser administrador para ver esta pagina</h1>}
+      </div>
     </>
   );
 };

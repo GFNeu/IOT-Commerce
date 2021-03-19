@@ -5,15 +5,18 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
 import FormControl from "react-bootstrap/FormControl";
 import Table from "react-bootstrap/Table";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Pagination from "react-bootstrap/Pagination";
-import {getOrders} from "../../state/allorders"
+import {getOrders, onlyOne} from "../../state/allorders"
 import { useDispatch } from "react-redux";
+import axios from "axios";
 
 
 const OrdenesAdmin = () => {
+  const user= useSelector(state=>state.user)
   const dispatch = useDispatch();
+  const history= useHistory()
   React.useEffect(()=>{
 dispatch(getOrders())
   },[])
@@ -29,11 +32,17 @@ dispatch(getOrders())
       </Pagination.Item>,
     );
   }
-
+  const getOrder= (id)=>{
+    
+    return axios.get(`/api/orders/admin/${id}`)
+            .then(({data})=> dispatch(onlyOne(data))).then(()=>history.push(`/adminPanel/ordenes/singleOrdenes/${id}`))
+  }
   console.log("Orders ",orders)
 
   return (
-    <div>           
+    <div>    
+      {user.isAdmin ?     
+      <div>   
       <div>        
         <Navbar collapseOnSelect expand="lg" className="bg-dark" variant="dark">
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -106,31 +115,31 @@ dispatch(getOrders())
                   {order.orderStatus.statusType =="Pago confirmado"? // comienza ternario
                   
                    <tr>
-                     <td>{order.id}</td>
+                     <td onClick={()=>getOrder(order.id)}>{order.id}</td>
                      
                       
-                      <td>{order.user.fullName}</td>
-                      <Link > <td>{order.user.email}</td> </Link>
+                    <td>{order.user.fullName}</td>
+                        <Link to={`/adminPanel/usuarios/SingleUsuario/${order.user.id}`}><td>{order.user.email}</td> </Link>
                       <td style = {{backgroundColor:"green"}}>{order.orderStatus.statusType}</td>                   
                     </tr>: 
 
                     order.orderStatus.statusType =="Cancelado"? // comienza segundo ternario
                   
                    <tr>
-                     <td >{order.id}</td>
+                     <td onClick={()=>getOrder(order.id)}>{order.id}</td>
                       
-                      <td>{order.user.fullName}</td>
-                      <Link > <td>{order.user.email}</td> </Link>
+                     <td>{order.user.fullName}</td>
+                     <Link to={`/adminPanel/usuarios/SingleUsuario/${order.user.id}`}><td>{order.user.email}</td> </Link>
                       <td style = {{backgroundColor:"orange"}}>{order.orderStatus.statusType}</td>                   
                     </tr>
                     :
                     order.orderStatus.statusType =="Iniciado"? // comienza tercer ternario
                   
                   <tr>
-                    <td >{order.id}</td>
+                   <td onClick={()=>getOrder(order.id)} >{order.id}</td>
                      
-                     <td>{order.user.fullName}</td>
-                     <Link > <td>{order.user.email}</td> </Link>
+                    <td>{order.user.fullName}</td>
+                    <Link to={`/adminPanel/usuarios/SingleUsuario/${order.user.id}`}><td>{order.user.email}</td> </Link>
                      <td style = {{backgroundColor:"blue"}}>{order.orderStatus.statusType}</td>                   
                    </tr>
                    :
@@ -138,19 +147,19 @@ dispatch(getOrders())
                    order.orderStatus.statusType =="Pendiente"? // comienza tercer ternario
                   
                   <tr>
-                    <Link to={`/adminPanel/ordenes/singleOrdenes/${order.id}`}><td >{order.id}</td></Link>
+                    <td onClick={()=>getOrder(order.id)}>{order.id}</td>
                      
-                     <td>{order.user.fullName}</td>
-                     <Link to={`/adminPanel/usuarios/SingleUsuario/${order.user.id}`}> <td>{order.user.email}</td> </Link>
+                    <td>{order.user.fullName}</td>
+                    <Link to={`/adminPanel/usuarios/SingleUsuario/${order.user.id}`}><td>{order.user.email}</td> </Link>
                      <td style = {{backgroundColor:"rgb(201, 76, 76)"}}>{order.orderStatus.statusType}</td>                   
                    </tr>
                    :
 
                     <tr>
-                     <td >{order.id}</td>
+                    <td onClick={()=>getOrder(order.id)}>{order.id}</td>
                       
                       <td>{order.user.fullName}</td>
-                      <td>{order.user.email}</td> 
+                      <Link to={`/adminPanel/usuarios/SingleUsuario/${order.user.id}`}><td>{order.user.email}</td> </Link>
                       <td style = {{backgroundColor:"red"}}>{order.orderStatus.statusType}</td>
                       {/* <Link > <td>{user.email}</td> </Link> */}
                     </tr>}
@@ -170,6 +179,8 @@ dispatch(getOrders())
         </div>
       </div>
     </div>
+    </div>
+    : <h1>Debes ser administrador para ver esta pagina</h1>}
     </div>
   );
 };

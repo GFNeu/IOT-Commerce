@@ -12,6 +12,7 @@ import { Link, useHistory } from "react-router-dom";
 
 const ProductosAdmin = () => {
   const product = useSelector((state) => state.product);
+  const user= useSelector(state=> state.user)
   const dispatch = useDispatch();
   const history=useHistory()
   console.log("EN TODOS", product)
@@ -22,12 +23,11 @@ const ProductosAdmin = () => {
 
   const [productoBuscado, setProductoBuscado] = useState("");
 const seleccionarProducto= (id)=>{
-  return axios  
-          .get(`/api/products/admin/${id}`)
-          .then(({data})=> {
-            dispatch(getOne(data))
-            history.push(`/adminPanel/productos/editarProducto/${id}`)
-            })
+  console.log("AAAAAAAAAAAAAAA", id)
+  
+  dispatch(getOne(id)).then(()=>history.push(`/adminPanel/productos/editarProducto/${id}`))
+            
+            
   
 
 }
@@ -37,6 +37,7 @@ const seleccionarProducto= (id)=>{
 
   const handleClick = (e) => {
     e.preventDefault();
+    
     axios
       .get(`/api/products/admin/${productoBuscado}`)
       .then(({ data }) => dispatch(busquedaProducto(data)))
@@ -46,6 +47,8 @@ const seleccionarProducto= (id)=>{
 
   return (
     <div>
+      {user.isAdmin ?
+      <div>
       <div>
         <Navbar collapseOnSelect expand="lg" className="bg-dark" variant="dark">
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
@@ -163,6 +166,7 @@ const seleccionarProducto= (id)=>{
           </div>
         </div>
       </div>
+    </div> : <h1>Debes ser administrador para ver esta pagina</h1>}
     </div>
   );
 };

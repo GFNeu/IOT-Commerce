@@ -60,7 +60,9 @@ const CategoriasAdmin = () => {
 
   return (
     <div>
+      {user.isAdmin? 
       <div>
+        <div>
         <Navbar collapseOnSelect expand="lg" className="bg-dark" variant="dark">
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
@@ -131,6 +133,9 @@ const CategoriasAdmin = () => {
           </div>
         </div>
       </div>
+      </div>
+    : <h1>Debes ser aministrador para ver esta pagina</h1>}
+      
     </div>
   );
 };

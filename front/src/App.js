@@ -107,19 +107,22 @@ function App() {
             path="/adminPanel/categorias/editar/:id"
             render={({ match }) => <EditarCategoria id={match.params.id} />}
           />
-          <Route exact path="/adminPanel/categorias/crear"><CrearCategoria /></Route>
-          <Route exact><SingleUsuario /></Route>
+          <Route exact path="/adminPanel/categorias/crear">
+            <CrearCategoria />
+          </Route>
+          
+          <Route
+            exact
+            path="/adminPanel/ordenes/singleOrdenes/:id"
+            render={({ match }) => <SingleOrden id={match.params.id} />}
+          />
           <Route
             exact
             path="/adminPanel/usuarios/SingleUsuario/:id"
             render={({ match }) => <SingleUsuario id={match.params.id} />}
           />
 
-          <Route
-            exact
-            path="/adminPanel/ordenes/singleOrdenes/:id"
-            render={({ match }) => <SingleOrden id={match.params.id} />}
-          />
+          
           <Route
             exact
             path="/adminPanel/ordenes/singleOrdenes/editarOrdenes/:id"
