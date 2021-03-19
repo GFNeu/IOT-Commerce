@@ -176,6 +176,7 @@ const ordersController = {
                   model: Products,
                   through: OrderProducts,
                 },
+                { model: OrderStatus }
               ]
         })
         .then(orders=>res.send(orders))
@@ -192,6 +193,22 @@ const ordersController = {
             res.send(order)})
           .catch((err) => next(err)); // Se usaba asi el error MW?
       },
+
+    getOrderById(req,res,next){
+        Order.findAll({
+            where: {
+                id: Number(req.params.orderId)
+            },
+            include: [
+                {
+                  model: Products,
+                  through: OrderProducts,
+                },
+                { model: OrderStatus }
+              ]
+        })
+        .then(orders=>res.send(orders))
+    }
 
 }
 

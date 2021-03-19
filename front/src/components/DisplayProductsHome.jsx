@@ -14,6 +14,9 @@ const useStyles = createUseStyles({
         backgroundColor: "white",
         padding: "2rem",
         width: "100%",
+        border: "1px solid #f0f0f0",
+        bordeRadius: "4px",
+        borderBottomColor: "#e0e0e0"
        
     },
     title: {

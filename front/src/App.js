@@ -34,6 +34,7 @@ import CrearCategoria from "./components/admin-views/CrearCategoria"
 import SingleOrden from "./components/admin-views/SingleOrden"
 import EditarOrdenes from "./components/admin-views/EditarOrdenes"
 import EditarProducto from "./components/admin-views/EditarProducto";
+import PastOrderDetail from "./components/PastOrderDetail.jsx"
 
 
 function App() {
@@ -60,6 +61,7 @@ function App() {
       <div className="main">
         <Switch>
           <Route path exact="/"><Home /></Route>
+          <Route path="/categories/:id" render={({ match }) => <Category id={match.params.id} />} />
           <Route path="/login"><Login /></Route>
           <Route path="/register"><Register /></Route>
 
@@ -75,6 +77,8 @@ function App() {
           <Route path="/order">
             <OrderDetail />
           </Route>
+          <Route path="/pastOrders/:id" render={({match})=> <PastOrderDetail id={match.params.id}/>}/>
+            
           <Route path="/pastOrders">
             <PastOrders />
           </Route>
