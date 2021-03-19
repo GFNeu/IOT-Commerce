@@ -21,6 +21,8 @@ const dateFormater = (date)=>{
 const PastOrders = () => {
     const [orders, setOrders] = useState([])
     const user = useSelector(state => state.user)
+    const history = useHistory()
+    if(!user.id) history.push('/')
     useEffect(()=>{
         axios.get(`/api/users/orders/${user.id}`)
              .then(res => res.data)
