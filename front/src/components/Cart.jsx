@@ -1,15 +1,30 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {Link, useHistory} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux'
 import {addAmount, removeAmount, emptyCarrito, checkout} from '../state/carrito'
 import swal from "sweetalert";
+import Modal from 'react-bootstrap/Modal'
+import Button from 'react-bootstrap/Button'
+import Form from 'react-bootstrap/Form'
+
+const provincias =["Buenos Aires", "Capital Federal", "Catamarca", "Chaco", "Chubut", "Córdoba", "Corrientes", "Entre Ríos", "Formosa", "Jujuy", "La Pampa", "La Rioja", "Mendoza", "Misiones", "Neuquén", "Río Negro", "Salta", "San Juan", "San Luis", "Santa Cruz", "Santa Fe", "Santiago del Estero", "Tierra del Fuego", "Tucumán"]
+
+
+
+
+
+
 
 const Cart = () => {
     let history = useHistory();
     const dispatch = useDispatch()
     const cartItems = useSelector(state=> state.carrito)
     const user = useSelector(state => state.user)
-
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    const [address, setAddress] = useState({calle: "", numero: "", piso: "", departamento:"", localidad:"", provincia:"", cp:""})
+    
     const handleCheckout = () => {
         if(user.id){
           dispatch(checkout())
@@ -22,6 +37,14 @@ const Cart = () => {
           history.push('/login')
         }
     }
+
+    const handleChange = (e)=>{
+        const name = e.target.name
+        const value = e.target.value
+        setAddress(a=> {return {...a, [name]:value}})
+    }
+
+
 
 return (
   <div className="d-block w-100">
@@ -64,7 +87,7 @@ return (
                         <input
                           type="text"
                           className="form-control d-inline"
-                          style={{width: "3rem"}}
+                          style={{ width: "3rem" }}
                           value={item.cantidad}
                           disabled
                         />
@@ -82,7 +105,6 @@ return (
                 <hr />
               </div>
             ))}
-          
         </div>
 
         <div className="col-12 col-lg-3 ">
@@ -106,15 +128,118 @@ return (
             </p>
 
             <hr />
-            <button id="buy_btn" className="btn btn-primary btn-block" onClick={handleCheckout}>
+            <button
+              id="buy_btn"
+              className="btn btn-warning btn-block"
+              onClick={handleShow}
+            >
               Checkout
             </button>
-            <hr/>
-            <button className="btn btn-dark btn-block" onClick={() => dispatch(emptyCarrito())}>Vaciar carrito</button>
+            <hr />
+            <button
+              className="btn btn-dark btn-block"
+              onClick={() => dispatch(emptyCarrito())}
+            >
+              Vaciar carrito
+            </button>
           </div>
         </div>
       </div>
     )}
+    <Modal show={show} onHide={handleClose}>
+      <Modal.Header closeButton>
+        <Modal.Title>Checkout</Modal.Title>
+      </Modal.Header>
+      {console.log(address)}
+      <Modal.Body>
+        <h5>Dirección de envío:</h5>
+        <Form>
+          <Form.Group>
+            <Form.Label>Calle:</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Ingrese una calle"
+              value={address.calle}
+              name="calle"
+              onChange={handleChange}
+            />
+          </Form.Group>
+          <Form.Group>
+            <Form.Label>Número:</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Ingrese un número"
+              value={address.numero}
+              name="numero"
+              onChange={handleChange}
+            />
+          </Form.Group>
+          <Form.Group >
+            <Form.Label>Piso:</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Ingrese el piso"
+              value={address.piso}
+              name="piso"
+              onChange={handleChange}
+            />
+          </Form.Group>
+          <Form.Group >
+            <Form.Label>Departamento:</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Ingrese un número de departamento"
+              value={address.departamento}
+              name="departamento"
+              onChange={handleChange}
+            />
+          </Form.Group>
+          <Form.Group >
+            <Form.Label>Localidad:</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Ingrese una localidad"
+              value={address.localidad}
+              name="localidad"
+              onChange={handleChange}
+            />
+          </Form.Group>
+            <Form.Group >
+            <Form.Label>Provincia:</Form.Label>
+            <Form.Control
+              as="select"
+              className="my-1 mr-sm-2"
+              id="provincia"
+              name="provincia"
+              onChange={handleChange}
+              custom
+            >
+              {provincias.map(prov => (
+                <option value={prov} selected={address.provincia == prov? true : false}>{prov}</option>
+              ))}
+            </Form.Control>
+          </Form.Group>
+          <Form.Group >
+            <Form.Label>CP:</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Ingrese un código postal"
+              value={address.cp}
+              name="cp"
+              onChange={handleChange}
+            />
+          </Form.Group>
+        </Form>
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleClose}>
+          Close
+        </Button>
+        <Button variant="warning" onClick={handleCheckout}>
+          <b>¡Confirmar!</b>
+        </Button>
+      </Modal.Footer>
+    </Modal>
   </div>
 );
 }
