@@ -15,7 +15,7 @@ import ToggleButton from 'react-bootstrap/ToggleButton'
 
 const Category = ( {id} ) => {
     const [isLoading, setIsLoading] = useState(true)
-    const [limit, setLimit] = useState(10)
+    const [limit, setLimit] = useState(12)
     const [page, setPage] = useState(1)
     const [pageQty, setPageQty] = useState(null)
     const categories= useSelector(state=> state.categories)
