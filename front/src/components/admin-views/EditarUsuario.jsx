@@ -122,6 +122,13 @@ const res = await axios.put(`/api/users/${id}/permits`)
       {loggedUser.isAdmin ? 
       <div className="row no-gutters wrapper">
         <div className="col-10 col-lg-5">
+        <button
+              
+              className="btn btn-block py-3"
+              onClick={()=>cambiarPermisos(user.id)}
+            >
+              {user.isAdmin ? "Revocar permisos": "Promover a administrador"}
+            </button>
           <form
             className="shadow-lg"
             onSubmit={submitHandler}
@@ -193,13 +200,7 @@ const res = await axios.put(`/api/users/${id}/permits`)
               <div className="valid-feedback">Todo bien, continúe</div>
               <div className="invalid-feedback">Ingrese un email válido</div>
             </div>
-          <button
-              id="register_button"
-              className="btn btn-block py-3"
-              onClick={()=>cambiarPermisos(user.id)}
-            >
-              {user.isAdmin ? "Revocar permisos": "Promover a administrador"}
-            </button>
+            
             
             <button
               id="register_button"
@@ -209,7 +210,11 @@ const res = await axios.put(`/api/users/${id}/permits`)
             >
               CONFIRMAR
             </button>
+            
           </form>
+          
+
+          
           
         </div>
       </div>

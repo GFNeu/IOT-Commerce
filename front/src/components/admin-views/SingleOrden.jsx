@@ -36,7 +36,7 @@ const SingleOrden = () => {
           .then(({data})=> dispatch(onlyOne(data))).then(()=> {
             
             history.go(0)
-            swal("Estado cambiado!")
+            
             
           })
   }
