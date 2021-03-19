@@ -15,15 +15,13 @@ const ProductosAdmin = () => {
   const user= useSelector(state=> state.user)
   const dispatch = useDispatch();
   const history=useHistory()
-  console.log("EN TODOS", product)
 
-  React.useEffect(()=>{},
-  
-  )
+
+ 
 
   const [productoBuscado, setProductoBuscado] = useState("");
 const seleccionarProducto= (id)=>{
-  console.log("AAAAAAAAAAAAAAA", id)
+
   
   dispatch(getOne(id)).then(()=>history.push(`/adminPanel/productos/editarProducto/${id}`))
             

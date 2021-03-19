@@ -41,10 +41,11 @@ const usersController = {
   changePermits(req, res, next) {
     User.findByPk(req.params.id)
       .then((user) => {
-        user.update({ isAdmin: !user.isAdmin });
+        return user.update({ isAdmin: !user.isAdmin });
       })
-      .then((user) => {
-        User.findByPk(req.params.id).then((user) => {
+      .then((datos) => {
+        User.findByPk(req.params.id)
+          .then((user) => {
           console.log(user);
           res.send(user);
         });

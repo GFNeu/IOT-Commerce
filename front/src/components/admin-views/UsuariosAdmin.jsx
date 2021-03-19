@@ -85,7 +85,7 @@ const UsuariosAdmin = () => {
           </div>
 
           <div className="col-sm-12 col-md-8">
-            {users.length && users.map((user) => (
+            {users.length > 0 && users.map((user) => (
               <div className="mb-5 p-4">
                 <Card key={user.id}>
                   <Card.Header as="h5">

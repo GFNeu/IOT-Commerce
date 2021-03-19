@@ -75,7 +75,7 @@ const productsController = {
     Products.findByPk(req.params.id)
       .then((product) => {
         console.log(product)
-        product.update(req.body)
+       return product.update(req.body)
       })
        .then((product) => {res.send(product)})
        .catch((err) => next(err));

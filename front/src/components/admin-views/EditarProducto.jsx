@@ -72,9 +72,11 @@ console.log(product[0])
     
       return axios
         .put(`/api/products/${id}`, objeto)
-        .then((respuesta) => dispatch(getOne(id))).then(()=> {
+        .then((respuesta) => {
+          console.log(respuesta)
+          dispatch(getOne(id))}).then(()=> {
           swal("Producto editado!");
-          history.push("/adminPanel/productos");
+          history.push(`/adminPanel/productos/`);
         })
             
             
