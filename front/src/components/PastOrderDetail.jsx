@@ -1,25 +1,16 @@
 import React,{useEffect, useState } from 'react';
-import {useDispatch , useSelector} from 'react-redux';
-import { getPastOrders } from '../state/order'
-import Modal from 'react-bootstrap/Modal'
-import ModalTitle from 'react-bootstrap/ModalTitle'
-import ModalHeader from 'react-bootstrap/ModalHeader'
-import ModalFooter from 'react-bootstrap/ModalFooter'
-import ModalBody from 'react-bootstrap/ModalBody'
-import Button from 'react-bootstrap/Button'
-import Form from 'react-bootstrap/Form'
-import InputGroup from 'react-bootstrap/InputGroup'
-import FormControl from 'react-bootstrap/FormControl'
+import {useSelector} from 'react-redux';
+import {useHistory} from 'react-router-dom'
+import Spinner from 'react-bootstrap/Spinner'
 import axios from 'axios'
-import swal from "sweetalert";
-import Rating from 'react-rating'
-import { FaRegStar } from "react-icons/fa";
-import { FaStar } from "react-icons/fa";
 import {Link} from 'react-router-dom'
 
 const OrderDetail = ({id}) => {
   const [order, setOrder] = useState([])
   const user = useSelector(state=> state.user)
+
+  const history = useHistory()
+  if(!user.id) history.push('/')
 
   useEffect(()=>{
         if(user.id){
@@ -42,21 +33,21 @@ return (
     <div className="row d-flex justify-content-between">
         <div className="col-12  mt-2 order-details">
 
-            <h1 className="my-3">{`Order Id: #${order[0].id}`}</h1>
+            <h1 className="my-3">{`ID de la compra: #${order[0].id}`}</h1>
 
-                <h4 className="mb-3"><b>Client Info</b></h4>
-                    <p><b>Name:</b> {user.name}</p>
-                    <p><b>Lastname:</b>{user.lastName}</p>
+                <h4 className="mb-3"><b>Información del cliente:</b></h4>
+                    <p><b>Nombre:</b> {user.name}</p>
+                    <p><b>Apellido:</b> {user.lastName}</p>
 
                     <hr/>
 
-                    <h4 className="my-4">Payment Status</h4>
+                    <h4 className="my-4">Estado del pago:</h4>
                     <p style={{color:'green'}} ><b>{order[0].orderStatus.statusType}</b></p>
 
-                    <h4 className="my-4">Order Status:</h4>
-                    {<p style={{color:'green'}}><b>{order[0].orderStatusId===2? 'DELIVERED':'PENDING'}</b></p>}
+                    <h4 className="my-4">Estado de la compra:</h4>
+                    {<p style={{color:'green'}}><b>{order[0].orderStatusId===2? 'ENTREGADO':'PENDIENTE'}</b></p>}
 
-                   <h4 className="my-4">Order Items:</h4>
+                   <h4 className="my-4">Productos:</h4>
                 <hr />
 
             {
@@ -69,11 +60,11 @@ return (
                             </div>
 
                             <div className="col-3 mt-4 ">
-                                <Link to={`/products/${product.id}`}><p> <b>Product Name: </b>{product.name}</p></Link>
+                                <Link to={`/products/${product.id}`}><p> <b>Producto: </b>{product.name}</p></Link>
                             </div>
 
                             <div className="col-3 mt-4 ">
-                                <p> <b>Quantity Buyed: </b>{product.OrderProducts.cantidad}</p>
+                                <p> <b>Cantidad: </b>{product.OrderProducts.cantidad}</p>
                             </div>
 
                             <div className="col-3 mt-4 ">
@@ -94,7 +85,7 @@ return (
 
 
 
-: 'loading'} 
+: <div className="centerInPage"><Spinner animation="border" /></div>} 
 
 </>
 )
