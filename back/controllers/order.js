@@ -208,6 +208,36 @@ const ordersController = {
               ]
         })
         .then(orders=>res.send(orders))
+    },
+
+    onlyOneForAdmin(req,res,next){
+        Order.findOne({where:{
+            id: req.params.id
+        }, include: [
+            {model: OrderStatus},
+            {
+                model: Products,
+                through: OrderProducts,
+              },
+              {model: User}
+        ]})
+        .then(orders=>res.send(orders))
+    },
+
+    changeState(req,res,next){
+        console.log("EL BODY", typeof(Number(req.body.estado)))
+        console.log("EL ID", req.params.id)
+        const estado= Number(req.body.estado)
+        console.log("INFO PROCESADA", typeof(estado), estado)
+        Order.findByPk(req.params.id)
+        .then(order=>{
+            console.log("EL VIEJO ESTADO", order.orderStatusId)
+            order.orderStatusId= estado
+            return order.save()
+        }).then(()=> Order.findByPk(req.params.id).then(order=>{
+            console.log("LA ORDEN CON EL NUEVO ESTADOOOOO", order.orderStatusId)
+            res.send(order)}))
+        .catch(e=> next(e))
     }
 
 }

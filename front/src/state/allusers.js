@@ -10,6 +10,7 @@ export const getUsers = createAsyncThunk("GET_USERS", () => {
   return axios.get("/api/users").then((respuesta) => respuesta.data);
 });
 
+
 export const changePermits = createAction("CHANGE_PERMITS")
 
 export const busquedaUsuario = createAction("BUSQUEDA_USUARIO");
@@ -23,7 +24,7 @@ const allUserReducer = createReducer([], {
   [getUsers.fulfilled]: (state, action) => action.payload,
   [changePermits]: (state, action) => action.payload,
   [busquedaUsuario]: (state, action) => action.payload,
-  [editUser]: (state, action) => action.payload,
+  [editUser]: (state, action) => [action.payload],
   [exactUser]: (state, action) => action.payload,
 });
 

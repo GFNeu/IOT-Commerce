@@ -16,6 +16,8 @@ const Register = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+  
+
     if (
       emailValidate == "mostrar" &&
       passwordValidate == "mostrar" &&
@@ -23,6 +25,7 @@ const Register = () => {
       passwordValidate == "mostrar" &&
       lastNameValidate == "mostrar"
     ) {
+      console.log("ENTRE AL IFFFF")
       dispatch(register(newUser)).then((data) => {
         if (data.meta.requestStatus === "rejected") {
           return swal("El usuario ya existe");
