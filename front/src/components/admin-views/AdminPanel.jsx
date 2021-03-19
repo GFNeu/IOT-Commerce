@@ -6,7 +6,10 @@ import { useSelector } from "react-redux";
 const AdminPanel = () => {
   const user= useSelector(state=> state.user)
   return (
+    
     <div>
+      {user.isAdmin ?  
+      <div>
       <Navbar collapseOnSelect expand="lg" className="bg-dark" variant="dark">
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -35,7 +38,9 @@ const AdminPanel = () => {
          <div className=" py-5 display-4 text-center">
            Bienvenido {user.name} {user.lastName}
         </div>
-       </div>
+       </div> 
+       </div>: <h1>Debes ser administrador para ver esta pagina</h1>}
+     
     </div>
   );
 };

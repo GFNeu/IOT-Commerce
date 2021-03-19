@@ -37,6 +37,8 @@ const CrearCategoria = () => {
 
   return (
     <>
+    <div>
+      {user.isAdmin?
       <div className="row no-gutters wrapper">
         <div className="col-10 col-lg-5">
           <form
@@ -66,6 +68,9 @@ const CrearCategoria = () => {
           </form>
         </div>
       </div>
+: <h1>Debes ser administrador para ver esta pagina</h1>}
+      </div>
+
     </>
   );
 };

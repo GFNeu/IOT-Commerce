@@ -9,18 +9,23 @@ import Form from 'react-bootstrap/Form'
 
 const EditarUsuario = ({ id }) => {
   const user= useSelector(state=> state.allUser)
-  const loggedUser= useSelector(state=> state.user)
+  
   const dispatch = useDispatch();
-
+  const loggedUser= useSelector(state=> state.user)
   const history = useHistory();
   const userId= history.location.pathname.split("/")[5]
   React.useEffect(()=>{
     axios.
         get(`/api/users/admin/${userId}`)
-        .then(({data})=> dispatch(exactUser(data)))
+        .then(({data})=> dispatch(exactUser(data))).then(()=>{
+          setNombre(user.name)
+          setLastName(user.lastName)
+          setCorreo(user.email)
+        })
         .catch(e=> console.log(e))
   }, [])
 
+  console.log("AAAAAAAAAAAAAA", loggedUser)
   const [nombre, setNombre] = useState("");
   const [correo, setCorreo] = useState("");
   const [lastName, setLastName] = useState("");
@@ -60,11 +65,7 @@ const res = await axios.put(`/api/users/${id}/permits`)
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (
-      emailValidate == "mostrar" &&
-      nameValidate == "mostrar" &&
-      lastNameValidate == "mostrar"
-    ) {
+   
       return axios
         .put(`/api/users/${id}`, objeto)
         .then((respuesta) => respuesta.data)
@@ -73,7 +74,7 @@ const res = await axios.put(`/api/users/${id}/permits`)
           swal("Usuario editado!");
           history.push("/adminPanel/usuarios");
         });
-    }
+    
   };
 
   // dispatch(user(objeto)).then((data) => data);
@@ -117,6 +118,8 @@ const res = await axios.put(`/api/users/${id}/permits`)
 
   return (
     <>
+    <div>
+      {loggedUser.isAdmin ? 
       <div className="row no-gutters wrapper">
         <div className="col-10 col-lg-5">
           <form
@@ -129,6 +132,7 @@ const res = await axios.put(`/api/users/${id}/permits`)
             <div className="form-group">
               <label htmlFor="name_field"> Nombre </label>
               <input
+              value={nombre}
                 type="name"
                 id="name_field"
                 className={` form-control ${
@@ -149,6 +153,7 @@ const res = await axios.put(`/api/users/${id}/permits`)
             <div className="form-group">
               <label htmlFor="lastname_field"> Apellido </label>
               <input
+              value={lastName}
                 type="lastname"
                 id="lastname_field"
                 className={` form-control ${
@@ -170,6 +175,7 @@ const res = await axios.put(`/api/users/${id}/permits`)
             <div className="form-group">
               <label htmlFor="email_field">Email</label>
               <input
+              value={correo}
                 type="email"
                 id="email_field"
                 className={` form-control ${
@@ -206,6 +212,8 @@ const res = await axios.put(`/api/users/${id}/permits`)
           </form>
           
         </div>
+      </div>
+      : <h1>Debes ser administrador para ver esta pagina</h1>}
       </div>
     </>
   );
